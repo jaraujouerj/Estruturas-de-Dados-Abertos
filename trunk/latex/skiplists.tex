@@ -491,87 +491,56 @@ operating system kernel's process management structures \cite{hpux}.
 %inicio Pedro
 
 \begin{exc}
-  Illustrate the search paths for 2.5 and 5.5 on the skiplist in 
-  \figref{skiplist}.
+	Explique os caminhos de pesquisa para 2.5 e 5.5 na skiplist da \figref{skiplist}.
 \end{exc}
 
 \begin{exc}
-  Illustrate the addition of the values 0.5 (with a height of 1) and
-  then 3.5 (with a height of 2) to the skiplist in \figref{skiplist}.
+	Explique a adição dos valores 0,5 (com uma altura de 1) e 3,5 (com uma altura de 2) na skiplist da \figref{skiplist}.
 \end{exc}
 
 \begin{exc}
-  Illustrate the removal of the values 1 and then 3  from the skiplist
-  in \figref{skiplist}.
+	Explique a remoção dos valores 1 e 3 na skiplist da \figref{skiplist}.
 \end{exc}
 
 \begin{exc}
-  Illustrate the execution of #remove(2)# on the #SkiplistList#
-  in \figref{skiplist-lengths}.
+	Explique a execução de #remove(2)# na #SkiplistList# da \figref{skiplist-lengths}.
 \end{exc}
 
 \begin{exc}
-  Illustrate the execution of #add(3,x)# on the #SkiplistList#
-  in \figref{skiplist-lengths}.  Assume that #pickHeight()# selects a height
-  of 4 for the newly created node.
+	Ilustre a execução de #add(3,x)# na #SkiplistList# da \figref{skiplist-lengths}, assumindo que o método #pickHeight()# seleciona uma altura de 4 para o nó recém-criado.
 \end{exc}
 
 \begin{exc}\exclabel{skiplist-changes}
-  Show that, during an #add(x)# or a #remove(x)# operation, the expected
-  number of pointers in a #SkiplistSet# that get changed is constant.
+	Mostre que, durante uma operação #add(x)# ou #remove(x)#, o número esperado de ponteiros em #SkiplistSet# que são alterados é constante.
 \end{exc}
 
 \begin{exc}\exclabel{skiplist-opt}
-  Suppose that, instead of promoting an element from $L_{i-1}$ into $L_i$
-  based on a coin toss, we promote it with some probability $p$, $0 <
-  p < 1$.
-  \begin{enumerate}
-   \item Show that, with this modification, the expected length of a
-     search path is at most $(1/p)\log_{1/p} #n# + O(1)$.
-   \item What is the value of $p$ that minimizes the preceding expression?
-   \item What is the expected height of the skiplist? 
-   \item What is the expected number of nodes in the skiplist?
-  \end{enumerate}
+	Suponha que, em vez de promover um elemento de $L_{i-1}$ para $L_i$ com base num lançamento de moeda, promovamos com alguma probabilidade $p$, $0 < p < 1$.
+	\begin{enumerate}
+		\item Mostre que, com esta modificação, o comprimento esperado de um caminho de pesquisa é no máximo $(1/p)\log_{1/p} #n# + O(1)$.
+		\item Qual é o valor de $p$ que minimiza a expressão anterior?
+		\item Qual é a altura esperada da skiplist?
+		\item Qual é o número esperado de nós na skiplist?
+	\end{enumerate}
 \end{exc}
 
 
 \begin{exc}\exclabel{skiplist-opt-2}
-  The #find(x)# method in a #SkiplistSet# sometimes performs
-  \emph{redundant comparisons}; these occur when #x# is compared to the
-  same value more than once.  They can occur when, for some node, #u#,
-  $#u.next[r]# = #u.next[r-1]#$.  Show how these redundant comparisons
-  happen and modify #find(x)# so that they are avoided.  Analyze the
-  expected number of comparisons done by your modified #find(x)# method.
+	O método #find(x)# em uma #SkiplistSet# às vezes executa \emph{comparações redundantes}; estas ocorrem quando #x# é comparado com o mesmo valor mais de uma vez. Elas podem ocorrer quando, para algum nó, #u#, $#u.next[r]# = #u.next[r-1]#$. Mostre como essas comparações redundantes acontecem e modifique #find(x)# para que elas sejam evitadas. Analise o número esperado de comparações feitas pelo seu método #find(x)# modificado.
 \end{exc}
 
 \begin{exc}
-  Design and implement a version of a skiplist that implements the
-  #SSet# interface, but also allows fast access to elements by rank.
-  That is, it also supports the function #get(i)#, which returns the
-  element whose rank is #i# in $O(\log #n#)$ expected time. (The rank
-  of an element #x# in an #SSet# is the number of elements in the #SSet#
-  that are less than #x#.)
+	Projete e implemente uma versão de uma skiplist que implemente a interface #SSet#, mas também permite acesso rápido a elementos por classificação. Ou seja, ele também suporta a função #get(i)#, que retorna o elemento cuja classificação é #i# no tempo esperado $O(\log #n#)$. (A classificação de um elemento #x# em um #SSet# é o número de elementos no #SSet# que são menores que #x#.)
 \end{exc}
 
 \begin{exc}
-  \index{finger}%
-  \index{finger search!in a skiplist}%
-  A \emph{finger} in a skiplist is an array that stores the
-  sequence of nodes on a search path at which the search path
-  goes down. (The variable #stack# in the #add(x)# code on
-  page~\pageref{pg:skiplist-add} is a finger;  the shaded nodes in
-  \figref{skiplist-add} show the contents of the finger.)  One can
-  think of a finger as pointing out the path to a node in the lowest
-  list, $L_0$.
-
-  A \emph{finger search} implements the #find(x)# operation using a
-  finger, by walking up the list using the finger until reaching a node
-  #u# such that $#u.x# < #x#$ and $#u.next#=#null#$ or $#u.next.x# >
-  #x#$ and then performing a normal search for #x# starting from #u#.
-  It is possible to prove that the expected number of steps required
-  for a finger search is $O(1+\log r)$, where $r$ is the number values
-  in $L_0$ between #x# and the value pointed to by the finger.
-%fim Matheus
+	\index{finger}%
+	\index{finger search!in a skiplist}%
+	Um \emph{indicador} em uma skiplist é um array que armazena a sequência de nós em um caminho de busca no qual o caminho de busca desce. (A variável #pilha# no código de #add(x)# na página ~\pageref{pg:skiplist-add} é um indicador, os nós sombreados na \figref{skiplist-add} mostram o conteúdo do indicador). Pode-se pensar em um dedo apontando o caminho para um nó na lista mais baixa, $L_0$.
+	
+	Uma \emph{busca por indicador} implementa a operação #find(x)# usando um indicador que percorre a lista até alcançar um nó #u#, tal que $#u.x# < #x#$ e $#u.next#=#null#$ ou $#u.next.x# > #x#$, e em seguida realiza uma pesquisa normal para #x# a partir de #u#.
+	É possível provar que o número esperado de passos necessários para uma pesquisa por indicador é $O(1+\log r)$, onde $r$ é o número de valores em $L_0$ entre #x# e o valor apontado pelo indicador.
+%fim Pedro
 
 %inicio Rodrigo
   Implement a subclass of #Skiplist# called #SkiplistWithFinger# that

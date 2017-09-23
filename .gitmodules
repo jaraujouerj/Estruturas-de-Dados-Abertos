@@ -1,0 +1,3 @@
+[submodule "LivroMaster"]
+	path = LivroMaster
+	url = https://github.com/patmorin/ods.git

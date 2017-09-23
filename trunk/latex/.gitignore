@@ -7,3 +7,7 @@ ods-cpp*
 ods-python*
 images/bigoh-1.tex
 images/bigoh-2.tex
+*.aux
+*.log
+*.synctex.gz
+/.gitignore

@@ -1,0 +1,19 @@
+InfoBegin
+InfoKey: ModDate
+InfoValue: D:20120130094640
+InfoBegin
+InfoKey: CreationDate
+InfoValue: D:20120130093641
+InfoBegin
+InfoKey: Creator
+InfoValue: ipetoipe 7.1.4
+InfoBegin
+InfoKey: Producer
+InfoValue: ipetoipe 7.1.4
+NumberOfPages: 1
+PageMediaBegin
+PageMediaNumber: 1
+PageMediaRotation: 0
+PageMediaRect: 0 0 595 842
+PageMediaDimensions: 595 842
+PageMediaCropRect: 59.1705 285.41 436.485 359.168
