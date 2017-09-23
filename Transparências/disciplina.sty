@@ -1,0 +1,45 @@
+\ProvidesPackage{disciplina}
+\mode<presentation>
+\usepackage[utf8]{inputenc} % codificacao de caracteres
+\usepackage[brazil]{babel}  % idioma
+\usepackage{default}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage[T1]{fontenc}
+%\usepackage{listings}
+\usepackage{listingsutf8}
+\lstset{
+  inputencoding=utf8/latin1,
+  language=python,
+  upquote=true,
+  columns=flexible,
+  basicstyle=\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  identifierstyle=\color{blue},
+  extendedchars=true,
+  stringstyle=\color{orange},
+  numbers=left,
+  numberstyle=\tiny\color{lightgray},
+  firstnumber=auto,
+  showspaces=false,
+  tabsize=2,
+  showstringspaces=false,
+  literate=	{'}{{\'{ }}}1  
+}
+
+\usepackage{color}
+\usepackage{caption}
+\usetikzlibrary{arrows,shapes}
+\usepackage{wrapfig}
+
+% Desativando os botoes de navegacao
+\beamertemplatenavigationsymbolsempty
+\setbeamercolor{title}{fg=red!80!black}
+% Tela cheia
+\hypersetup{pdfpagemode=FullScreen}
+% Layout da pagina
+\hypersetup{pdfpagelayout=SinglePage}
+\newcommand\totiny{\tiny\selectfont}
+\newcommand\tosmall{\small\selectfont}
+\newcommand\toscriptsize{\scriptsize\selectfont}
+\newcommand{\textttb}[1]{\textcolor{blue}{\texttt{#1}}}
