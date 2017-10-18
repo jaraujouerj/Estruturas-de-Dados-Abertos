@@ -4,7 +4,7 @@
 Este capítulo introduz uma das estruturas mais fundamentais na Ciência da Computação: árvores binárias. O uso da palavra \emph{árvore}
 \index{árvore}%
 \index{árvore!binária}%
-\index{árvore!binária}%
+\index{árvore binária}%
 vem do fato que, quando as desenhamos, o resultado frequentemente se assemelha às árvores de uma floresta. Existem muitas maneiras de definir uma árvore binária. Matematicamente, uma \emph{árvore binária} é um grafo conectado, não direcionado, finito, sem ciclos e sem nenhum vértice com grau maior que três.
 
 Para muitas aplicações na ciência da computação, árvores binárias possuem \emph{raízes:}
@@ -31,7 +31,7 @@ Nas ilustrações, árvores binárias são comumente desenhadas da raiz para bai
     \includegraphics[scale=0.90909]{figs/bintree-traverse-1} 
   \end{center}
   \caption[Pai e filhos esquerdo e direito]{O pai, o filho esquerdo e o filho direito do nó  #u#
-    em uma #ArvoreBinaria#.}
+    em uma #BinaryTree#.}
   \figlabel{bintree-orientation}
 \end{figure}
 
@@ -73,9 +73,9 @@ como seu filho esquerdo e, da mesma maneira, qualquer nó que não tenha um filh
 árvore binária com $#n#\ge 1$ nós reais possui $#n#+1$ nós externos.
 
 
-\section{#ArvoreBinaria#: Uma Árvore Binária Básica}
+\section{#BinaryTree#: Uma Árvore Binária Básica}
 
-\index{ArvoreBinaria@#ArvoreBinaria#}%
+\index{BinaryTree@#BinaryTree#}%
 Um modo simples de representar um nó, #u#, em uma árvore binária é armazenar explicitamente, e no máximo, três vizinhos de #u#\notpcode{:}\pcodeonly{.}
 \javaimport{ods/BinaryTree.BTNode<Node}
 \cppimport{ods/BinaryTree.BTNode}
@@ -137,7 +137,7 @@ e retornamos para #u.pai#.  O código seguinte implementa esta ideia, com o cód
       \includegraphics[scale=0.90909]{figs/bintree-3}
     \end{tabular}
   \end{center}
-  \caption[Percorrendo uma ArvoreBinaria]{Os três casos que ocorrem no nó
+  \caption[Percorrendo uma BinaryTree]{Os três casos que ocorrem no nó
     #u# quando percorremos uma árvore binária não recursivamente, e o resultado da travessia pela árvore.}
   \figlabel{bintree-traverse}
 \end{figure}
@@ -173,17 +173,17 @@ e #u.direito# (se eles não são #nil#) a #q#:
 
 
 
-\section{#ArvoreBinariaDeBusca#: Uma Árvore Binária de Busca não Balanceada}
+\section{#BinarySearchTree#: Uma Árvore Binária de Busca não Balanceada}
 \seclabel{binarysearchtree}
 
-\index{ArvoreBinariaDeBusca@#ArvoreBinariadeBusca#}%
+\index{BinarySearchTree@#BinarySearchTree#}%
 \index{árvore binária de busca}%
 \index{árvore binária!busca}%
-Uma #ArvoreBinariaDeBusca# é um tipo especial de árvore binária na qual cada nó, #u#,
+Uma #BinarySearchTree# é um tipo especial de árvore binária na qual cada nó, #u#,
 também armazena um valor, #u.x#, de uma ordem total.  Os valores em uma árvore binária de busca obedece à \emph{propriedade da árvore binária de busca}:
 \index{árvore binária de busca}%
 para um nó, #u#, cada valor armazenado na subárvore com raiz em #u.esquerdo# é menor que #u.x# e cada valor armazenado na subárvore com raiz em
-#u.direito# é maior que #u.x#.  Um exemplo de uma #ArvoreBinariaDeBusca# é mostrado na \figref{bst}.
+#u.direito# é maior que #u.x#.  Um exemplo de uma #BinarySearchTree# é mostrado na \figref{bst}.
 
 \begin{figure}
   \begin{center}
@@ -210,7 +210,7 @@ não está na árvore binária de busca.
 
 Dois exemplos de busca em uma árvore binária de busca são mostrados na 
 \figref{bst-search}.  Como é mostrado no segundo exemplo, mesmo se não encontramos #x# na árvore, ainda obtemos alguma informação valiosa.  Se olhamos para o último nó, #u#, no qual o Caso~1 ocorre, percebemos que #u.x# é o menor valor na árvore que é maior que #x#.  De modo análogo,
-o último nó no qual o Caso~2 ocorre contém o maior valor na árvore que é menor #x#.  Deste modo, guardando a informação do último nó, #z#, no qual o Caso~1 ocorre, uma #ArvoreBinariaDeBusca# pode implementar a operação #encontra(x)# que retorna o menor valor armazenado que é maior que ou igual a #x#:
+o último nó no qual o Caso~2 ocorre contém o maior valor na árvore que é menor #x#.  Deste modo, guardando a informação do último nó, #z#, no qual o Caso~1 ocorre, uma #BinarySearchTree# pode implementar a operação #encontra(x)# que retorna o menor valor armazenado que é maior que ou igual a #x#:
 \codeimport{ods/BinarySearchTree.find(x)}
 
 \begin{figure}
@@ -228,12 +228,12 @@ o último nó no qual o Caso~2 ocorre contém o maior valor na árvore que é me
 
 \subsection{Inserção}
 
-Para inserir um novo valor, #x#, a uma #ArvoreBinariaDeBusca#, procuramos primeiro por #x#. Se o encontramos, então não precisamos inseri-lo.  Caso contrário, armazenamos #x# em um filho do último nó, #p#, encontrado durante a busca por #x#. Se o novo nó é o filho esquerdo ou direito de #p# depende do resultado da comparação de #x# e #p.x#.
+Para inserir um novo valor, #x#, a uma #BinarySearchTree#, procuramos primeiro por #x#. Se o encontramos, então não precisamos inseri-lo.  Caso contrário, armazenamos #x# em um filho do último nó, #p#, encontrado durante a busca por #x#. Se o novo nó é o filho esquerdo ou direito de #p# depende do resultado da comparação de #x# e #p.x#.
 \codeimport{ods/BinarySearchTree.add(x)}
 \codeimport{ods/BinarySearchTree.findLast(x)}
 \codeimport{ods/BinarySearchTree.addChild(p,u)}
 Um exemplo é mostrado na \figref{bst-insert}. A parte que consome mais tempo neste processo é a busca inicial por #x#, que demanda um tempo proporcional à altura do nó recém adicionado #u#.
-No pior caso, isto é igual à altura da #ArvoreBinariaDeBusca#.
+No pior caso, isto é igual à altura da #BinarySearchTree#.
 
 
 \begin{figure}
@@ -250,7 +250,7 @@ No pior caso, isto é igual à altura da #ArvoreBinariaDeBusca#.
 
 \subsection{Remoção}
 
-Apagar um valor armazenado em um nó, #u#, de uma #ArvoreBinariaDeBusca# é um pouco mais difícil.  Se #u# é uma folha, então podemos simplesmente desligar #u# do seu pai.  Melhor ainda: se #u# possui somente um filho, nós podemos separar #u# da árvore fazendo #u.pai# adotar o filho de #u# (veja
+Apagar um valor armazenado em um nó, #u#, de uma #BinarySearchTree# é um pouco mais difícil.  Se #u# é uma folha, então podemos simplesmente desligar #u# do seu pai.  Melhor ainda: se #u# possui somente um filho, nós podemos separar #u# da árvore fazendo #u.pai# adotar o filho de #u# (veja
 \figref{bst-splice}):
 \codeimport{ods/BinarySearchTree.splice(u)}
 
@@ -274,22 +274,22 @@ As coisas ficam complicadas, contudo, quando #u# possui dois filhos. Neste caso,
     \includegraphics[width=\HalfScaleIfNeeded]{figs/bst-delete-2}
     \end{tabular}
   \end{center}
-  \caption[Apagar de uma ArvoreBinariaDeBusca]{Apagar um valor ($11$) de um nó, #u#, com dois filhos é realizado substituindo o valor de #u# pelo menor valor na subárvore direita de #u#.}
+  \caption[Apagar de uma BinarySearchTree]{Apagar um valor ($11$) de um nó, #u#, com dois filhos é realizado substituindo o valor de #u# pelo menor valor na subárvore direita de #u#.}
   \figlabel{bst-remove}
 \end{figure}
 
 \subsection{Resumo}
 
 Cada uma das operações #encontrar(x)#, #inserir(x)#, e #remover(x)# em uma
-#ArvoreBinariaDeBusca# envolve seguir um caminho da raiz da árvore até algum nó árvore. Sem conhecer mais sobre o formato da árvore é difícil dizer muito mais sobre o comprimento deste caminho, exceto que ele é menor que #n#, o número de nós na árvore.
-O teorema seguinte (não impressionante) resume o desempenho de uma estrutura de dados #ArvoreBinariaDeBusca#:
+#BinarySearchTree# envolve seguir um caminho da raiz da árvore até algum nó árvore. Sem conhecer mais sobre o formato da árvore é difícil dizer muito mais sobre o comprimento deste caminho, exceto que ele é menor que #n#, o número de nós na árvore.
+O teorema seguinte (não impressionante) resume o desempenho de uma estrutura de dados #BinarySearchTree#:
 
 \begin{thm}\thmlabel{bst}
-  #ArvoreBinariaDeBusca# implementa a interface #ConjuntoOrdenado# e suporta as operações #inserir(x)#, #remover(x)#,
+  #BinarySearchTree# implementa a interface #ConjuntoOrdenado# e suporta as operações #inserir(x)#, #remover(x)#,
   e #encontrar(x)# em $O(#n#)$ tempos por operação.
 \end{thm}
 
-\thmref{bst} se compara de modo inferior com o \thmref{skiplist}, que mostra que a estrutura #SkiplistConjuntoOrdenado# pode implementar a interface #ConjuntoOrdenado# com tempo esperado de $O(\log #n#)$ por operação.  O problema com a estrutura da #ArvoreBinariaDeBusca# é que ela pode ficar  \emph{desbalanceada}.
+\thmref{bst} se compara de modo inferior com o \thmref{skiplist}, que mostra que a estrutura #SkiplistConjuntoOrdenado# pode implementar a interface #ConjuntoOrdenado# com tempo esperado de $O(\log #n#)$ por operação.  O problema com a estrutura da #BinarySearchTree# é que ela pode ficar  \emph{desbalanceada}.
 Em vez de parecer como a árvore na \figref{bst} ela pode parecer uma longa sequência de #n# nós, com todos, exceto o último nó possuindo exatamente um único filho.
 
 Existem numerosas formas de evitar uma árvore binária de busca desbalanceada, todos os quais levam a estruturas de dados que têm $O(\log #n#)$ tempos das operações. No \chapref{rbs} mostraremos como tempos de operações \emph{esperados} de $O(\log #n#)$ podem ser atingidos com a aleatoriedade.
@@ -334,7 +334,7 @@ para um exemplo.
 \end{exc}
 
 \begin{exc}
-  Escreva um método não recursivo, #altura2(u)#, que calcule a altura do nó #u# em uma #ArvoreBinaria#.
+  Escreva um método não recursivo, #altura2(u)#, que calcule a altura do nó #u# em uma #BinaryTree#.
 \end{exc}
 
 \begin{exc}
@@ -373,7 +373,7 @@ para um exemplo.
   \index{número de pré-ordem }%
   \index{número de pós-ordem}%
   \index{número de em-ordem}%
-  Crie uma subclasse de #ArvoreBinaria# cujos nós tenham campos para armazenar números de pré-ordem, pós-ordem, e em-ordem.  Escreva os métodos recursivos #numeroPreOrdem()#, #numeroEmOrdem()#, e #numeroPosOrdem()# que atribua esses números corretamente. Esses métodos devem executar num tempo $O(#n#)$.
+  Crie uma subclasse de #BinaryTree# cujos nós tenham campos para armazenar números de pré-ordem, pós-ordem, e em-ordem.  Escreva os métodos recursivos #numeroPreOrdem()#, #numeroEmOrdem()#, e #numeroPosOrdem()# que atribua esses números corretamente. Esses métodos devem executar num tempo $O(#n#)$.
 \end{exc}
 
 \begin{exc}\exclabel{tree-traversal}
@@ -408,29 +408,29 @@ para um exemplo.
 \end{exc}
 
 \begin{exc}
-  Implemente um método para a #ArvoreBinariaDeBusca#, #obtemLE(x)#,
+  Implemente um método para a #BinarySearchTree#, #obtemLE(x)#,
   que retorne uma lista de todos os itens em uma árvore que sejam menores que ou iguais a #x#.  O tempo de execução do seu método deve ser $O(#n#'+#h#)$ no qual $#n#'$ é o número de itens menores que ou iguais a #x# e #h# é a altura da árvore.
 \end{exc}
 
 \begin{exc}
-  Descreva como inserir os elementos $\{1,\ldots,#n#\}$ para uma  #ArvoreBinariaDeBusca# inicialmente vazia de modo que a árvore resultante tenha altura $#n#-1$.  De quantos modos podemos fazer isso?
+  Descreva como inserir os elementos $\{1,\ldots,#n#\}$ para uma  #BinarySearchTree# inicialmente vazia de modo que a árvore resultante tenha altura $#n#-1$.  De quantos modos podemos fazer isso?
 \end{exc}
 
 \begin{exc}
-  Se temos uma #ArvoreBinariaDeBusca# e executamos a operação #inserir(x)# seguida por #remover(x)# (com o mesmo valor de #x#) necessariamente retornamos à árvore original?
+  Se temos uma #BinarySearchTree# e executamos a operação #inserir(x)# seguida por #remover(x)# (com o mesmo valor de #x#) necessariamente retornamos à árvore original?
 \end{exc}
 
 \begin{exc}
   Uma operação #remover(x)# pode aumentar a altura de algum nó em uma
-  #ArvoreBinariaDeBusca#?  Se sim, de quanto?
+  #BinarySearchTree#?  Se sim, de quanto?
 \end{exc}
 
 \begin{exc}
-  Uma operação  #inserir(x)# pode  aumentar a altura de algum nó em uma #ArvoreBinariaDeBusca#?  Se sim, de quanto?
+  Uma operação  #inserir(x)# pode  aumentar a altura de algum nó em uma #BinarySearchTree#?  Se sim, de quanto?
 \end{exc}
 
 \begin{exc}
-  Projete e implemente uma versão da #ArvoreBinariaDeBusca# na qual cada nó, #u#, mantém os valores #u.tamanho# (o tamanho da subárvore com raiz em #u#), #u.profundidade# (a profundidade de #u#), e #u.altura# (a altura da subárvore com raiz em #u#).  
+  Projete e implemente uma versão da #BinarySearchTree# na qual cada nó, #u#, mantém os valores #u.tamanho# (o tamanho da subárvore com raiz em #u#), #u.profundidade# (a profundidade de #u#), e #u.altura# (a altura da subárvore com raiz em #u#).  
 
   Estes valores devem ser mantidos mesmo durante chamadas a operações de #inserir(x)# e #remover(x)#, porém isto não deve aumentar o custo dessas operações de mais de um valor constante.
 \end{exc}

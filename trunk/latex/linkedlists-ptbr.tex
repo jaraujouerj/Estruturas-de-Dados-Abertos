@@ -559,99 +559,61 @@ e #u.prev#, então podemos extrair #u.next# usando a fórmula
 %Fim Ester
 
 %Inicio Diana
-(Here \verb+^+ computes the bitwise exclusive-or of its two arguments.)
-This technique complicates the code a little and is not possible in
-some languages, like Java and Python, that have garbage collection but gives a
-doubly-linked list implementation that requires only one pointer per node.
-See Sinha's magazine article \cite{s04} for a detailed discussion of
-XOR-lists.
+(Aqui \verb+^+ calcula a operação bit-a-bit ou-exclusivo de seus dois argumentos.)
+Esta técnica complica um pouco o código e não é possível em algumas
+linguagens como Java e Python, que têm coleta de lixo, porém fornece uma
+lista duplamente encadeada que necessita apenas de um ponteiro por nó,
+Veja o artigo de Sinha \cite{s04} para uma discussão detalhada para listas XOR.
 
 \begin{exc}
-  Why is it not possible to use a dummy node in an #SLList# to avoid
-  all the special cases that occur in the operations #push(x)#, #pop()#,
-  #add(x)#, and #remove()#?
+  Por que não é possível usar um nó dummy num #SLList# para evitar todos os casos especiais que ocorrem nas operações #push(x)#, #pop()#, #add(x)# e #remove()#?
 \end{exc}
 
 \begin{exc}
-  Design and implement an #SLList# method, #secondLast()#, that returns
-  the second-last element of an #SLList#.  Do this without using the
-  member variable, #n#, that keeps track of the size of the list.
+	Projete e implemente um método para a #SLList#, #secondLast()#, que retorna o penúltimo elemento de #SLList#. Faça isso sem usar a variável de membro, #n#, que acompanha o tamanho da lista.
 \end{exc}
 
 \begin{exc}
-  Implement the #List# operations #get(i)#, #set(i,x)#,
-  #add(i,x)# and #remove(i)# on an #SLList#.  Each of these operations
-  should run in $O(1+#i#)$ time.
+	Implementar as operações de #List#, #get(i)#, #set(i,x)#, #add(i,x)# e #remove(i)# em #SLList#. Cada uma dessas operações deve ser executada em um tempo $O(1+#i#)$.
 \end{exc}
 
 \begin{exc}
-  Design and implement an #SLList# method, #reverse()# that reverses the
-  order of elements in an #SLList#.  This method should run in $O(#n#)$
-  time, should not use recursion, should not use any secondary data
-  structures, and should not create any new nodes.
+	Projete e implemente um método para a #SLList#, #reverse()# que inverte a ordem dos elementos em #SLList#. Este método deve ser executado em tempo $O(#n#)$, não deve usar recursão, não deve usar nenhuma estrutura de dados secundária e não deve criar novos nós.
 \end{exc}
 
 \begin{exc}
-  Design and implement #SLList# and #DLList# methods called #checkSize()#.
-  These methods walk through the list and count the number of nodes to
-  see if this matches the value, #n#, stored in the list.  These methods
-  return nothing, but throw an exception if the size they compute does
-  not match the value of #n#.
+	Projete e implemente os métodos para a #SLList# e #DLList# chamados #checkSize()#. Esses métodos percorrem a lista e contam o número de nós para ver se isso corresponde ao valor, #n#, armazenado na lista. Esses métodos não retornam nada, mas lançam uma exceção se o tamanho que eles compõem não corresponde ao valor de #n#.
 \end{exc}
 
 \begin{exc}
-  Try to recreate the code for the #addBefore(w)# operation that creates a
-  node, #u#, and adds it in a #DLList# just before the node #w#.  Do not
-  refer to this chapter.  Even if your code does not exactly match the
-  code given in this book it may still be correct.  Test it and see if
-  it works.
+	Tente recriar o código para a operação #addBefore(w)# que cria um nó, #u#, e adiciona-o em #DLList# antes do nó #w#. Não consulte este capítulo. Mesmo que seu código não coincida exatamente com o código fornecido neste livro, ele ainda pode estar correto. Teste e veja se ele funciona.
 \end{exc}
 
-The next few exercises involve performing manipulations on #DLList#s.
-You should complete them without allocating any new nodes or temporary
-arrays.  They can all be done only by changing the #prev# and #next#
-values of existing nodes.
+Os próximos exercícios envolvem a realização de manipulações em #DLList#. Você deve completá-los sem alocar novos nós ou matrizes temporárias. Todos podem ser feitos apenas alterando os valores #prev# e #next# dos nós existentes.
 
 \begin{exc}
-  Write a #DLList# method #isPalindrome()# that returns #true# if the
-  list is a \emph{palindrome},
-  \index{palindrome}%
-  i.e., the element at position #i# is equal to
-  the element at position $#n#-i-1$ for all $i\in\{0,\ldots,#n#-1\}$.
-  Your code should run in $O(#n#)$ time.
+	Escreva um método #isPalindrome()# para uma #DLList#  que retorna #true# se a lista for \emph{palíndromo}, 
+	\index{palídromo}% 
+	ie, o elemento na posição #i# é igual ao elemento na posição $#n#-i-1$ para todos $i\in\{0,\ldots,#n#-1\}$. 
+	Seu código deve ser executado em tempo $O(#n#)$.
 \end{exc}
 
 \begin{exc}
-  Implement a method #rotate(r)# that ``rotates'' a #DLList# so that list
-  item #i# becomes list item $(#i#+#r#)\bmod #n#$.  This method should
-  run in $O(1+\min\{#r#,#n#-#r#\})$ time and should not modify any nodes in
-  the list.
+	Implementar um método #rotate(r)# que ``rotaciona'' uma #DLList# para que o item da lista #i# se torne o item da lista $(#i#+#r#)\bmod #n#$. Esse método deve ser executado em tempo $O(1+\min\{#r#,#n#-#r#\})$ e não deve modificar nenhum nó na lista.
 \end{exc}
 
 
 \begin{exc}\exclabel{linkedlist-truncate}
-  Write a method, #truncate(i)#, that truncates a #DLList# at position
-  #i#.  After executing this method, the size of the list will be #i# and
-  it should contain only the elements at indices $0,\ldots,#i#-1$.  The
-  return value is another #DLList# that contains the elements at indices
-  $#i#,\ldots,#n#-1$.  This method should run in $O(\min\{#i#,#n#-#i#\})$
-  time.
+	Escreva um método, #truncate(i)#, que trunca uma #DLList# na posição #i#. Depois de executar este método, o tamanho da lista será #i# e deve conter apenas os elementos nos índices $0,\ldots,#i#-1$.. O valor de retorno é outra #DLList# que contém os elementos nos índices $#i#,\ldots,#n#-1$. Esse método deve ser executado em tempo $O(\min\{#i#,#n#-#i#\})$.
 \end{exc}
 
 \begin{exc}
-  Write a #DLList# method, #absorb(l2)#, that takes as an argument
-  a #DLList#, #l2#, empties it and appends its contents, in order,
-  to the receiver.  For example, if #l1# contains $a,b,c$ and #l2#
-  contains $d,e,f$, then after calling #l1.absorb(l2)#, #l1# will contain
-  $a,b,c,d,e,f$ and #l2# will be empty.
+	Escreva um método #absorb(l2)# para uma #DLList#, que leva como argumento uma 
+	#DLList#, #l2#, esvazia-o e acrescenta seu conteúdo, em ordem, ao receptor. Por exemplo, se #l1# contiver $a,b,c$ e #l2# contém $d,e,f$, e depois de chamar #l1.absorb(l2)#, #l1# conterá $a,b,c,d,e,f$ e #l2# estará vazia.
 \end{exc}
 
 \begin{exc}
-  Write a method #deal()# that removes all the elements with odd-numbered
-  indices from a #DLList# and return a #DLList# containing these elements.
-  For example, if #l1#, contains the elements $a,b,c,d,e,f$, then after
-  calling #l1.deal()#, #l1# should contain $a,c,e$ and a list containing
-  $b,d,f$ should be returned.
+	Escreva um método #deal()# que remove todos os elementos com índices de números ímpares da #DLList# e retorna uma #DLList# contendo esses elementos. Por exemplo, se #l1# contém os elementos $a,b,c,d,e,f$, depois de chamar #l1.deal()#, #l1# deve conter $a,c,e$ e uma lista contendo $b,d,f$ deve ser devolvida.
 \end{exc}
 %Fim Diana
 

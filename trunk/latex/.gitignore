@@ -11,3 +11,11 @@ images/bigoh-2.tex
 *.log
 *.synctex.gz
 /.gitignore
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.out

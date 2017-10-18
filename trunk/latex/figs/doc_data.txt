@@ -1,19 +1,48 @@
 InfoBegin
 InfoKey: ModDate
-InfoValue: D:20120130094640
+InfoValue: D:20101117101950
 InfoBegin
 InfoKey: CreationDate
-InfoValue: D:20120130093641
+InfoValue: D:20101117101950
 InfoBegin
 InfoKey: Creator
-InfoValue: ipetoipe 7.1.4
+InfoValue: ipetoipe 7.1.10
 InfoBegin
 InfoKey: Producer
-InfoValue: ipetoipe 7.1.4
-NumberOfPages: 1
+InfoValue: ipetoipe 7.1.10
+NumberOfPages: 5
 PageMediaBegin
 PageMediaNumber: 1
 PageMediaRotation: 0
 PageMediaRect: 0 0 595 842
 PageMediaDimensions: 595 842
-PageMediaCropRect: 59.071 285.41 436.584 359.168
+PageMediaCropRect: 81.2212 168.028 372.362 328.029
+PageMediaBegin
+PageMediaNumber: 2
+PageMediaRotation: 0
+PageMediaRect: 0 0 595 842
+PageMediaDimensions: 595 842
+PageMediaCropRect: 81.2212 168.028 372.362 328.029
+PageMediaBegin
+PageMediaNumber: 3
+PageMediaRotation: 0
+PageMediaRect: 0 0 595 842
+PageMediaDimensions: 595 842
+PageMediaCropRect: 81.2212 168.028 372.362 328.029
+PageMediaBegin
+PageMediaNumber: 4
+PageMediaRotation: 0
+PageMediaRect: 0 0 595 842
+PageMediaDimensions: 595 842
+PageMediaCropRect: 81.2212 168.028 372.362 328.029
+PageMediaBegin
+PageMediaNumber: 5
+PageMediaRotation: 0
+PageMediaRect: 0 0 595 842
+PageMediaDimensions: 595 842
+PageMediaCropRect: 81.2212 168.028 372.362 328.029
+PageLabelBegin
+PageLabelNewIndex: 1
+PageLabelStart: 1
+PageLabelPrefix: 1-
+PageLabelNumStyle: DecimalArabicNumerals
