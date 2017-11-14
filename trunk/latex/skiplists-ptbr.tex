@@ -40,23 +40,22 @@ de uma skiplist é mostrado na \figref{skiplist}.
   \figlabel{skiplist}
 \end{figure}
 
-Para um elemento, #x#, na skiplist, nós chamamos de \emph{height}
-\index{height!of a skiplist}%
-de #x# o
-o valor mais alto de $r$ de modo que #x# apareça em $L_r$.  Assim, por exemplo,
+Para um elemento, #x#, na skiplist, nós chamamos de \emph{altura}
+\index{altura!de uma skiplist}%
+de #x# o valor mais alto de $r$ de modo que #x# apareça em $L_r$.  Assim, por exemplo,
 elementos que só aparecem em $L_0$ tem altura $0$.  Se pararmos um momento pra
 pensar sobre isso, percebemos que a altura de #x# corresponde
 à seguinte experiência:  lance uma moeda repetidamente até aparecer
 como coroa. Quantas vezes apareceu cara? A resposta, sem
 surpresa, é que a altura esperada de um nó é 1. (Esperamos
 lançar a moeda duas vezes antes de aparecer coroa, mas não contamos a última
-jogada.) O \emph{height} de uma skiplist é a altura do seu nó mais alto.
+jogada.) A \emph{altura} de uma skiplist é a altura do seu nó mais alto.
 
 No começo de cada lista está um nó especial, chamado de \emph{sentinela},
-\index{sentinel node}%
+\index{nó sentinela}%
 que atua como um pseudo nó (\textit{dummy}) para a lista. A propriedade chave das skiplists
 é que existe um caminho curto para busca, chamado de \emph{caminho de busca}, 
-\index{caminho de busca!em uma skiplist}%
+\index{caminho de busca!de uma skiplist}%
 do
 sentinela em $L_h$ para cada nó em $L_0$.  Lembrando como construir
 um caminho de busca para o nó, #u#, é fácil (veja \figref{skiplist-searchpath})
