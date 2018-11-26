@@ -38,13 +38,13 @@ $v_j$ is \emph{reachable}
 in \figref{graph}.
 
 \begin{figure}
-  \begin{center}
-    \includegraphics[scale=0.90909]{figs/graph}
-  \end{center}
-  \caption{A graph with twelve vertices.  Vertices are drawn as numbered
-    circles and edges are drawn as pointed curves pointing from source
-    to target.}
-  \figlabel{graph}
+	\begin{center}
+		\includegraphics[scale=0.90909]{figs/graph}
+	\end{center}
+	\caption{A graph with twelve vertices.  Vertices are drawn as numbered
+		circles and edges are drawn as pointed curves pointing from source
+		to target.}
+	\figlabel{graph}
 \end{figure}
 
 Due to their ability to model so many phenomena, graphs have an enormous
@@ -73,13 +73,13 @@ can be stored in an array of length $#n#$.
 
 Some typical operations performed on graphs are:
 \begin{itemize}
-  \item #addEdge(i,j)#: Add the edge $(#i#,#j#)$ to $E$.
-  \item #removeEdge(i,j)#: Remove the edge $(#i#,#j#)$ from $E$.
-  \item #hasEdge(i,j)#: Check if the edge $(#i#,#j#)\in E$ 
-  \item #outEdges(i)#: Return a #List# of all integers $#j#$ such that
-  $(#i#,#j#)\in E$
-  \item #inEdges(i)#: Return a #List# of all integers $#j#$ such that
-  $(#j#,#i#)\in E$
+	\item #addEdge(i,j)#: Add the edge $(#i#,#j#)$ to $E$.
+	\item #removeEdge(i,j)#: Remove the edge $(#i#,#j#)$ from $E$.
+	\item #hasEdge(i,j)#: Check if the edge $(#i#,#j#)\in E$ 
+	\item #outEdges(i)#: Return a #List# of all integers $#j#$ such that
+	$(#i#,#j#)\in E$
+	\item #inEdges(i)#: Return a #List# of all integers $#j#$ such that
+	$(#j#,#i#)\in E$
 \end{itemize}
 
 Note that these operations are not terribly difficult to implement
@@ -105,10 +105,10 @@ values.
 
 The matrix entry #a[i][j]# is defined as
 \[  #a[i][j]#= 
-    \begin{cases}
-      #true# & \text{if $#(i,j)#\in E$} \\
-      #false# & \text{otherwise}
-    \end{cases}
+\begin{cases}
+#true# & \text{if $#(i,j)#\in E$} \\
+#false# & \text{otherwise}
+\end{cases}
 \]
 The adjacency matrix for the graph in \figref{graph} is
 shown in \figref{graph-adj}.
@@ -120,26 +120,26 @@ involve setting or reading the matrix entry #a[i][j]#:
 These operations clearly take constant time per operation.
 
 \begin{figure}
-  \begin{center}
-    \includegraphics[scale=0.90909]{figs/graph} \\[3ex]
-    \begin{tabular}{c|cccccccccccc}
-        &0&1&2&3&4&5&6&7&8&9&10&11 \\\hline
-       0&0&1&0&0&1&0&0&0&0&0&0 &0\\
-       1&1&0&1&0&0&1&1&0&0&0&0 &0\\
-       2&1&0&0&1&0&0&1&0&0&0&0 &0\\
-       3&0&0&1&0&0&0&0&1&0&0&0 &0\\
-       4&1&0&0&0&0&1&0&0&1&0&0 &0\\
-       5&0&1&1&0&1&0&1&0&0&1&0 &0\\
-       6&0&0&1&0&0&1&0&1&0&0&1 &0\\
-       7&0&0&0&1&0&0&1&0&0&0&0 &1\\
-       8&0&0&0&0&1&0&0&0&0&1&0 &0\\
-       9&0&0&0&0&0&1&0&0&1&0&1 &0\\
-      10&0&0&0&0&0&0&1&0&0&1&0 &1\\
-      11&0&0&0&0&0&0&0&1&0&0&1 &0\\
-    \end{tabular} 
-  \end{center}
-  \caption{A graph and its adjacency matrix.}
-  \figlabel{graph-adj}
+	\begin{center}
+		\includegraphics[scale=0.90909]{figs/graph} \\[3ex]
+		\begin{tabular}{c|cccccccccccc}
+			&0&1&2&3&4&5&6&7&8&9&10&11 \\\hline
+			0&0&1&0&0&1&0&0&0&0&0&0 &0\\
+			1&1&0&1&0&0&1&1&0&0&0&0 &0\\
+			2&1&0&0&1&0&0&1&0&0&0&0 &0\\
+			3&0&0&1&0&0&0&0&1&0&0&0 &0\\
+			4&1&0&0&0&0&1&0&0&1&0&0 &0\\
+			5&0&1&1&0&1&0&1&0&0&1&0 &0\\
+			6&0&0&1&0&0&1&0&1&0&0&1 &0\\
+			7&0&0&0&1&0&0&1&0&0&0&0 &1\\
+			8&0&0&0&0&1&0&0&0&0&1&0 &0\\
+			9&0&0&0&0&0&1&0&0&1&0&1 &0\\
+			10&0&0&0&0&0&0&1&0&0&1&0 &1\\
+			11&0&0&0&0&0&0&0&1&0&0&1 &0\\
+		\end{tabular} 
+	\end{center}
+	\caption{A graph and its adjacency matrix.}
+	\figlabel{graph-adj}
 \end{figure}
 
 Where the adjacency matrix performs poorly is with the #outEdges(i)# and
@@ -159,14 +159,14 @@ packs #w# boolean values into each word of memory, could reduce this
 space usage to $O(#n#^2/#w#)$ words of memory.
 
 \begin{thm}
-The #AdjacencyMatrix# data structure implements the #Graph# interface.
-An #AdjacencyMatrix# supports the operations
-\begin{itemize}
-  \item #addEdge(i,j)#, #removeEdge(i,j)#, and #hasEdge(i,j)# in constant
-  time per operation; and
-  \item #inEdges(i)#, and #outEdges(i)# in $O(#n#)$ time per operation.
-\end{itemize}
-The space used by an #AdjacencyMatrix# is  $O(#n#^2)$.
+	The #AdjacencyMatrix# data structure implements the #Graph# interface.
+	An #AdjacencyMatrix# supports the operations
+	\begin{itemize}
+		\item #addEdge(i,j)#, #removeEdge(i,j)#, and #hasEdge(i,j)# in constant
+		time per operation; and
+		\item #inEdges(i)#, and #outEdges(i)# in $O(#n#)$ time per operation.
+	\end{itemize}
+	The space used by an #AdjacencyMatrix# is  $O(#n#^2)$.
 \end{thm}
 
 Despite its high memory requirements and poor performance of the #inEdges(i)#
@@ -183,7 +183,7 @@ as integers (1 for #true# and 0 for #false#) and multiply #a# by itself
 using matrix multiplication then we get the matrix $#a#^2$.  Recall,
 from the definition of matrix multiplication, that
 \[
-    #a^2[i][j]# = \sum_{k=0}^{#n#-1} #a[i][k]#\cdot #a[k][j]# \enspace .
+#a^2[i][j]# = \sum_{k=0}^{#n#-1} #a[i][k]#\cdot #a[k][j]# \enspace .
 \]
 Interpreting this sum in terms of the graph $G$, this formula counts the
 number of vertices, $#k#$, such that $G$ contains both edges #(i,k)#
@@ -207,25 +207,25 @@ That is, it contains every index #j# such that $#(i,j)#\in E$.
 \codeimport{ods/AdjacencyLists.adj.n.AdjacencyLists(n0)}
 (An example is shown in \figref{graph-adjlist}.)  In this particular
 implementation, we represent each list in #adj# as \javaonly{an}\cpponly{a
-subclass of} #ArrayStack#, because we would like constant time access
+	subclass of} #ArrayStack#, because we would like constant time access
 by position. Other options are also possible.  Specifically, we could
 have implemented #adj# as a #DLList#.
 
 
 \begin{figure}
-  \begin{center}
-    \includegraphics[scale=0.90909]{figs/graph} \\[3ex]
-    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}\hline
-        0&1&2&3&4&5&6 &7 &8&9 &10&11 \\\hline
-        1&0&1&2&0&1&5 &6 &4&8 &9 &10 \\
-        4&2&3&7&5&2&2 &3 &9&5 &6 &7 \\
-         &6&6& &8&6&7 &11& &10&11& \\
-         &5& & & &9&10&  & &  &  & \\
-         & & & & &4&  &  & &  &  & \\
-    \end{tabular} 
-  \end{center}
-  \caption{A graph and its adjacency lists}
-  \figlabel{graph-adjlist}
+	\begin{center}
+		\includegraphics[scale=0.90909]{figs/graph} \\[3ex]
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}\hline
+			0&1&2&3&4&5&6 &7 &8&9 &10&11 \\\hline
+			1&0&1&2&0&1&5 &6 &4&8 &9 &10 \\
+			4&2&3&7&5&2&2 &3 &9&5 &6 &7 \\
+			&6&6& &8&6&7 &11& &10&11& \\
+			&5& & & &9&10&  & &  &  & \\
+			& & & & &4&  &  & &  &  & \\
+		\end{tabular} 
+	\end{center}
+	\caption{A graph and its adjacency lists}
+	\figlabel{graph-adjlist}
 \end{figure}
 
 
@@ -269,35 +269,35 @@ so it takes $O(#n# + #m#)$ time.
 The following theorem summarizes the performance of the above data structure:
 
 \begin{thm}
-The #AdjacencyLists# data structure implements the #Graph# interface.
-An #AdjacencyLists# supports the operations
-\begin{itemize}
-  \item #addEdge(i,j)# in constant time per operation;
-  \item #removeEdge(i,j)# and #hasEdge(i,j)# in $O(\deg(#i#))$ time
-    per operation;
-  \javaonly{\item #outEdges(i)# in constant time per operation; and}
-  \cpponly{\item #outEdges(i)# in $O(\deg(#i#))$ time per operation; and}
-  \item #inEdges(i)# in $O(#n#+#m#)$ time per operation.
-\end{itemize}
-The space used by a #AdjacencyLists# is  $O(#n#+#m#)$.
+	The #AdjacencyLists# data structure implements the #Graph# interface.
+	An #AdjacencyLists# supports the operations
+	\begin{itemize}
+		\item #addEdge(i,j)# in constant time per operation;
+		\item #removeEdge(i,j)# and #hasEdge(i,j)# in $O(\deg(#i#))$ time
+		per operation;
+		\javaonly{\item #outEdges(i)# in constant time per operation; and}
+		\cpponly{\item #outEdges(i)# in $O(\deg(#i#))$ time per operation; and}
+		\item #inEdges(i)# in $O(#n#+#m#)$ time per operation.
+	\end{itemize}
+	The space used by a #AdjacencyLists# is  $O(#n#+#m#)$.
 \end{thm}
 
 As alluded to earlier, there are many different choices to be made when
 implementing a graph as an adjacency list.  Some questions that come
 up include:
 \begin{itemize}
-  \item What type of collection should be used to store each element
-  of #adj#?  One could use an array-based list,  a linked-list, or even
-  a hashtable.
-  \item Should there be a second adjacency list, #inadj#, that stores,
-  for each #i#, the list of vertices, #j#, such that $#(j,i)#\in E$?
-  This can greatly reduce the running-time of the #inEdges(i)#
-  operation, but requires slightly more work when adding or removing
-  edges.
-  \item Should the entry for the edge #(i,j)# in #adj[i]# be linked by
-  a reference to the corresponding entry in #inadj[j]#?
-  \item Should edges be first-class objects with their own associated data?
-  In this way, #adj# would contain lists of edges rather than lists of vertices (integers).
+	\item What type of collection should be used to store each element
+	of #adj#?  One could use an array-based list,  a linked-list, or even
+	a hashtable.
+	\item Should there be a second adjacency list, #inadj#, that stores,
+	for each #i#, the list of vertices, #j#, such that $#(j,i)#\in E$?
+	This can greatly reduce the running-time of the #inEdges(i)#
+	operation, but requires slightly more work when adding or removing
+	edges.
+	\item Should the entry for the edge #(i,j)# in #adj[i]# be linked by
+	a reference to the corresponding entry in #inadj[j]#?
+	\item Should edges be first-class objects with their own associated data?
+	In this way, #adj# would contain lists of edges rather than lists of vertices (integers).
 \end{itemize}
 Most of these questions come down to a tradeoff between complexity (and
 space) of implementation and performance features of the implementation.
@@ -314,7 +314,7 @@ representation is an #AdjacencyLists#.
 \subsection{Breadth-First Search}
 
 \index{breadth-first-search}%
-The \emph{bread-first-search} algorithm starts at a vertex #i# and visits,
+The \emph{breadth-first-search} algorithm starts at a vertex #i# and visits,
 first the neighbours of #i#, then the neighbours of the neighbours of #i#,
 then the neighbours of the neighbours of the neighbours of #i#, and so on.
 
@@ -335,14 +335,14 @@ depending on the ordering of the adjacency lists; \figref{graph-bfs}
 uses the adjacency lists in \figref{graph-adjlist}.
 
 \begin{figure}
-  \begin{center}
-    \includegraphics[scale=0.90909]{figs/graph-bfs}
-  \end{center}
-  \caption[Breadth-first-search]{An example of bread-first-search starting at node 0. Nodes are
-  labelled with the order in which they are added to #q#.  Edges that
-  result in nodes being added to #q# are drawn in black, other edges
-  are drawn in grey.}
-  \figlabel{graph-bfs}
+	\begin{center}
+		\includegraphics[scale=0.90909]{figs/graph-bfs}
+	\end{center}
+	\caption[Breadth-first-search]{An example of breadth-first-search starting at node 0. Nodes are
+		labelled with the order in which they are added to #q#.  Edges that
+		result in nodes being added to #q# are drawn in black, other edges
+		are drawn in grey.}
+	\figlabel{graph-bfs}
 \end{figure}
 
 Analyzing the running-time of the #bfs(g,i)# routine is fairly
@@ -357,9 +357,9 @@ the entire algorithm runs in $O(#n#+#m#)$ time.
 
 The following theorem summarizes the performance of the #bfs(g,r)# algorithm.
 \begin{thm}\thmlabel{bfs-graph}
-  When given as input a #Graph#, #g#, that is implemented using the
-  #AdjacencyLists# data structure, the #bfs(g,r)# algorithm runs in $O(#n#+#m#)$
-  time.
+	When given as input a #Graph#, #g#, that is implemented using the
+	#AdjacencyLists# data structure, the #bfs(g,r)# algorithm runs in $O(#n#+#m#)$
+	time.
 \end{thm}
 
 A breadth-first traversal has some very special properties.  Calling
@@ -406,14 +406,14 @@ we find in this list.  Finally, we are done processing #i#, so we colour
 An example of the execution of this algorithm is shown in \figref{graph-dfs}.
 
 \begin{figure}
-  \begin{center}
-    \includegraphics[scale=0.90909]{figs/graph-dfs}
-  \end{center}
-  \caption[Depth-first-search]{An example of depth-first-search starting at node 0. Nodes are
-  labelled with the order in which they are processed.  Edges that
-  result in a recursive call are drawn in black, other edges
-  are drawn in #grey#.}
-  \figlabel{graph-dfs}
+	\begin{center}
+		\includegraphics[scale=0.90909]{figs/graph-dfs}
+	\end{center}
+	\caption[Depth-first-search]{An example of depth-first-search starting at node 0. Nodes are
+		labelled with the order in which they are processed.  Edges that
+		result in a recursive call are drawn in black, other edges
+		are drawn in #grey#.}
+	\figlabel{graph-dfs}
 \end{figure}
 
 Although depth-first-search may best be thought of as a recursive
@@ -429,9 +429,9 @@ During the next iteration, one of these vertices will be visited.
 Not surprisingly, the running times of #dfs(g,r)# and #dfs2(g,r)# are the
 same as that of #bfs(g,r)#:
 \begin{thm}\thmlabel{dfs-graph}
-  When given as input a #Graph#, #g#, that is implemented using the
-  #AdjacencyLists# data structure, the #dfs(g,r)# and #dfs2(g,r)# algorithms
-  each run in $O(#n#+#m#)$ time.
+	When given as input a #Graph#, #g#, that is implemented using the
+	#AdjacencyLists# data structure, the #dfs(g,r)# and #dfs2(g,r)# algorithms
+	each run in $O(#n#+#m#)$ time.
 \end{thm}
 
 As with the breadth-first-search algorithm, there is an underlying
@@ -463,14 +463,14 @@ in the depth-first-search tree and the edge #(j,i)# exists.  Therefore,
 $P$ is also a cycle.
 
 \begin{figure}
-  \begin{center}
-    \includegraphics[scale=0.90909]{figs/dfs-cycle}
-  \end{center}
-  \caption[Cycle detection]{The depth-first-search algorithm can be used to detect cycles
-  in $G$. The node #j# is coloured #grey# while #i# is still #grey#.  This
-  implies that there is a path, $P$, from #i# to #j# in the depth-first-search
-  tree, and the edge #(j,i)# implies that $P$ is also a cycle.}
-  \figlabel{dfs-cycle}
+	\begin{center}
+		\includegraphics[scale=0.90909]{figs/dfs-cycle}
+	\end{center}
+	\caption[Cycle detection]{The depth-first-search algorithm can be used to detect cycles
+		in $G$. The node #j# is coloured #grey# while #i# is still #grey#.  This
+		implies that there is a path, $P$, from #i# to #j# in the depth-first-search
+		tree, and the edge #(j,i)# implies that $P$ is also a cycle.}
+	\figlabel{dfs-cycle}
 \end{figure}
 
 \section{Discussion and Exercises}
@@ -485,9 +485,9 @@ times of the breadth-first-search and depth-first-search algorithms.
 (This more refined statement of the running time is useful in some of
 the applications of these algorithms outlined in the exercises.)
 \begin{thm}\thmlabel{graph-traversal}
-  When given as input a #Graph#, #g#, that is implemented using the
-  #AdjacencyLists# data structure, the #bfs(g,r)#, #dfs(g,r)# and #dfs2(g,r)#
-  algorithms each run in $O(#n#_{#r#}+#m#_{#r#})$ time.
+	When given as input a #Graph#, #g#, that is implemented using the
+	#AdjacencyLists# data structure, the #bfs(g,r)#, #dfs(g,r)# and #dfs2(g,r)#
+	algorithms each run in $O(#n#_{#r#}+#m#_{#r#})$ time.
 \end{thm}
 
 Breadth-first search seems to have been discovered independently by
@@ -511,102 +511,101 @@ edge $(#j#,#i#)$ is present.
 \index{graph!undirected}%
 
 \begin{exc}
-  Draw an adjacency list representation and an adjacency matrix
-  representation of the graph in \figref{graph-example2}.
+	Draw an adjacency list representation and an adjacency matrix
+	representation of the graph in \figref{graph-example2}.
 \end{exc}
 
 \begin{figure}
-  \centering{\includegraphics[scale=0.90909]{figs/graph-example2}}
-  \caption{An example graph.}
-  \figlabel{graph-example2}
+	\centering{\includegraphics[scale=0.90909]{figs/graph-example2}}
+	\caption{An example graph.}
+	\figlabel{graph-example2}
 \end{figure}
 
 \begin{exc}
-  \index{incidence matrix}%
-  The \emph{incidence matrix} representation of a graph,
-  $G$, is an $#n#\times#m#$ matrix, $A$, where
-  \[
-     A_{i,j} = \begin{cases}
-        -1 & \text{if vertex $i$ the source of edge $j$} \\
-        +1 & \text{if vertex $i$ the target of edge $j$} \\
-        0 & \text{otherwise.}
-     \end{cases}
-  \]
-  \begin{enumerate}
-    \item Draw the incident matrix representation of the graph in
-      \figref{graph-example2}.
-    \item Design, analyze and implement an incidence matrix representation
-      of a graph.  Be sure to analyze the space, the cost of
-      #addEdge(i,j)#, #removeEdge(i,j)#, #hasEdge(i,j)#, #inEdges(i)#,
-      and #outEdges(i)#.
-  \end{enumerate}
+	\index{incidence matrix}%
+	The \emph{incidence matrix} representation of a graph,
+	$G$, is an $#n#\times#m#$ matrix, $A$, where
+	\[
+	A_{i,j} = \begin{cases}
+	-1 & \text{if vertex $i$ the source of edge $j$} \\
+	+1 & \text{if vertex $i$ the target of edge $j$} \\
+	0 & \text{otherwise.}
+	\end{cases}
+	\]
+	\begin{enumerate}
+		\item Draw the incident matrix representation of the graph in
+		\figref{graph-example2}.
+		\item Design, analyze and implement an incidence matrix representation
+		of a graph.  Be sure to analyze the space, the cost of
+		#addEdge(i,j)#, #removeEdge(i,j)#, #hasEdge(i,j)#, #inEdges(i)#,
+		and #outEdges(i)#.
+	\end{enumerate}
 \end{exc}
 
 \begin{exc}
-  Illustrate an execution of the #bfs(G,0)# and #dfs(G,0)# on the graph, $#G#$,
-  in \figref{graph-example2}.
+	Illustrate an execution of the #bfs(G,0)# and #dfs(G,0)# on the graph, $#G#$,
+	in \figref{graph-example2}.
 \end{exc}
 
 \begin{exc}
-  \index{connected graph}%
-  \index{graph!connected}%
-  Let $G$ be an undirected graph.  We say $G$ is \emph{connected} if,
-  for every pair of vertices #i# and #j# in $G$, there is a path from
-  $#i#$ to $#j#$ (since $G$ is undirected, there is also a path from #j#
-  to #i#). Show how to test if $G$ is connected in $O(#n#+#m#)$ time.
+	\index{connected graph}%
+	\index{graph!connected}%
+	Let $G$ be an undirected graph.  We say $G$ is \emph{connected} if,
+	for every pair of vertices #i# and #j# in $G$, there is a path from
+	$#i#$ to $#j#$ (since $G$ is undirected, there is also a path from #j#
+	to #i#). Show how to test if $G$ is connected in $O(#n#+#m#)$ time.
 \end{exc}
 
 \begin{exc}
-  \index{connected components}%
-  Let $G$ be an undirected graph.  A \emph{connected-component labelling}
-  of $G$ partitions the vertices of $G$ into maximal sets, each of which
-  forms a connected subgraph.  Show how to compute a connected component
-  labelling of $G$ in $O(#n#+#m#)$ time.
+	\index{connected components}%
+	Let $G$ be an undirected graph.  A \emph{connected-component labelling}
+	of $G$ partitions the vertices of $G$ into maximal sets, each of which
+	forms a connected subgraph.  Show how to compute a connected component
+	labelling of $G$ in $O(#n#+#m#)$ time.
 \end{exc}
 
 \begin{exc}
-  \index{spanning forest}%
-  Let $G$ be an undirected graph.  A \emph{spanning forest} of $G$ is a
-  collection of trees, one per component, whose edges are edges of $G$
-  and whose vertices contain all vertices of $G$.  Show how to compute
-  a spanning forest of of $G$ in $O(#n#+#m#)$ time.
+	\index{spanning forest}%
+	Let $G$ be an undirected graph.  A \emph{spanning forest} of $G$ is a
+	collection of trees, one per component, whose edges are edges of $G$
+	and whose vertices contain all vertices of $G$.  Show how to compute
+	a spanning forest of of $G$ in $O(#n#+#m#)$ time.
 \end{exc}
 
 \begin{exc}
-  \index{strongly-connected graph}%
-  \index{graph!strongly-connected}%
-  We say that a graph $G$ is \emph{strongly-connected} if, for every
-  pair of vertices #i# and #j# in $G$, there is a path from $#i#$ to
-  $#j#$. Show how to test if $G$ is strongly-connected in $O(#n#+#m#)$
-  time.
+	\index{strongly-connected graph}%
+	\index{graph!strongly-connected}%
+	We say that a graph $G$ is \emph{strongly-connected} if, for every
+	pair of vertices #i# and #j# in $G$, there is a path from $#i#$ to
+	$#j#$. Show how to test if $G$ is strongly-connected in $O(#n#+#m#)$
+	time.
 \end{exc}
 
 \begin{exc}
-  Given a graph $G=(V,E)$ and some special vertex $#r#\in V$, show how
-  to compute the length of the shortest path from $#r#$ to #i# for every
-  vertex $#i#\in V$.
+	Given a graph $G=(V,E)$ and some special vertex $#r#\in V$, show how
+	to compute the length of the shortest path from $#r#$ to #i# for every
+	vertex $#i#\in V$.
 \end{exc}
 
 \begin{exc}
-  Give a (simple) example where the #dfs(g,r)# code visits the nodes of a
-  graph in an order that is different from that of the #dfs2(g,r)# code.
-  Write a version of #dfs2(g,r)# that always visits nodes in exactly
-  the same order as #dfs(g,r)#.  (Hint: Just start tracing the execution
-  of each algorithm on some graph where #r# is the source of more than
-  1 edge.)
+	Give a (simple) example where the #dfs(g,r)# code visits the nodes of a
+	graph in an order that is different from that of the #dfs2(g,r)# code.
+	Write a version of #dfs2(g,r)# that always visits nodes in exactly
+	the same order as #dfs(g,r)#.  (Hint: Just start tracing the execution
+	of each algorithm on some graph where #r# is the source of more than
+	1 edge.)
 \end{exc}
 
 \begin{exc}
-  \index{universal sink}%
-  \index{celebrity|see{universal sink}}%
-  A \emph{universal sink} in a graph $G$ is a vertex that is the target
-  of $#n#-1$ edges and the source of no edges.\footnote{A universal sink,
-  #v#, is also sometimes called a \emph{celebrity}: Everyone in the room
-  recognizes #v#, but #v# doesn't recognize anyone else in the room.}
-  Design and implement an algorithm that tests if a graph $G$, represented
-  as an #AdjacencyMatrix#, has a universal sink.  Your algorithm should
-  run in $O(#n#)$ time.
+	\index{universal sink}%
+	\index{celebrity|see{universal sink}}%
+	A \emph{universal sink} in a graph $G$ is a vertex that is the target
+	of $#n#-1$ edges and the source of no edges.\footnote{A universal sink,
+		#v#, is also sometimes called a \emph{celebrity}: Everyone in the room
+		recognizes #v#, but #v# doesn't recognize anyone else in the room.}
+	Design and implement an algorithm that tests if a graph $G$, represented
+	as an #AdjacencyMatrix#, has a universal sink.  Your algorithm should
+	run in $O(#n#)$ time.
 \end{exc}
-
 
 

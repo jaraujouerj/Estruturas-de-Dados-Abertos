@@ -30,9 +30,9 @@ the hard drive.
 %       SO-DIMM DDR3 1066 (PC3 8500) Dual Channel Kit Laptop Memory
 %       Model 996643
 %  RAM speed was estimated using this program:
-% #include<stdlib.h>
-% #include<stdio.h>
-% #include<time.h>
+% Xinclude<stdlib.h>
+% Xinclude<stdio.h>
+% Xinclude<time.h>
 % 
 % int main(void) {
 %    unsigned *a, x, i, n = 50000000;
@@ -158,7 +158,7 @@ relaxed at the root, which can have anywhere between 2 and $2B$ children.
 If the height of a $B$-tree is $h$, then it follows that the number,
 $\ell$, of leaves in the $B$-tree satisfies
 \[
-    2B^{h-1} \le \ell \le 2(2B)^{h-1} \enspace .
+    2B^{h-1} \le \ell \le (2B)^{h} \enspace .
 \]
 Taking the logarithm of the first inequality and rearranging terms yields:
 \begin{align*}
