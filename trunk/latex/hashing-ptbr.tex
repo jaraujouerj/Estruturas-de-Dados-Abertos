@@ -350,7 +350,7 @@ Nesse caso, # tab # é um array bidimensional com quatro colunas e $2^{32/4}=256
 \pcodeonly{
 Quantidades como #0xff#, usadas acima, são \emph{números hexadecimais}
 \index{hexadecimal numbers}%
-cujos dígitos têm 16 valores possíveis 0--9, que têm seu significado usual e a-f, que denotam 10--15. O número $#0xff#=15\cdot 16 + 15 = 255$. O símbolo #&# é o operador \emph{bitwise AND}, então codifique como #h >> 8 & 0xff# extrai bits com índice 8 a 15 de #h#.}
+cujos dígitos têm 16 valores possíveis 0--9, que têm seu significado usual e a-f, que denotam 10--15. O número $#0xff#=15\cdot 16 + 15 = 255$. O símbolo #&# é o operador \emph{bitwise AND}, então, o código #h >> 8 & 0xff# extrai bits com índices de 8 a 15 de #h#.}
 
 Pode-se verificar facilmente que, para qualquer #x#, #hash(x)# é uniformemente distribuído em $\{0,\ldots,2^{#d#}-1\}$. Com um pouco de trabalho, pode-se verificar se qualquer par de valores possui valores de hash independentes. Isso implica que o hash de tabulação poderia ser usado em lugar de hashing multiplicativo para a implementação #ChainedHashTable#.
 
@@ -359,7 +359,7 @@ No entanto, não é verdade que qualquer conjunto de #n# valores distintos forne
 \section{Hash Codes}
 
 \index{hash code}%
-As tabelas de hash discutidas na seção anterior são usadas para associar dados com chaves inteiras consistindo de #w# bits. Em muitos casos, temos chaves que não são inteiros. Podem ser cordas, objetos, arrays ou outras estruturas compostas. Para usar tabelas de hash para esses tipos de dados, devemos mapear esses tipos de dados para os códigos de hash #w#-bit. Os mapeamentos de código Hash devem ter as seguintes propriedades:
+As tabelas de hash discutidas na seção anterior são usadas para associar dados com chaves inteiras consistindo de #w# bits. Em muitos casos, temos chaves que não são inteiros. Podem ser strings, objetos, arrays ou outras estruturas compostas. Para usar tabelas de hash para esses tipos de dados, devemos mapear esses tipos de dados para os códigos de hash com #w#-bits. Os mapeamentos de código Hash devem ter as seguintes propriedades:
 
 \begin{enumerate}
   \item Se #x# e #y# forem iguais, então #x.hashCode()# e #y.hashCode()# são iguais.
@@ -373,7 +373,7 @@ A segunda propriedade minimiza a perda de converter nossos objetos em números i
 \subsection{Códigos Hash para Tipos Primitivos de Dados}
 
 \index{hash code!for primitive data}%
-Pequenos tipos de dados primitivos, como #char#, #byte#, #int# e #float# ,geralmente, são fáceis de encontrar códigos de hash. Esses tipos de dados sempre têm uma representação binária e essa representação binária geralmente consiste em #w# ou menos bits. \javaonly{(Por exemplo, em Java, #byte# é um tipo de 8 bits e #float# é um tipo de 32 bits.)}\cpponly{(Por exemplo, em C ++ #char# geralmente é um tipo de 8 bits e #float# é um tipo de 32 bits).} Nesses casos, tratamos esses bits como a representação de um número inteiro na faixa $\{0,\ldots,2^#w#-1\}$ . Se dois valores são diferentes, eles obtêm códigos hash diferentes. Se eles são o mesmo, eles obtêm o mesmo código hash.
+Pequenos tipos de dados primitivos, como #char#, #byte#, #int# e #float#, geralmente, são fáceis de encontrar códigos de hash. Esses tipos de dados sempre têm uma representação binária e essa representação binária geralmente consiste em #w# ou menos bits. \javaonly{(Por exemplo, em Java, #byte# é um tipo de 8 bits e #float# é um tipo de 32 bits.)}\cpponly{(Por exemplo, em C ++ #char# geralmente é um tipo de 8 bits e #float# é um tipo de 32 bits).} Nesses casos, tratamos esses bits como a representação de um número inteiro na faixa $\{0,\ldots,2^#w#-1\}$ . Se dois valores são diferentes, eles obtêm códigos hash diferentes. Se eles são o mesmo, eles obtêm o mesmo código hash.
 
 Alguns tipos de dados primitivos são compostos por mais de #w# bits, geralmente $c#w#$ bits para algum inteiro constante $c$. (Os tipos #long# e #double# do Java são exemplos disso com $c=2$.) Esses tipos de dados podem ser tratados como objetos compostos feitos de $c$ partes, conforme descrito na próxima seção.
 
@@ -381,7 +381,7 @@ Alguns tipos de dados primitivos são compostos por mais de #w# bits, geralmente
 \seclabel{stringhash}
 
 \index{hash code!for compound objects}%
-Para um objeto composto, queremos criar um código hash combinando os códigos hash individuais das partes constituintes do objeto. Isso não é tão fácil quanto parece. Embora se possa encontrar muitos hacks para isso (por exemplo, combinando os códigos de hash com operações bitwise ou-exclusivo), muitos desses hacks acabam por ser fáceis de imprimir (ver exercícios ~\ref{exc:hash-hack-first}--\ref{exc:hash-hack-last}).No entanto, se alguém estiver disposto a fazer aritmética com $2# w#$ bits de precisão, existem métodos simples e robustos disponíveis. Suponha que possamos ter um objeto composto por várias partes $P_0,\ldots,P_{r-1}$ cujos códigos hash são $#x#_0,\ldots,#x#_{r-1}$. Então, podemos escolher #w#-bits inteiros aleatórios e mutuamente independentes $#z#_0,\ldots,#z#_{r-1}$ e um $2#w#$-bit inteiro impar #z# e, então, calcular um código hash para nosso objeto com
+Para um objeto composto, queremos criar um código hash combinando os códigos hash individuais das partes constituintes do objeto. Isso não é tão fácil quanto parece. Embora se possa encontrar muitos hacks para isso (por exemplo, combinando os códigos de hash com operações bitwise ou-exclusivo), muitos desses hacks terminam por serem frustrantes (ver exercícios ~\ref{exc:hash-hack-first}--\ref{exc:hash-hack-last}). No entanto, se alguém estiver disposto a fazer aritmética com $2# w#$ bits de precisão, existem métodos simples e robustos disponíveis. Suponha que possamos ter um objeto composto por várias partes $P_0,\ldots,P_{r-1}$ cujos códigos hash são $#x#_0,\ldots,#x#_{r-1}$. Então, podemos escolher #w#-bits inteiros aleatórios e mutuamente independentes $#z#_0,\ldots,#z#_{r-1}$ e um $2#w#$-bit inteiro impar #z# e, então, calcular um código hash para nosso objeto com
 \[
    h(#x#_0,\ldots,#x#_{r-1}) =  
    \left(\left(#z#\sum_{i=0}^{r-1} #z#_i #x#_i\right)\bmod 2^{2#w#}\right)
