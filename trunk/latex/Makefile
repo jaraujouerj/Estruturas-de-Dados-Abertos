@@ -3,7 +3,7 @@
 #	hashing.tex binarytrees.tex rbs.tex scapegoat.tex redblack.tex \
 #	heaps.tex sorting.tex graphs.tex integers.tex btree.tex
 sources = intro-ptbr.tex arrays-ptbr.tex linkedlists-ptbr.tex skiplists-ptbr.tex \
-	hashing-ptbr.tex binarytrees-ptbr.tex rbs-ptbr.tex scapegoat.tex redblack-ptbr.tex \
+	hashing-ptbr.tex binarytrees-ptbr.tex rbs-ptbr.tex scapegoat-ptbr.tex redblack-ptbr.tex \
 	heaps.tex sorting.tex graphs.tex integers.tex btree.tex
 javs = $(sources:.tex=-java.tex)
 javh = $(sources:.tex=-java-html.tex)
