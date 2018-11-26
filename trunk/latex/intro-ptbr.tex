@@ -13,31 +13,32 @@ interagimos constantemente com as estruturas de dados.
 	\item  Abrir um arquivo: As estruturas de dados do sistema de arquivos 
 	\index{sistema de arquivos}% 
 	são usadas para localizar as partes desse arquivo no disco para que possam ser
-	recuperadas. Isso não é fácil; discos contêm centenas de milhões de blocos. O
+	recuperadas. Isso não é fácil: discos contêm centenas de milhões de blocos. O
 	conteúdo do seu arquivo pode ser armazenado em qualquer um deles. 
 	\item Procurar um contato em seu telefone: uma estrutura de dados é usada para
 	procurar um número de telefone em sua lista de contatos 
 	\index{lista de contatos}% 
-	com base em informações parciais mesmo antes de terminar de discagem/digitação. Isso não é fácil; seu telefone pode conter informações sobre um
+	com base em informações parciais mesmo antes de terminar de discagem/digitação. 
+	Isso não é fácil: seu telefone pode conter informações sobre um
 	grande número de pessoas --- todos os que você já contactou por telefone ou
 	e-mail --- e seu telefone não tem um processador muito rápido ou muita memória.
 	\item Fazer login na sua rede social 
 	\index{rede social}%
 	favorita: os servidores de rede usam suas informações de login para procurar as
-	informações de sua conta. Isso não é fácil; as redes sociais mais populares têm
+	informações de sua conta. Isso não é fácil: as redes sociais mais populares têm
 	centenas de milhões de usuários ativos.
 	\item Fazer uma pesquisa na web:
 	\index{pesquisa web}%
 	O mecanismo de pesquisa usa estruturas de dados para encontrar as páginas da
-	web que contêm seus termos de pesquisa. Isso não é fácil; há mais de 8,5 bilhões
+	web que contêm seus termos de pesquisa. Isso não é fácil: há mais de 8,5 bilhões
 	de páginas na Internet e cada página contém muitos termos de pesquisa em
 	potencial.
 	\item Telefone de serviços de emergência (1-9-0): 
 	\index{serviços de emergência}\index{9-1-1}%
 	A rede de serviços de emergência procura o seu número de telefone em uma
 	estrutura de dados que mapeia números de telefone para endereços para que carros
-	de polícia, ambulâncias ou caminhões de bombeiros podem ser enviados para lá sem
-	demora. Isso é importante; a pessoa que faz a chamada pode não ser capaz de
+	de polícia, ambulâncias ou caminhões de bombeiros possam ser enviados para lá sem
+	demora. Isso é importante: a pessoa que faz a chamada pode não ser capaz de
 	fornecer o endereço exato que eles estão chamando e um atraso pode significar a
 	diferença entre a vida ou a morte.
 \end{itemize}
@@ -733,7 +734,7 @@ Intuitivamente, sabemos que a resposta é $k/2$, mas se tentarmos prová-la usan
 \end{align*}
 Isso exige que saibamos o suficiente para calcular que $\Pr\{X=i\}
 = \binom{k}{i}/2^k$, e que conheçamos as identidades binomiais
-$i\binom{k}{i}=k\binom{k-1}{i}$ e $\sum_{i=0}^{k} \binom{k}{i} = 2^{k}$.
+$i\binom{k}{i}=k\binom{k-1}{i-1}$ e $\sum_{i=0}^{k} \binom{k}{i} = 2^{k}$.
 
 Usar indicador de variáveis e linearidade de expectativa torna as coisas muito mais fáceis. Para cada $i\in\{1,\ldots,k\}$, defina o indicador de variável aleatória 
 \[

@@ -1,10 +1,9 @@
-\chapter{Red-Black Trees (Árvores Rubro-Negras)}
+\chapter{Árvores Rubro-Negras}
 \chaplabel{redblack}
 
-\index{binary search tree!red-black}%
+\index{árvore de busca binária!rubro-negra}%
 \index{árvore rubro-negra}%
-Neste capítulo apresentamos as árvores rubro-negras, uma versão das árvores binárias de busca 
-com altura logarítmica. As árvores rubro-negras são uma das estruturas de 
+Neste capítulo apresentamos as árvores rubro-negras, uma versão das árvores binárias de busca com altura logarítmica. As árvores rubro-negras são uma das estruturas de 
 dados mais utilizadas. Elas aparecem como a principal estrutura de busca em 
 muitas implementações de bibliotecas, incluindo a Java Collections Framework e
 várias implementações da C++ Standard Template Library. Elas também são
@@ -15,10 +14,10 @@ razões para a popularidade das árvores rubro-negras:
 	\item As operações #add(x)# e #remove(x)# em uma árvore rubro-negra são executadas em
 	temp $O(\log #n#)$ no \emph{pior caso}.
 	\item O número de rotações amortizadas realizadas durante uma operação #add(x)#
-	or #remove(x)# é constante.
+	ou #remove(x)# é constante.
 \end{enumerate}
 As duas primeiras dessas propriedades já colocam as árvores rubro-negras
-à frente de skiplists, treaps, e scapegoat trees.
+à frente de skiplists, treaps, e árvores scapegoat.
 Skiplists e treaps dependem de randomização, e seus tempos de execução 
 $O(\log #n#)$ são apenas esperados. As árvores scapegoat têm limite de altura
 garantido, mas as operações #add(x)# e #remove(x)# executam apenas em tempo 
@@ -40,7 +39,7 @@ primeiro passaremos alguma base sobre uma estrutura de dados relacionada:
 a árvore 2-4. Isso dará uma visão de como as árvores rubro-negras 
 foram descobertas e porque a manutenção eficiente delas pode ser possível.
 
-\section{2-4 Trees (Árvores 2-4)}
+\section{Árvores 2-4}
 \seclabel{twofour}
 
 Uma árvore 2-4 é uma árvore enraizada com as seguintes propriedades:
@@ -59,7 +58,7 @@ Um exemplo de uma árvore 2-4 é mostrado na \figref{twofour-example}.
 	\figlabel{twofour-example}
 \end{figure}
 As propriedades das árvores 2-4 implicam que sua altura é logarítmica 
-no número de folhas::
+no número de folhas:
 \begin{lem}\lemlabel{twofour-height}
 	Uma árvore 2-4 com #n# folhas tem altura máxima de $\log #n#$.
 \end{lem}
@@ -153,7 +152,7 @@ folha e, portanto, mantém a propriedade de altura.
 Novamente, uma vez que a altura da árvore nunca é mais de $\log #n#$,
 o processo de remoção de uma folha termina após um máximo de $\log #n#$ passos.
 
-\section{#RedBlackTree#: Uma Árvore 2-4 Simulada}
+\section{Árvore Rubro-Negra: Uma Árvore 2-4 Simulada}
 \seclabel{redblacktree}
 
 Uma árvore rubro-negra é uma árvore binária de busca na qual
@@ -198,7 +197,7 @@ filhos, cada uma com uma cor bem definida. Um exemplo de árvore rubro-negra
 \end{figure}
 
 
-\subsection{Red-Black Trees and 2-4 Trees}
+\subsection{Árvores Rubro-Negras e Árvores 2-4}
 
 No começo, pode parecer surpreendente que uma árvore rubro-negra possa ser eficientemente
 atualizada para manter as propriedades altura-preta e sem-borda-vermelha, e
@@ -206,10 +205,10 @@ parece incomum mesmo considerar estas como propriedades úteis. Contudo,
 árvores rubro-negras foram projetadas para ser uma simulação eficiente de árvores 2-4
 como árvores binárias.
 
-Consulte \figref{twofour-redblack}.
+Consulte a \figref{twofour-redblack}.
 Considere qualquer árvore rubro-negra, $T$, tendo #n# nós e executando a
-seguinte transformação: Remove cada nó vermelho #u# e conecta os dois
-filhos de #u# diretamente no pai (preto) de #u#. Após essa transformação
+seguinte transformação: remova cada nó vermelho #u# e conecte os dois
+filhos de #u# diretamente ao pai (preto) de #u#. Após essa transformação
 nós ficamos com uma árvore $T'$ tendo apenas nós pretos.
 \begin{figure}
 	\begin{center}
@@ -251,7 +250,7 @@ Agora que vimos a relação entre árvores 2-4  e
 árvores rubro-negras, não é difícil acreditar que podemos manter,
 eficientemente, uma árvore rubro-negra ao adicionar e remover elementos.
 
-Já vimos que adicionar um elemento em uma #BinarySearchTree#
+Já vimos que adicionar um elemento em uma \textit{Árvore Binária de Busca}
 pode ser feito adicionando uma nova folha. Portanto, para implementar #add(x)# em uma
 árvore rubro-negra, precisamos de um método para simular a divisão de um nó com cinco
 filhos em uma árvore 2-4. Um nó de árvore 2-4 com cinco filhos é representado
@@ -288,10 +287,10 @@ fazer uma simulação direta de uma árvore 2-4 através de uma
 árvore 2-4 subjacente e trabalhar diretamente para manter as propriedades
 da árvore rubro-negra.
 
-\subsection{Árvores Rubro-Negras caindo pra esquerda}
+\subsection{Árvores Rubro-Negras caindo para a esquerda}
 
 \index{árvore rubro-negra}%
-\index{left-leaning árvore rubro-negra}%
+\index{lárvore rubro-negra caindo para a esquerda}%
 Não existe uma definição única de árvores rubro-negras. Em vez disso, existe
 uma família de estruturas que conseguem manter as propriedades altura-preta
 e sem-borda-vermelha durante as operações #add(x)# e #remove(x)#. 
@@ -301,25 +300,25 @@ Aqui, implementamos a estrutura de dados que chamamos de #RedBlackTree#.
 Esta estrutura implementa uma variante particular das árvores rubro-negras que
 satisfaz uma propriedade adicional:
 \begin{prp}[left-leaning]\prplabel{left-leaning}\prplabel{redblack-last}
-	\index{left-leaning property}%
+	\index{propriedade caindo para a esquerda}%
 	Em qualquer nó #u#, se #u.left# for preto, então #u.right# é preto.
 \end{prp}
 Observe que a árvore rubro-negra mostrada em \figref{redblack-example} não
-satisfaz a propriedade caindo-pra-esquerda; ela é violada pelo pai do
+satisfaz a propriedade caindo-para-esquerda; ela é violada pelo pai do
 nó vermelho no caminho mais à direita.
 
-O motivo para manter a propriedade caindo-pra-equerda é que ele reduz
+O motivo para manter a propriedade caindo-para-esquerda é que ela reduz
 o número de casos encontrados ao atualizar a árvore durante #add(x)#
-e #remove(x)# operações. Em termos de 2-4 árvores, isso implica que cada
-2-4 árvore tem uma representação única: um nó de grau dois torna-se
+e #remove(x)# operações. Em termos de árvores 2-4, isso implica que cada
+árvores 2-4 tem uma representação única: um nó de grau dois torna-se
 um nó preto com dois filhos pretos. Um nó de grau três torna-se
-um nó preto cujo filho é vermelho e cujo filho é preto.
+um nó preto cujo filho esquerdo é vermelho e cujo filho direito é preto.
 Um nó de grau quatro torna-se um nó preto com dois filhos vermelhos.
 
 Antes de descrever a implementação de #add (x)# e #remove(x)# em
 detalhe, apresentamos algumas sub-rotinas simples usadas por esses métodos
-que estão ilustradas em \figref{redblack-flippullpush}. As duas primeiras
-sub-rotinas são para manipular cores, preservando a prorpriedade altura-negra.
+que estão ilustradas na \figref{redblack-flippullpush}. As duas primeiras
+sub-rotinas são para manipular cores, preservando a propriedade altura-negra.
 O método #pushBlack(u)# recebe como entrada um nó preto #u#
 que tem dois filhos vermelhos e então colore #u# de vermelho e seus dois filhos 
 de preto. O método #pullBlack(u)# inverte esta operação:
@@ -329,7 +328,7 @@ de preto. O método #pullBlack(u)# inverte esta operação:
 	\begin{center}
 		\includegraphics[width=\ScaleIfNeeded]{figs/flippullpush}
 	\end{center}
-	\caption{Flips, pulls and pushes}
+	\caption{Flips, pulls e pushes}
 	\figlabel{redblack-flippullpush}
 \end{figure}
 
@@ -351,14 +350,14 @@ Para implementar #add(x)# em uma #RedBlackTree#, nós executamos um inserção
 padrão em #BinarySearchTree# para adicionar uma nova folha, #u#, com $#u.x#=#x#$
 e definir $#u.colour#=#red#$. Observe que isso não altera a altura preta
 de qualquer nó, por isso não viola a propriedade de altura-preta. No entanto, pode
-violar a propriedade caindo-pra-esquerda (se #u# é o filho direito de
+violar a propriedade caindo-para-esquerda (se #u# é o filho direito de
 seu pai), e isso pode violar a propriedade sem-borda-vermelha (se o pai de #u#
 é #vermelho#). Para restaurar essas propriedades, chamamos o método #addFixup(u)#.
 \codeimport{ods/RedBlackTree.add(x)}
 
 Ilustrado em \figref{rb-addfix}, o método #addFixup(u)# recebe como 
 entrada um nó #u# cuja cor é o vermelho e que pode violar as 
-propriedades sem-borda-vermelha e/ou caindo-pra-esquerda. A seguinte 
+propriedades sem-borda-vermelha e/ou caindo-para-esquerda. A seguinte 
 discussão é provavelmente impossível de se explicar sem se referir a
 \figref{rb-addfix} ou recriá-la em um pedaço de papel. De fato, o
 leitor talvez deseje estudar essa figura antes de continuar.
@@ -377,7 +376,7 @@ Se o irmão de #u# também for vermelho, então o pai de #u# deve ser preto,
 de modo que as propriedades caindo-pra-esquerda e sem-borda-vermelha se mantenham.
 
 Caso contrário, primeiro determinamos se o pai de #u#, #w#, viola a propriedade 
-caindo-pra-esquerda, e se for o caso, executamos uma operação #flipLeft(w)# e
+caindo-para-esquerda, e se for o caso, executamos uma operação #flipLeft(w)# e
 definimos $#u#=#w#$. Isso nos deixa em um estado bem definido: #u# é o filho
 esquerdo de seu pai, #w#, então #w# agora satisfaz a propriedade caindo-pra-esquerda.
 Tudo o que resta é garantir a propriedade sem-borda-vermelha em #u#. Nós apenas
@@ -387,7 +386,7 @@ já satisfaz a propriedade sem-borda-vermelha.
 Uma vez que ainda não terminamos, #u# é vermelho e #w# é vermelho. A propriedade
 sem-borda-vermelha (que só é violada por #u# e não por #w#) implica que
 o avô de #u#, #g#, existe e é preto. Se o filho direito de #g# for vermelho, então 
-a propriedade caindo-pra-esquerda garante que ambos os filhos de #g# são vermelhos,
+a propriedade caindo-para-esquerda garante que ambos os filhos de #g# são vermelhos,
 e uma chamada de #pushBlack(g)# faz #g# vermelho e #w# preto. Isso restaura
 a propriedade sem-borda-vermelha em #u#, mas pode fazer com que seja violada em #g#,
 então todo o processo recomeça com $#u#=#g#$.
@@ -395,7 +394,7 @@ então todo o processo recomeça com $#u#=#g#$.
 Se o filho direito de #g# for preto, então uma chamada para #flipRight(g)# 
 faz #w# o pai (preto) de #g# e dá a #w# dois filhos vermelhos, #u# e
 #g#. Isso garante que #u# satisfaça a propriedade sem-borda-vermelha e #g#
-satisfaça a propriedade caindo-pra-esquerda. Neste caso, podemos parar.
+satisfaça a propriedade caindo-para-esquerda. Neste caso, podemos parar.
 \codeimport{ods/RedBlackTree.addFixup(u)}
 
 O método #insertFixup(u)# leva tempo constante por iteração e cada
@@ -403,12 +402,12 @@ iteração termina ou move #u# para mais perto da raiz. Assim sendo,
 o método #insertFixup(u)# termina após $O(\log #n#)$ iterações em
 tempo $O(\log #n#)$.
 
-\subsection{Removal}
+\subsection{Remoção}
 
 A operação #remove(x)# na #RedBlackTree# é a mais complicada para 
 implementar, e isso é verdade para todas as variantes conhecidas de árvore rubro-negra.
 Assim como a operação #remove(x)# em uma \texttt{ÁrvoreBináriaDeBusca},
-Esta operação resume-se a encontrar um nó #w# com apenas um filho,
+esta operação resume-se a encontrar um nó #w# com apenas um filho,
 #u#, e retirar #w# da árvore por fazer #w.parent# adotar #u#.
 
 O problema com isso é que, se #w# for preto, então a propriedade altura-preta
@@ -463,7 +462,7 @@ Caso~3 abaixo, veremos que o processo irá parar durante a próxima iteração.
 \codeimport{ods/RedBlackTree.removeFixupCase1(u)}
 
 \noindent 
-Caso 2: O irmão de#u#, #v#, é preto, e #u# é o filho esquerdo de seu
+Caso 2: O irmão de #u#, #v#, é preto, e #u# é o filho esquerdo de seu
 pai, #w#. Nesse caso, chamamos #pullBlack(w)#, fazendo #u# preto,
 #v# vermelho e escurecendo a cor de #w# para preto ou duplo-preto.
 Neste ponto, #w# não satisfaz a propriedade caindo-pra-esquerda, então 
@@ -526,7 +525,7 @@ concluímos que existem no máximo $O(\log #n#)$ iterações de #removeFixup(u)#
 então #removeFixup(u)# é executado em tempo $O(\log #n#)$.
 
 
-\section{Summary}
+\section{Resumo}
 \seclabel{redblack-summary}
 
 O seguinte teorema resume o desempenho da estrutura de dados #RedBlackTree#:
