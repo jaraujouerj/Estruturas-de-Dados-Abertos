@@ -240,7 +240,7 @@ Isto soa mais complicado do que é, o código, na verdade,
 \codeimport{ods/SkiplistList.add(i,w)}
 
 
-Até agora, a implementação da 
+Agora a implementação da 
 operação #remove(i)# em uma #SkiplistList# deveria ser óbvia.  Seguimos o caminho de busca para o nó na posição #i#. Cada vez que o caminho de busca desce de um nó, #u#, no nível #r# diminuímos o comprimento da aresta deixando #u# neste nível.  Também checamos se #u.next[r]# é o elemento de classificação #i# e, caso seja, o tiramos da lista neste nível. Um exemplo é mostrado na \figref{skiplist-removei}.
 \begin{figure}
 	\begin{center}
@@ -253,13 +253,13 @@ operação #remove(i)# em uma #SkiplistList# deveria ser óbvia.  Seguimos o cam
 
 \subsection{Resumo}
 
-O teorema a seguir resume a performance da estrutura de dados 
+O teorema a seguir resume o desempenho da estrutura de dados 
 #SkiplistList#:
 
 \begin{thm}\thmlabel{skiplistlist}
 	Uma #SkiplistList# implementa a interface #List#.  Uma #SkiplistList#
 	suporta as operações #get(i)#, #set(i,x)#, #add(i,x)#, e
-	#remove(i)# no tempo de execuçao $O(\log #n#)$ esperado.
+	#remove(i)# no tempo de execução $O(\log #n#)$ esperado.
 \end{thm}
 
 %\section{Skiplists as Ropes}
@@ -268,7 +268,7 @@ O teorema a seguir resume a performance da estrutura de dados
 \section{Análise de Skiplists}
 \seclabel{skiplist-analysis}
 
-Nesta seção, analizamos a altura, tamanho e comprimento esperados do
+Nesta seção, analisamos a altura, tamanho e comprimento esperados do
 caminho de busca em uma skiplist. Esta seção requer um conhecimento de
 probabilidade básica.  Várias provas são baseadas nas seguintes observações
 básicas sobre lançamentos de moedas.
@@ -356,51 +356,50 @@ Os dois próximos lemas nos dizem que as skiplists têm tamanho linear:
 \end{lem}
 %fim Leonardo
 
-%inicio Antonio Felipe
 \begin{proof}
-  By \lemref{skiplist-size1}, the expected number of nodes, not
-  including the sentinel, is $2#n#$.  The number of occurrences of
-  the sentinel is equal to the height, $#h#$, of the skiplist so, by
-  \lemref{skiplist-height} the expected number of occurrences of the
-  sentinel is at most $\log #n#+2 = O(\log #n#)$.
+  Por \lemref{skiplist-size1}, o número esperado de nós, sem
+  incluir o sentinela, é $2#n#$.  O número de ocorrências do
+  sentinela é igual à altura, $#h#$, da skiplist assim, por
+  \lemref{skiplist-height} o número esperado de ocorrências do 
+  sentinela é no máximo $\log #n#+2 = O(\log #n#)$.
 \end{proof}
 
 
 
 \begin{lem}
-The expected length of a search path in a skiplist is at most $2\log #n# + O(1)$.
+O comprimento esperado do caminho de busca em uma skiplist é no máximo $2\log #n# + O(1)$.
 \end{lem}
 
 \begin{proof}
-  The easiest way to see this is to consider the \emph{reverse search
-  path} for a node, #x#.  This path starts at the predecessor of #x#
-  in $L_0$.  At any point in time, if the path can go up a level, then
-  it does.  If it cannot go up a level then it goes left.  Thinking about
-  this for a few moments will convince us that the reverse search path for
-  #x# is identical to the search path for #x#, except that it is reversed.
+  A maneira mais fácil de ver isso é considerar o \emph{caminho de pesquisa 
+  reversa} para um nó, #x#. Este caminho começa no predecessor de #x#
+  em $L_0$. A qualquer momento, se o caminho puder subir um nível, isso 
+  acontecerá. Se não conseguir subir um nível, ele irá para a esquerda. Pensar 
+  nisso por alguns instantes nos convencerá de que o caminho de pesquisa reversa 
+  para #x# é idêntico ao caminho de pesquisa para #x#, exceto que é invertido.
 
-  The number of nodes that the reverse search path visits at a particular
-  level, #r#, is related to the following experiment:  Toss a coin.
-  If the coin comes up as heads, then move up and stop. Otherwise, move
-  left and repeat the experiment.  The number of coin tosses before
-  the heads represents the number of steps to the left that a reverse
-  search path takes at a particular level.\footnote{Note that this
-  might overcount the number of steps to the left, since the experiment
-  should end either at the first heads or when the search path reaches
-  the sentinel, whichever comes first. This is not a problem since the
-  lemma is only stating an upper bound.} \lemref{coin-tosses} tells us
-  that the expected number of coin tosses before the first heads is 1.
+  O número de nós que o caminho de pesquisa reverso visita em um nível específico, 
+  #r#, está relacionado à seguinte experiência: lançar uma moeda. 
+  Se a moeda surgir como cara, vá para cima e pare. Caso contrário, vá para a 
+  esquerda e repita a experiência. O número de lançamentos antes da cara 
+  representa o número de passos à esquerda que um caminho de busca reversa 
+  toma em um determinado nível. \footnote{Observe que isso pode sobrecarregar 
+  o número de etapas à esquerda, já que a experiência deve terminar em as 
+  primeiras caras ou quando o caminho de busca alcança o sentinela, 
+  o que ocorrer primeiro. Isto não é um problema já que o lema está apenas indicando 
+  um limite superior.} \lemref{coin-tosses} nos diz que o número esperado de 
+  lançamentos de moeda antes das primeiras caras é 1.
 
-  Let $S_{#r#}$ denote the number of steps the forward search path takes at level
-  $#r#$ that go to the right.   We have just argued that $\E[S_{#r#}]\le
-  1$.  Furthermore, $S_{#r#}\le |L_{#r#}|$, since we can't take more steps
-  in $L_{#r#}$ than the length of $L_{#r#}$, so
+  Seja $S_{#r#}$ o número de passos que o caminho de busca direta no nível
+  $#r#$ que vão para a direita.   Acabamos de argumentar que $\E[S_{#r#}]\le
+  1$.  Além disso, $S_{#r#}\le |L_{#r#}|$, já que não podemos dar mais passos
+  em $L_{#r#}$ do que o tamanho de $L_{#r#}$, assim
   \[
     \E[S_{#r#}] \le \E[|L_{#r#}|] = #n#/2^{#r#} \enspace .
   \]
-  We can now finish as in the proof of \lemref{skiplist-height}.
-  Let $S$ be  the length of the search path for some node, #u#, in a
-  skiplist, and let $#h#$ be the height of the skiplist.  Then
+  Podemos agora terminar como na prova de \lemref{skiplist-height}.
+  Seja $S$ o comprimento do caminho de busca para algum nó, #u#, em uma
+  skiplist, e seja $#h#$ a altura da skiplist.  Então
   \begin{align*}
       \E[S] 
          &= \E\left[ #h# + \sum_{#r#=0}^\infty S_{#r#} \right] \\
@@ -419,10 +418,10 @@ The expected length of a search path in a skiplist is at most $2\log #n# + O(1)$
 \end{proof}
 
 
-The following theorem summarizes the results in this section:
+O seguinte teoream resume os resultados desta seção:
 \begin{thm}
-A skiplist containing $#n#$ elements has expected size $O(#n#)$ and the
-expected length of the search path for any particular element is at most
+Uma skiplist contendo $#n#$ elementos tem tamanho esperado $O(#n#)$ e o 
+comprimento esperado do caminho de busca de qualquer elemnento particular é no máximo
 $2\log #n# + O(1)$.
 \end{thm}
 
@@ -432,21 +431,20 @@ $2\log #n# + O(1)$.
 
 %TODO: Write this section
 
-\section{Discussion and Exercises}
+\section{Discussao e Exercícios}
 
-Skiplists were introduced by Pugh \cite{p91} who also presented
-a number of applications and extensions of skiplists \cite{p89}.  Since then they
-have been studied extensively.  Several researchers have done very
-precise analyses of the expected length and variance of the length of the
-search path for the #i#th element in a skiplist \cite{kp94,kmp95,pmp92}.
-Deterministic versions \cite{mps92}, biased versions \cite{bbg02,esss01},
-and self-adjusting versions \cite{bdl08} of skiplists have all been
-developed.  Skiplist implementations have been written for various
-languages and frameworks and have been used in open-source database
-systems \cite{skipdb,redis}. A variant of skiplists is used in the HP-UX
+Skiplists foram introudzidas por Pugh \cite{p91} que também apresentou 
+numerosas aplicações e extensões da skiplists \cite{p89}.  Desde então elas
+tèm sido estudadas extensivamente.  Diversos pesquisadores têm feito precisas 
+análises do comprimento esperado e da variância do
+caminho de busca para o #i#-ésimo elemento em uma skiplist \cite{kp94,kmp95,pmp92}.
+Versões determinísticas \cite{mps92}, tendenciosas \cite{bbg02,esss01},
+e de ajuste próprio \cite{bdl08} das skiplists têm sido 
+desenvolvidas.  Implementações da Skiplist implementations têm sido escritas em
+diversas linguagens e frameworks e têm sido usadas em sistemas de banco de dados
+open-source \cite{skipdb,redis}. A variant of skiplists is used in the HP-UX
 operating system kernel's process management structures \cite{hpux}.
-\javaonly{Skiplists are even part of the Java 1.6 API \cite{oracle_jdk6}.}
-%fim Antonio Felipe
+\javaonly{Skiplists são inclusive uma parte da API de Java 1.6 \cite{oracle_jdk6}.}
 
 \begin{exc}
 	Explique os caminhos de pesquisa para 2.5 e 5.5 na skiplist da \figref{skiplist}.
