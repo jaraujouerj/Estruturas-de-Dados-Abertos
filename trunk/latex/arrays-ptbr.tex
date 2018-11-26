@@ -556,11 +556,11 @@ $O(#n#)=O(#i#)=O(#n#-#i#)$, uma vez que $#i#\ge #n#/4$ e $#n#-#i#>
 #n#/4$. Resumindo a situação, temos
 \[
      \mbox{Tempo de execução de } #add(i,x)# \le 
-          \left\{\begin{array}{ll}
+          \begin{cases}
             O(1+ #i#) & \mbox{se $#i#< #n#/4$} \\
             O(#n#) & \mbox{se $#n#/4 \le #i# < 3#n#/4$} \\
             O(1+#n#-#i#) & \mbox{se $#i# \ge 3#n#/4$}
-          \end{array}\right.
+          \end{cases}.
 \]
 Assim, o tempo de execução de #add(i,x)#, se ignorarmos o custo da chamada 
 para #balance()#, é $O(1+\min\{#i#, #n#-#i#\})$.
@@ -813,18 +813,17 @@ Em seguida, analisamos a quantidade extra de espaço usado pela #RootishArraySta
 Em particular, queremos contar qualquer espaço usado pela #RootishArrayStack# que não seja um elemento do array 
 atualmente usado para manter um elemento de lista.  Podemos chamar tal espaço de \emph{espaço desperdiçado}.
 \index{wasted space}%
-% Fim Matheus
 
 A operação #remove(i)# garante que um #RootishArrayStack# nunca tenha 
 mais de dois blocos que não estejam completamente cheios. O número de 
 blocos, #r#, usado por #RootishArrayStack# que armazena #n# elementos, 
 portanto, satisfaz
 \[
-    (#r#-2)(#r#-1) \le #n# \enspace .
+    (#r#-2)(#r#-1)/2 \le #n# \enspace .
 \]
 Novamente, usando a equação quadrática nele fornece
 \[
-   #r# \le (3+\sqrt{1+4#n#})/2 = O(\sqrt{#n#}) \enspace .
+   #r# \le \frac{1}{2}\left(3+\sqrt{8#n#+1}\right) = O(\sqrt{#n#}) \enspace .
 \]
 Os dois últimos blocos têm tamanhos #r# e #r-1#, então o espaço 
 perdido por esses dois blocos é no máximo $2#r#-1 = O(\sqrt{#n#})$. 
@@ -838,10 +837,9 @@ Portanto, a quantidade total de espaço desperdiçado em um #RootishArrayStack#
 
 Em seguida, argumentamos que este uso do espaço é ideal para qualquer 
 estrutura de dados que começa vazia e pode suportar a adição de um item 
-de cada vez. Mais precisamente, mostramos que, em algum ponto durante a 
-adição de #n# itens, a estrutura de dados está desperdiçando uma 
-quantidade de espaço de no máximo $\sqrt{#n#}$ (embora possa estar apenas 
-desperdiçado durante um momento).
+de cada vez. Mais precisamente, mostraremos que, em algum ponto durante a 
+adição de #n# itens, a estrutura de dados está desperdiçando um espaço de pelo menos $\sqrt{#n#}$ (embora possa estar  
+desperdiçado apenas durante um momento).
 
 Suponha que começamos com uma estrutura de dados vazia e adicionamos 
 #n# itens, um de cada vez. No final deste processo, todos os #n# itens 
@@ -849,8 +847,8 @@ são armazenados na estrutura e distribuídos entre uma coleção de #r#
 blocos de memória. Se $#r#\ge \sqrt{#n#}$, então a estrutura de dados 
 deve estar usando #r# ponteiros (ou referências) para acompanhar esses 
 #r# blocos, e esses ponteiros são espaço desperdiçado. Por outro lado, 
-se $#r# < \sqrt{#n#}$, então, pelo princípio da "casa de pombos", algum bloco 
-deve ter um tamanho de pelo menos $#n#/#r# > \sqrt{#n#}$. Considere o momento 
+se $#r# < \sqrt{#n#}$, então, pelo princípio da ``casa de pombos'', algum bloco 
+deve ter tamanho de pelo menos $#n#/#r# > \sqrt{#n#}$. Considere o momento 
 em que este bloco foi alocado pela primeira vez. Imediatamente após ele 
 ter sido alocado, esse bloco estava vazio e, portanto, estava desperdiçando 
 $\sqrt{#n#}$ de espaço. Portanto, em algum ponto no tempo durante a inserção 
@@ -909,7 +907,7 @@ Elevando ao quadrado ambos os lados da desigualdade, obtemos
 \[
  #x#-\sqrt{#x#} \ge #x#-2\sqrt{#x#}+1
 \]
-E reunir termos para obter
+E reunindo termos para obter
 \[
  \sqrt{#x#} \ge 1
 \]
@@ -917,10 +915,10 @@ Que é claramente verdade para qualquer $#x#\ge 1$.
 \end{proof}
 
 Comece restringindo o problema um pouco e suponha que $2^{#r#} \le
-#x# < 2^{#r#+1}$, so that $\lfloor\log #x#\rfloor=#r#$, de modo que 
+#x# < 2^{#r#+1}$, de modo que 
 $\lfloor\log #x#\rfloor=#r#$, ou seja, #x# é um número inteiro com 
 $#r#+1$ bits em sua representação binária. Podemos tomar $#x'#=#x# - 
-(#x#\bmod 2^{\lfloor r/2\rfloor})$. Agora, #x'# satisfaz as condições de 
+(#x#\bmod 2^{\lfloor r/2\rfloor})$. Agora, #x'# satisfaz as condições do 
 \lemref{root}, então $\sqrt{#x#}-\sqrt{#x'#} \le 1$.
 Além disso, #x'# tem todos os seus $\lfloor #r#/2\rfloor$ bits de ordem 
 inferior iguais a 0, portanto, há apenas
@@ -936,13 +934,13 @@ cada possível valor de #x'#. Um pouco mais precisamente, temos
        \sqrt{i 2^{\lfloor #r#/2\rfloor}}
       \right\rfloor \enspace .
 \]
-Deste modo, $#sqrttab#[i]$ está dentro de within 2 de $\sqrt{#x#}$ para todo
-$#x#\in\{i2^{\lfloor r/2\rfloor},\ldots,(i+1)2^{\lfloor r/2\rfloor}-1\}$.
+Deste modo, $#sqrttab#[i]$ está 2 distante de $\sqrt{#x#}$ para todo
+$#x#\in\{i2^{\lfloor #r#/2\rfloor},\ldots,(i+1)2^{\lfloor #r#/2\rfloor}-1\}$.
 Dito de outra forma, a entrada do array  
 $#s#=#sqrttab#[#x##>>#\lfloor #r#/2\rfloor]$ é igual a
 $\lfloor\sqrt{#x#}\rfloor$,
 $\lfloor\sqrt{#x#}\rfloor-1$, ou
-$\lfloor\sqrt{#x#}\rfloor-2$.  A oartir de #s# =podemos determinar o valor
+$\lfloor\sqrt{#x#}\rfloor-2$.  A partir de #s# podemos determinar o valor
 de $\lfloor\sqrt{#x#}\rfloor$ pelo
 incremento de #s# até 
 $(#s#+1)^2 > #x#$.
@@ -955,13 +953,13 @@ Agora, isso só funciona para $#x#\in\{2^{#r#},\ldots,2^{#r#+1}-1\}$ e
 de $#r#=\lfloor\log #x#\rfloor$. Para superar isso, poderíamos calcular 
 $\lfloor\log #n#\rfloor$ diferentes arrays #sqrttab#, um para cada possível 
 valor de $\lfloor\log #x#\rfloor$. Os tamanhos dessas tabelas formam uma 
-seqüência exponencial cujo maior valor é no máximo $4\sqrt{#n#}$, então 
+sequência exponencial cujo maior valor é no máximo $4\sqrt{#n#}$, então 
 o tamanho total de todas as tabelas é $O(\sqrt{#n#})$.
 
 No entanto, verifica-se que mais de um array #sqrttab# é desnecessário; 
 só precisamos de um array #sqrttab# para o valor $#r#=\lfloor\log
 #n#\rfloor$. Qualquer valor #x# com $\log#x#=#r'#<#r#$ pode ser 
-\emph{pro,ovido} multiplicando #x# por $2^{#r#-#r'#}$ e usando a equação
+\emph{promovido} multiplicando #x# por $2^{#r#-#r'#}$ e usando a equação
 \[
     \sqrt{2^{#r#-#r'#}x} = 2^{(#r#-#r#')/2}\sqrt{#x#} \enspace .
 \]
