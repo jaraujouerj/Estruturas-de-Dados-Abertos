@@ -108,6 +108,12 @@ def translate_code(line):
 
     # a[x:y] => a[x,x+1,\ldots,y-1]
     line = re.sub(r'\[([^\]]+):([^\]]+)\]', r'[\ensuremath{\1,\1+1,\ldots,\2-1}]', line)
+
+    # a[:y] => a[\ldots,y-2,y-1]
+    line = re.sub(r'\[:([^\]]+)\]', r'[\ensuremath{\ldots,\1-2,\1-1}]', line)
+
+    # a[x:] => a[x,x+1,\ldots]
+    line = re.sub(r'\[([^\]]+):\]', r'[\ensuremath{\1,\1+1,\ldots]}', line)
     
     # some dumb arithmetic
     line = re.sub(r'\+\s*1\s*-\s*1', '', line)
