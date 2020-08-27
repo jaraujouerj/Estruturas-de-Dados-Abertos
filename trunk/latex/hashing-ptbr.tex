@@ -233,12 +233,12 @@ Há três tipos de registros armazenados em #t#:
    \item valores #null#: em locais de matriz onde nenhum dado foi armazenado; e
    \item valores #del#: em locais de matriz onde os dados foram armazenados uma vez, mas que já foram excluídos.
 \end{enumerate}
-Além do contador, #n#, que acompanha o número de elementos na #LinearHashTable#, um contador, #q#, acompanha o número de elementos dos Tipos~1 e 3. Isso é, #q# é igual a #n# mais o número de #del# valores em #t#. Para que isso funcione de forma eficiente, precisamos #t# para ser consideravelmente maior do que #q#, de modo que existam muitos valores #null# em #t#. As operações na #LinearHashTable# mantêm, portanto, o invariante que $#t.length#\ge 2#q#$.
+Além do contador, #n#, que acompanha o número de elementos na #LinearHashTable#, um contador, #q#, acompanha o número de elementos dos Tipos~1 e 3. Isso é, #q# é igual a #n# mais o número de #del# valores em #t#. Para que isso funcione de forma eficiente, precisamos que #t# seja consideravelmente maior do que #q#, de modo que existam muitos valores #null# em #t#. As operações na #LinearHashTable# mantêm, portanto, o invariante que $#t.length#\ge 2#q#$.
 
-Para resumir, um #LinearHashTable# contém uma matriz, #t#, que armazena elementos de dados e números inteiros #n# e #q# que acompanham o número de elementos de dados e valores não #null# de #t#, respectivamente. Como muitas funções de hash funcionam apenas para tamanhos de tabela que são uma potência de 2, também mantemos um inteiro #d# e mantenha o invariante que $#t.length#=2^#d#$.
+Para resumir, um #LinearHashTable# contém uma matriz, #t#, que armazena elementos de dados e números inteiros #n# e #q# que acompanham o número de elementos de dados e valores não #null# de #t#, respectivamente. Como muitas funções de hash funcionam apenas para tamanhos de tabela que são uma potência de 2, também mantemos um inteiro #d# e asseguramos o invariante $#t.length#=2^#d#$.
 \codeimport{ods/LinearHashTable.t.n.q.d}
 
-A operação #find(x)# em #LinearHashTable# é simples. Nós começamos na entrada do array #t[i]# onde $#i#=#hash(x)#$ e entradas de pesquisa #t[i]#, $#t#[(#i#+1)\bmod #t.length#]$, $#t#[(#i#+2)\bmod #t.length#]$, e assim por diante, até encontrarmos um índice #i'# tal que, também, #t[i']=x#, ou #t[i']=null#.
+A operação #find(x)# em #LinearHashTable# é simples. Nós começamos na entrada do array #t[i]# onde $#i#=#hash(x)#$ e pesquisamos as entradas #t[i]#, $#t#[(#i#+1)\bmod #t.length#]$, $#t#[(#i#+2)\bmod #t.length#]$, e assim por diante, até encontrarmos um índice #i'# tal que, também, #t[i']=x#, ou #t[i']=null#.
 No primeiro caso, nós retornamos #t[i']#. No último caso, concluímos que # x # não está contido na tabela hash e retorna #null#.
 \codeimport{ods/LinearHashTable.find(x)}
 

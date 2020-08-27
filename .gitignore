@@ -1,0 +1,25 @@
+/branches/
+/LivroMaster/
+trunk/c/**
+/trunk/python/
+trunk/latex/*aux
+
+*.jar
+
+*.class
+
+LivroMaster
+
+*.pdf
+
+*.idx
+
+trunk/latex/snarf-python (cópia).py
+
+c/
+
+cpp/
+
+java/
+
+tags/

@@ -218,7 +218,7 @@ o comprimento da aresta #u.next[r]# aumenta em um, uma vez que estamos adicionan
 um elemento abaixo desta aresta na posição #i#.  Unir o nó #w# entre dois nós,
 #u# e #z#, funciona como mostrado na \figref{skiplist-lengths-splice}. Enquanto
 seguimos o caminho de busca, já estamos cientes da posiçao,
-#j#, de #u# em $L_0$.  Portanto,sabemos que o comprimento da aresta de
+#j#, de #u# em $L_0$.  Portanto, sabemos que o comprimento da aresta de
 #u# a #w# é $#i#-#j#$.  Também podemos deduzir o comprimento da aresta
 de #w#  a #z# através do comprimento, $\ell$, da aresta de #u# a #z#.
 Assim sendo, podemos juntar em #w# e atualizar os comprimentos das arestas em
@@ -418,7 +418,7 @@ O comprimento esperado do caminho de busca em uma skiplist é no máximo $2\log 
 \end{proof}
 
 
-O seguinte teoream resume os resultados desta seção:
+O seguinte teorema resume os resultados desta seção:
 \begin{thm}
 Uma skiplist contendo $#n#$ elementos tem tamanho esperado $O(#n#)$ e o 
 comprimento esperado do caminho de busca de qualquer elemnento particular é no máximo
@@ -431,19 +431,14 @@ $2\log #n# + O(1)$.
 
 %TODO: Write this section
 
-\section{Discussao e Exercícios}
+\section{Discussão e Exercícios}
 
-Skiplists foram introudzidas por Pugh \cite{p91} que também apresentou 
-numerosas aplicações e extensões da skiplists \cite{p89}.  Desde então elas
-tèm sido estudadas extensivamente.  Diversos pesquisadores têm feito precisas 
-análises do comprimento esperado e da variância do
+Skiplists foram introduzidas por Pugh \cite{p91} que também apresentou 
+numerosas aplicações e extensões da skiplists \cite{p89}.  Desde então elas têm sido estudadas extensivamente.  Diversos pesquisadores têm feito precisas análises do comprimento esperado e da variância do
 caminho de busca para o #i#-ésimo elemento em uma skiplist \cite{kp94,kmp95,pmp92}.
 Versões determinísticas \cite{mps92}, tendenciosas \cite{bbg02,esss01},
 e de ajuste próprio \cite{bdl08} das skiplists têm sido 
-desenvolvidas.  Implementações da Skiplist implementations têm sido escritas em
-diversas linguagens e frameworks e têm sido usadas em sistemas de banco de dados
-open-source \cite{skipdb,redis}. A variant of skiplists is used in the HP-UX
-operating system kernel's process management structures \cite{hpux}.
+desenvolvidas.  Implementações da Skiplist têm sido escritas em diversas linguagens e frameworks e têm sido usadas em sistemas de banco de dados open-source \cite{skipdb,redis}. Uma variante da skiplist é usada na estrutura de gerência de processos do núcleo do sistema operacional HP-UX \cite{hpux}.
 \javaonly{Skiplists são inclusive uma parte da API de Java 1.6 \cite{oracle_jdk6}.}
 
 \begin{exc}

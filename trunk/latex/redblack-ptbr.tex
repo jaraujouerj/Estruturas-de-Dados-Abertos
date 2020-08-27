@@ -227,8 +227,7 @@ filhos pretos após essa transformação. Um nó preto que começou
 com um filho vermelho e um preto terá três filhos depois dessa
 transformação. Um nó preto que começou com dois filhos vermelhos
 terá quatro filhos após essa transformação. Além disso, a
-propriedade altura-preta agora garante que cada caminho da raiz até a folha em $T'$ tem o
-mesmo comprimento. Em outras palavras, $T'$ é uma árvore 2-4!
+propriedade altura-preta agora garante que cada caminho da raiz até a folha em $T'$ tem o mesmo comprimento. Em outras palavras, $T'$ é uma árvore 2-4!
 
 A árvore 2-4 $T'$ tem $ #n#+1$ folhas que correspondem aos $#n#+1$
 nós externos da árvore rubro-negra. Portanto, esta árvore tem, no máximo, altura
@@ -497,7 +496,7 @@ As únicas diferenças vêm do fato de que a propriedade caindo-pra-esquerda
 é assimétrica, por isso requer uma manipulação diferente.
 
 Como antes, começamos com uma chamada de #pullBlack(w)#, o que torna #v# vermelho
-e #u# black. Uma chamada de #flipRight(w)# promove #v# para a raiz da
+e #u# preto. Uma chamada de #flipRight(w)# promove #v# para a raiz da
 subárvore. Neste ponto #w# é vermelho, e o código se ramifica de duas maneiras
 dependendo da cor do filho esquerdo de #w#, #q#.
 
@@ -544,12 +543,7 @@ Não incluído no teorema acima é o seguinte bônus extra:
 	durante todas as chamadas de #addFixup(u)# e #removeFixup(u)#.
 \end{thm}
 
-Nós apenas esboçamos uma prova de \thmref{redblack-amortized}. Comparando
-#addFixup(u)# e #removeFixup(u)# com os algoritmos para adicionar ou
-remover uma folha em uma árvore 2-4, podemos nos convencer de que essa
-propriedade é herdada de uma árvore 2-4. Em particular, se pudermos mostrar
-que o tempo total gasto dividindo, mesclando e pegando emprestado em uma
-ávore 2-4 é $O(m)$, então isso implica \thmref{redblack-amortized}.
+Nós apenas esboçamos uma prova do \thmref{redblack-amortized}. Comparando \\#addFixup(u)# e #removeFixup(u)# com os algoritmos para adicionar ou remover uma folha em uma árvore 2-4, podemos nos convencer de que essa propriedade é herdada de uma árvore 2-4. Em particular, se pudermos mostrar que o tempo total gasto dividindo, mesclando e pegando emprestado em uma árvore 2-4 é $O(m)$, então isso implica \thmref{redblack-amortized}.
 
 A prova deste teorema para árvores 2-4 usa o método
 potencial

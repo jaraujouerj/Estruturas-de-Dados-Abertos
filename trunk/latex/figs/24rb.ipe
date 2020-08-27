@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
-<ipe version="70005" creator="Ipe 7.1.1">
-<info created="D:20101201111324" modified="D:20130712100233"/>
+<ipe version="70206" creator="Ipe 7.2.7">
+<info created="D:20101201111324" modified="D:20181218084923"/>
 <preamble>\usepackage{kpfonts}\fontsize{10pt}{10pt}\selectfont\usepackage{ods-colors}</preamble>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
@@ -203,13 +203,13 @@ h
 <dashstyle name="dash dotted" value="[4 2 1 2] 0"/>
 <dashstyle name="dash dot dotted" value="[4 2 1 2 1 2] 0"/>
 <textsize name="large" value="\large"/>
-<textsize name="small" value="\small"/>
-<textsize name="tiny" value="\tiny"/>
 <textsize name="Large" value="\Large"/>
 <textsize name="LARGE" value="\LARGE"/>
 <textsize name="huge" value="\huge"/>
 <textsize name="Huge" value="\Huge"/>
+<textsize name="small" value="\small"/>
 <textsize name="footnote" value="\footnotesize"/>
+<textsize name="tiny" value="\tiny"/>
 <textstyle name="center" begin="\begin{center}" end="\end{center}"/>
 <textstyle name="itemize" begin="\begin{itemize}" end="\end{itemize}"/>
 <textstyle name="item" begin="\begin{itemize}\item{}" end="\end{itemize}"/>
@@ -412,13 +412,13 @@ h
 <use matrix="1 0 0 1 152 0" name="mark/fdisk(sfx)" pos="208 272" size="large" stroke="black" fill="black"/>
 <use matrix="1 0 0 1 184 0" name="mark/fdisk(sfx)" pos="208 272" size="large" stroke="black" fill="black"/>
 <use matrix="1 0 0 1 88 64" name="mark/fdisk(sfx)" pos="208 272" size="large" stroke="black" fill="black"/>
-<use layer="epsilon" name="mark/fdisk(sfx)" pos="240 304" size="large" stroke="black" fill="black"/>
-<group matrix="1 0 0 1 -9.1991 0">
+<use name="mark/fdisk(sfx)" pos="240 304" size="large" stroke="black" fill="black"/>
+<group layer="epsilon" matrix="1 0 0 1 -9.1991 0">
 <use matrix="1 0 0 -1 -22.8009 582.759" name="mark/fdisk(sfx)" pos="208 272" size="large" stroke="black" fill="pink"/>
-<text matrix="1 0 0 -1 -11.1004 662.088" transformations="translations" pos="202.755 351.329" stroke="black" type="label" valign="center">red node</text>
+<text matrix="1 0 0 -1 -11.1004 662.088" transformations="translations" pos="202.755 351.329" stroke="black" type="label" width="38.974" height="7.173" depth="0.08" valign="center">red node</text>
 <group matrix="1 0 0 -1 -6.54638 647.287">
 <use matrix="1 0 0 1 -16.2545 42.7435" name="mark/fdisk(sfx)" pos="208 272" size="large" stroke="black" fill="black"/>
-<text matrix="1 0 0 1 -4.26938 -19.5081" transformations="translations" pos="202.47 334.252" stroke="black" type="label" valign="center">black node</text>
+<text matrix="1 0 0 1 -4.26938 -19.5081" transformations="translations" pos="202.47 334.252" stroke="black" type="label" width="48.109" height="7.173" depth="0.08" valign="center">black node</text>
 </group>
 </group>
 </page>
