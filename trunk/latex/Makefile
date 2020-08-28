@@ -4,7 +4,7 @@
 #	heaps.tex sorting.tex graphs.tex integers.tex btree.tex
 sources = intro-ptbr.tex arrays-ptbr.tex linkedlists-ptbr.tex skiplists-ptbr.tex \
 	hashing-ptbr.tex binarytrees-ptbr.tex rbs-ptbr.tex scapegoat-ptbr.tex redblack-ptbr.tex \
-	heaps-ptbr.tex sorting.tex graphs.tex integers-ptbr.tex btree.tex
+	heaps-ptbr.tex sorting-ptbr.tex graphs-ptbr.tex integers-ptbr.tex btree.tex
 javs = $(sources:.tex=-java.tex)
 javh = $(sources:.tex=-java-html.tex)
 cpps = $(sources:.tex=-cpp.tex)
