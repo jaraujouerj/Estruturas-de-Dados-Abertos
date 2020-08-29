@@ -34,7 +34,7 @@ interagimos constantemente com as estruturas de dados.
 	de páginas na Internet e cada página contém muitos termos de pesquisa em
 	potencial.
 	\item Telefone de serviços de emergência (1-9-0): 
-	\index{serviços de emergência}\index{9-1-1}%
+	\index{serviços de emergência}\index{1-9-0}%
 	A rede de serviços de emergência procura o seu número de telefone em uma
 	estrutura de dados que mapeia números de telefone para endereços para que carros
 	de polícia, ambulâncias ou caminhões de bombeiros possam ser enviados para lá sem
@@ -257,7 +257,7 @@ Este livro falará muito pouco sobre as interfaces #Fila# FIFO, #Pilha# ou
 #Deque#. 
 Isso ocorre porque essas interfaces são um subconjunto da interface #Lista#. 
 Uma #Lista#,
-\index{List@List}%
+\index{List@#List#}%
 ilustrada na \figref{list}, representa uma sequência, $#x#_0,\ldots,#x#_{#n#-1}$
 de valores. A interface #Lista# inclui as seguintes operações:
 
@@ -304,7 +304,7 @@ que implementa todas as operações #Deque# em tempo constante por operação.
 \subsection{A interface #USet#: conjuntos não ordenados}
 
 A interface #USet#
-\index{USet@USet}%
+\index{USet@#USet#}%
 representa um conjunto não ordenado de elementos únicos, que imita
 a operação matemática \emph{set}. Uma #USet# contém #n# elementos
 \emph{distintos}; 
@@ -338,7 +338,7 @@ iguais. \javaonly{\footnote{Em Java, isso é feito \textit{overriding} os métod
 \emph{dicionários} 
 ou \emph{mapas} que mapeiam chaves em valores.
 \index{dicionário}%
-\index{map}%
+\index{mapa}%
 
 Para criar um dicionário/mapa, formamos objetos compostos chamados #Pares#,
 \index{par}%
@@ -528,9 +528,9 @@ conjunto $\{1,\ldots,n\}$.
 
 \subsection{Notação assintótica}
 
-\index{notação assimtótica notation}%
-\index{notação big-O }%
-\index{notação O@$O$}%
+\index{notação assintótica notation}%
+\index{notação big-O}%
+\index{notação O}%
 Ao analisar as estruturas de dados neste livro, queremos falar sobre os 
 tempos de execução de várias operações. Os tempos de execução exatos, 
 naturalmente, variam de computador para computador e até mesmo entre as
@@ -684,7 +684,7 @@ funções multivariadas e notação assintótica de forma diferente.
 \index{randomização}%
 \index{probabilidade}%
 \index{estrutura de dados randomizada}%
-\index{algorithm randomizadod}%
+\index{algoritmo randomizado}%
 Algumas das estruturas de dados apresentadas neste livro são \emph{randomizadas}; elas fazem 
 escolhas aleatórias que são independentes dos dados que estão sendo armazenados nelas ou as 
 operações que estão sendo realizadas sobre eles. Por esta razão, executar o mesmo conjunto 
@@ -705,10 +705,9 @@ Aqui $\Pr\{\mathcal{E}\}$ denota a probabilidade de ocorrência do evento
 $\mathcal{E}$. Em todos os exemplos neste livro, essas probabilidades são apenas com relação às escolhas aleatórias feitas pela estrutura de dados randomizados; não há nenhuma suposição de que os dados armazenados na estrutura, ou que a sequência de operações realizadas na estrutura de dados, seja aleatória.
 
 Uma das propriedades mais importantes dos valores esperados é a \emph{linearidade de 
-	expectativa}. 
-A 
-\index {linearidade de expectativa} % 
-para quaisquer duas variáveis aleatórias $X$ e $Y$,
+	expectativa}.  
+\index{linearidade de expectativa} % 
+Para quaisquer duas variáveis aleatórias $X$ e $Y$,
 \[
 \E[X+Y] = \E[X] + \E[Y] \enspace .
 \]
@@ -764,7 +763,7 @@ uma probabilidade de $1/2$.
 Neste livro, analisaremos os tempos teóricos de funcionamento das estruturas de dados 
 que estudamos. Para fazer isso precisamente, necessitamos de um modelo matemático 
 de computação. Para isso, usamos o modelo de palavra-RAM de \emph{#w#-bits}.
-\index{word-RAM}%
+\index{palavra-RAM}%
 \index{RAM} % 
 RAM significa Random Access Machine. Neste modelo, temos acesso a uma memória de 
 acesso aleatório constituída por \emph{células}, cada uma das quais armazena uma 
@@ -924,14 +923,14 @@ ou esperados.
 	Tomamos atalhos semelhantes com atribuições de variáveis, de modo que o código 
 	#x,y=0,1# define #x# como zero e #y# como 1 e o código #x,y = y,x# troca os valores 
 	das variáveis #x# e #y#.
-	\index{swap}
+	\index{troca}
 	
 	Nosso pseudocódigo usa alguns operadores que podem não ser familiares. Como é padrão 
 	na matemática, a divisão (normal) é indicada pelo operador $/$.
 	Em muitos casos, queremos fazer divisão inteira em vez disso, caso em que usamos o 
 	operador $#//#$, de modo que $#a//b# = \lfloor a/b\rfloor$ é a parte inteira de $a/b$.
 	Assim, por exemplo, $3/2 = 1.5 $ mas $#3//2# = 1$.
-	\index{divisao inteira}%
+	\index{divisão inteira}%
 	\index{operador div}%
 	Ocasionalmente, também usamos o operador $\bmod$ para obter o resto da divisão 
 	inteira, mas isso será definido quando ele for usado.
@@ -939,13 +938,13 @@ ou esperados.
 	\index{operador div}%
 	Mais adiante no livro, podemos usar alguns operadores bit a bit, incluindo shift esquerdo (#<<#), shift direito (#>>#), bit a bit e (#&#) e bit a bit exclusivo-ou 
 	(#^#).
-	\index{left shift}%
-	\index{#<<#|see {left shift}}%
-	\index{right shift}%
-	\index{#>>#|see {right shift}}%
-	\index{bitwise and}%
-	\index{#&#|see {bitwise and}}%
-	\index{#^#|see {bitwise exclusive-or}}%
+	\index{deslocamento para esquerda}%
+	\index{#<<#|see {deslocamento para esquerda}}%
+	\index{deslocamento para direita}%
+	\index{#>>#|see {deslocamento para direita}}%
+	\index{e bit-a-bit}%
+	\index{#&#|see {e bit-a-bit}}%
+	\index{#^#|see {ou exclusivo bit-a-bit}}%
 	
 	As amostras de pseudocódigo neste livro são traduções automáticas de código Python que podem ser baixadas do site do livro. \footnote{\url{http://opendatastructures.org}} Se você encontrar uma ambiguidade no pseudocódigo que não possa resolver por si mesmo, então você sempre pode consultar o código Python correspondente. Se você não souber Python, o código também está disponível em Java e C ++. Se você não consegue decifrar o pseudocódigo, ou ler Python, C ++ ou Java, então você pode ainda não estar pronto para este livro.
 }
@@ -1146,7 +1145,7 @@ anterior.
 	\end{exc}
 	
 	\begin{exc}
-		\index{Palavra de Dyck}%
+		\index{palavra de Dyck}%
 		Uma \emph{palavra Dyck } é uma sequência de +1's e -1's com a propriedade que
 		a soma de qualquer prefixo da sequência nunca seja negativo.  
 		Por exemplo,

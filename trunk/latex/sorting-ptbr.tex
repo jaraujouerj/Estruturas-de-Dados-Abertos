@@ -16,11 +16,11 @@ A segunda parte deste capítulo mostra que, se permitimos outras operações al�
 
 \section{Ordenação Baseada em Comparações}
 
-\index{comparison-based sorting}%
-\index{sorting algorithm!comparison-based}%
+\index{ordenação baseada em comparação}%
+\index{algoritmo de ordenação!baseada em comparação}%
 Nesta seção, apresentamos três algoritmos de classificação: merge-sort, quicksort e heap-sort. Cada um desses algoritmos recebe um array de entrada #a# e classifica os elementos de #a# em ordem não decrescente em um tempo (esperado) de $O(#n#\log#n#)$. Esses algoritmos são todos \emph{baseados em comparação}.
 \javaonly{O segundo argumento, #c#, é um #Comparator#
-\index{Comparator@#Comparator#}%
+\index{Comparador@#Comparador#}%
 que implementa
 o método #compare(a,b)#
 \index{compare@#compare(a,b)#}%
@@ -31,7 +31,7 @@ o método #compare(a,b)#
 
 \index{merge-sort}%
 O algoritmo \emph{merge-sort} é um exemplo clássico de divisão e conquista recursiva:
-\index{divide-and-conquer}%
+\index{dividir e conquistar}%
 Se o comprimento de #a# for no máximo 1, então #a# já está classificado, então não fazemos nada. Caso contrário, dividimos #a# em duas metades, $#a0#=#a[0]#,\ldots,#a[n/2-1]#$ e $#a1#=#a[n/2]#,\ldots,#a[n-1]#$. Nós classificamos recursivamente #a0# e #a1#, e então mesclamos (o agora ordenado) #a0# e #a1# para obter nossa matriz totalmente ordenada #a#:
 \javaimport{ods/Algorithms.mergeSort(a,c)}
 \cppimport{ods/Algorithms.mergeSort(a)}
@@ -229,8 +229,8 @@ Adicionando o número de comparações realizadas em cada uma das três etapas c
 
 \subsection{Um Limite Inferior para classificação baseada em comparação}
 
-\index{lower-bound}%
-\index{sorting lower-bound}%
+\index{limite lnferior}%
+\index{limite lnferior para ordenação}%
 Nós já vimos três algoritmos de classificação baseados em comparação que executam cada um em um tempo $O(#n#\log #n#)$. Agora devemos estar pensando se existem algoritmos mais rápidos. A resposta curta a esta pergunta é não. Se as únicas operações permitidas nos elementos de #a# são comparações, nenhum algoritmo pode evitar fazer $#n#\log #n#$ comparações. Isso não é difícil de provar, mas requer um pouco de imaginação. Em última análise, decorre do fato de que
 \[
    \log(#n#!) 
@@ -243,7 +243,7 @@ Nós já vimos três algoritmos de classificação baseados em comparação que 
 Começaremos concentrando nossa atenção em algoritmos determinísticos como merge-sort e heap-sort e em um valor fixo particular de #n#. Imagine que esse algoritmo está sendo usado para classificar #n# elementos distintos. A chave para provar o limite inferior é observar que, para um algoritmo determinístico com um valor fixo de #n#, o primeiro par de elementos que são comparados é sempre o mesmo. Por exemplo, em #heapSort(a,c)#, quando #n# é igual, a primeira chamada para #trickleDown(i)# é com #i=n/2-1# e a primeira comparação é entre os elementos #a[n/2-1]# e #a[n-1]#.
 
 Uma vez que todos os elementos de entrada são distintos, esta primeira comparação tem apenas dois possíveis resultados. A segunda comparação feita pelo algoritmo pode depender do resultado da primeira comparação. A terceira comparação pode depender dos resultados dos dois primeiros, e assim por diante. Desta forma, qualquer algoritmo de classificação determinística baseado em comparação pode ser visto como uma árvore \emph{árvore de comparação} enraizada.
-\index{árvore de comparação}%
+\index{arvore@árvore de comparação}%
 Cada nó interno, #u#, desta árvore é rotulado com um par de índices #u.i# e #u.j#. Se $#a[u.i]#<#a[u.j]#$ o algoritmo prossegue para a subárvore esquerda, caso contrário, ele passa para a subárvore direita. Cada folha #w# desta árvore é rotulada com uma permutação $#w.p[0]#,\ldots,#w.p[n-1]#$ de $0,\ldots,#n#-1$. Essa permutação representa aquele que é necessário para classificar #a# se a árvore de comparação chegar a esta folha. Isso é,
 \[
    #a[w.p[0]]#<#a[w.p[1]]#<\cdots<#a[w.p[n-1]]# \enspace .
@@ -307,7 +307,7 @@ Esta declaração é executada em tempo constante, mas tem #c.length# possíveis
 \subsection{Ordenação por Contagem}
 
 Suponhamos que tenhamos um array de entrada #a# consistindo de #n# inteiros, cada um no intervalo $0,\ldots,#k#-1$. O \emph{count-sort}
-\index{counting-sort}% 
+\index{ordenação por contagem}% 
 algoritmo classifica #a# usando um array auxiliar #c# de contadores. Ele produz uma versão ordenada de #a# como um array auxiliar #b#.
 
 A ideia por trás do tipo de contagem é simples: para cada $#i#\in\{0,\ldots,#k#-1\}$, conte o número de ocorrências de #i# em #a# e armazene isso em #c[i]#. Agora, após a classificação, a saída parecerá #c[0]# ocorrências de 0, seguido de #c[1]# ocorrências de 1, seguido de #c[2]# ocorrências de 2, \ldots, seguido de #c[k-1]# ocorrências de #k-1#. O código que faz isso é bem inteligente, e sua execução está ilustrada em
@@ -341,7 +341,7 @@ preserva a ordem relativa de elementos iguais. Se dois elementos #a[i]# e #a[j]#
 \subsection{Ordenação Radix}
 
 A ordenação por contagem é muito eficiente para classificar um array de inteiros quando o comprimento, #n#, do array não é muito menor do que o valor máximo, $#k#-1$, que aparece no array. O algoritmo \emph{radix-sort}
-\index{radix-sort}%
+\index{ordenação radix}%
 , que descrevemos agora, usa várias passagens de ordenação por contagem para permitir uma gama muito maior de valores máximos.
 
 

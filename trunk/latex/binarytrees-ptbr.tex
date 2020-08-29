@@ -2,20 +2,20 @@
 \chaplabel{binarytrees}
 
 Este capítulo introduz uma das estruturas mais fundamentais na Ciência da Computação: árvores binárias. O uso da palavra \emph{árvore}
-\index{árvore}%
-\index{árvore!binária}%
-\index{árvore binária}%
+\index{arvore@árvore}%
+\index{arvore@árvore!binária}%
+\index{arvore@árvore binária}%
 vem do fato que, quando as desenhamos, o resultado frequentemente se assemelha às árvores de uma floresta. Existem muitas maneiras de definir uma árvore binária. Matematicamente, uma \emph{árvore binária} é um grafo conectado, não direcionado, finito, sem ciclos e sem nenhum vértice com grau maior que três.
 
 Para muitas aplicações na ciência da computação, árvores binárias possuem \emph{raízes:}
-\index{árvore!raiz}%
-\index{árvore com raiz}%
+\index{arvore@árvore!raiz}%
+\index{arvore@árvore com raiz}%
 um nó especial, #r#, com grau de no máximo dois é chamado de \emph{raiz} da árvore. Para cada nó $#u#\neq #r#$, o segundo nó no caminho de #u# para #r# é chamado de \emph{pai} de #u#.
 \index{pai}%
 Cada um dos outros nós adjacentes a #u# é chamado de \emph{filho}
 \index{filho} de #u#. Muitas da árvores binárias em que estamos interessados são \emph{ordenadas},
-\index{árvore ordenada}%
-\index{árvore!ordenada}%
+\index{arvore@árvore ordenada}%
+\index{arvore@árvore!ordenada}%
 assim distinguimos
 entre o \emph{filho esquerdo} e o \emph{filho direito} de #u#.
 \index{filho esquerdo}%
@@ -109,7 +109,7 @@ Para calcular a altura de um nó #u#, podemos calcular a altura das duas subárv
 
 \index{percurso!de uma árvore binária}%
 \index{percurso em árvore}%
-\index{percurso em árvore-binária}%
+\index{percurso em árvore binária}%
 Ambos os algoritmos da seção anterior usam a recursão para visitar
 todos os nós de uma árvore binária.  Cada um deles visita os nós da
 árvore binária na mesma ordem que o seguinte código:
@@ -177,11 +177,11 @@ e #u.direito# (se eles não são #nil#) a #q#:
 \seclabel{binarysearchtree}
 
 \index{BinarySearchTree@#BinarySearchTree#}%
-\index{árvore binária de busca}%
-\index{árvore binária!busca}%
+\index{arvore@árvore binária de busca}%
+\index{arvore@árvore binária!busca}%
 Uma #BinarySearchTree# é um tipo especial de árvore binária na qual cada nó, #u#,
 também armazena um valor, #u.x#, de uma ordem total.  Os valores em uma árvore binária de busca obedece à \emph{propriedade da árvore binária de busca}:
-\index{árvore binária de busca}%
+\index{arvore@árvore binária de busca}%
 para um nó, #u#, cada valor armazenado na subárvore com raiz em #u.esquerdo# é menor que #u.x# e cada valor armazenado na subárvore com raiz em
 #u.direito# é maior que #u.x#.  Um exemplo de uma #BinarySearchTree# é mostrado na \figref{bst}.
 
@@ -299,10 +299,10 @@ No \chapref{redblack} mostramos como tempos de operações de \emph{pior caso} d
 \section{Discussão e Exercícios}
 
 Árvores Binárias vêm sendo usadas para modelar relacionamentos por milhares de anos. Uma razão para isso é que árvores binárias modelam naturalmente árvores de famílias (pedigree).
-\index{árvore de família}%
-\index{árvore de família pedigree}%
+\index{arvore@árvore de família}%
+\index{arvore@árvore de família pedigree}%
 Essas são as árvores nas quais a raiz é uma pessoa, os filhos esquerdo e direito são os pais da pessoa, e assim sucessivamente, recursivamente.  Nos séculos mais recentes árvore binárias têm também sido usadas para modelar árvores de espécie
-\index{árvore de espécies} na biologia, nas quais as folhas da árvore
+\index{arvore@árvore de espécies} na biologia, nas quais as folhas da árvore
 representam espécies existentes e os nós internos representam
 \emph{eventos de especiação}
 \index{evento de especiação} nos quais duas populações de uma única espécie evoluem em duas espécies separadas.
@@ -340,7 +340,7 @@ para um exemplo.
 \begin{exc}
   Uma árvore binária é \emph{balanceada em tamanho}
   \index{balanceada em tamanho}%
-  \index{árvore binária de busca!balanceada em tamanho}%
+  \index{arvore@árvore binária de busca!balanceada em tamanho}%
   se, para cada nó #u#, os tamanhos das subárvores com raiz em #u.esquerdo# e #u.direito# diferem de no máximo um.
   Escreva um método recursivo, #ehBalanceada()#, que testa se uma árvore binária é balanceada.  Seu método deve executar num tempo $O(#n#)$.  (Certifique-se de testar seu código  em algumas árvores grandes com diferentes formas; é fácil escrever um método que leve muito mais que $O(#n#)$ em tempo de execução.)
 \end{exc}

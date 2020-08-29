@@ -4,7 +4,7 @@
 Neste capítulo, estudaremos as implementações das interfaces #Lista# e #Fila# 
 nas quais os dados subjacentes são armazenados em um array, chamado de 
 \emph{array de base}.
-\index{backing array}%
+\index{array de base}%
 A tabela a seguir resume os tempos de execução das operações das 
 estruturas de dados apresentadas neste capítulo:
 \newlength{\tabsep}
@@ -324,7 +324,7 @@ elementos da fila nos locais do array
 \[ #a[j%a.length]#,#a[(j+1)%a.length]#,\ldots,#a[(j+n-1)%a.length]#
 \enspace. \]
 Isso trata o array #a# como um \emph{array circular}
-\index{circular array}%
+\index{array circular}%
 \index{array!circular}%
 em que os índices de array
 maiores do que $#a.length#-1$ ``retornam'' para o início
@@ -604,8 +604,8 @@ uma vez que #balance()# é chamada juntamente com cada chamada de
 	
 	Realizaremos nossa análise utilizando uma técnica conhecida como
 	\emph{método potencial}.
-	\index{potential}%
-	\index{potential method}%
+	\index{potencial}%
+	\index{método potencial}%
 	Defina o \emph{potencial}, $\Phi$, do
 	#DualArrayDeque# como a diferença de tamanho entre #front# e #back#:
 	\[  \Phi = |#front.size()# - #back.size()#| \enspace . \]
@@ -812,7 +812,7 @@ $O(1)$ por operação.
 Em seguida, analisamos a quantidade extra de espaço usado pela #RootishArrayStack#.
 Em particular, queremos contar qualquer espaço usado pela #RootishArrayStack# que não seja um elemento do array 
 atualmente usado para manter um elemento de lista.  Podemos chamar tal espaço de \emph{espaço desperdiçado}.
-\index{wasted space}%
+\index{espaço desperdiçado}%
 
 A operação #remove(i)# garante que um #RootishArrayStack# nunca tenha 
 mais de dois blocos que não estejam completamente cheios. O número de 
@@ -878,7 +878,7 @@ O seguinte teorema resume nossa discussão da estrutura de dados #RootishArraySt
 
 \subsection{Calculando Raízes Quadradas}
 
-\index{square roots}%
+\index{raízes quadradas}%
 Um leitor que tenha tido alguma exposição a modelos de computação pode notar que 
 o #RootishArrayStack#, como descrito acima, não se encaixa no modelo usual de 
 palavra-RAM de computação (\secref{model}) porque ele requer ter raízes quadradas. 
@@ -1024,7 +1024,7 @@ a partir do qual se pode calcular facilmente $\lfloor\log (#i#+1)\rfloor$.}
 
 Uma estrutura relacionada ao #RootishArrayStack# é o \emph{vetor em camadas} 
 de dois níveis de Goodrich e Kloss \cite{gk99}. 
-\index{tiered-vector}% 
+\index{vetor em camadas}% 
 Essa estrutura suporta as operações #get(i,x)# e #set(i,x)# em tempo 
 constante e #add(i,x)# e #remove(i)# em $O (\sqrt{#n#})$. Esses tempos 
 de execução são semelhantes aos que podem ser alcançados com a implementação 
@@ -1034,11 +1034,9 @@ mais cuidadosa de um #RootishArrayStack# discutido em \excref{rootisharraystack-
 \begin{exc}
 	Na implementação #ArrayStack#, após a primeira chamada do #remove(i)#, o backing array, #a#, contém $#n#+1$ valores não-#nulos#, apesar do #ArrayStack# conter apenas #n# elementos. Onde está o valor não-#nulo# extra? Discuta quaisquer consequências que esse valor não-#nulo# possa ter no gerenciador de memória do \textit{Java Runtime Environment}.
 	\index{Java Runtime Environment}%
-	\index{memory manager}%
+	\index{gerência de memória}%
 \end{exc}
 }
-%Fim Pedro
-
 
 \begin{exc}
   O método de #Lista# #addAll(i,c)# insere todos os elementos do #Collection# 

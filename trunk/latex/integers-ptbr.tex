@@ -27,7 +27,7 @@ Todas as folhas da árvore têm profundidade #w# e cada número inteiro é codif
 \end{figure}
 
 Como o caminho de pesquisa 
-\index{caminho de pesquisa!Em uma #BinaryTrie#}% 
+\index{caminho de pesquisa!em uma #BinaryTrie#}% 
 para um valor #x# depende dos bits de #x#, será útil nomear os filhos de um nó, #u#, #u.child[0]# (#left#) e #u.child[1]# (#right#). Essas referências para os filhos na verdade servirão para dupla função. Como as folhas em uma trie binária não têm filhos, as referências são usadas para amarrar as folhas em uma lista duplamente encadeada.
 Para uma folha na trie binária #u.child[0]# (#prev#) é o nó que vem antes de #u# na lista e #u.child[1]# (#next#) é o nó que segue #u# na lista. Um nó especial, #dummy#, é usado antes do primeiro nó e depois do último nó da lista (ver \secref{dllist}).
 \cpponly {Nos exemplos de código, #u.child[0]#, #u.left# e #u.prev# referem-se ao mesmo campo no nó #u#, assim como #u.child[1]#, #u.right# e #u.next#.}
@@ -258,16 +258,16 @@ O termo #w# no requisito de espaço vem do fato de que #xft# sempre armazena o v
 \section{Discussão e Exercícios}
 
 A primeira estrutura de dados a fornecer operações #add(x)#, #remove(x)# e #find(x)# em um tempo $O(\log#w#)$ foi proposta por van~Emde~Boas e desde então tornou-se conhecida como o \emph{árvore van~Emde~Boas}
-\index{árvore van Emde Boas}%
+\index{arvore@árvore van Emde Boas}%
 (ou \emph{estratificada})
-\index{árvore estratificada}%
+\index{arvore@árvore estratificada}%
 \cite{e77}.  A estrutura original de van~Emde~Boas tinha tamanho
 $2^{#w#}$, tornando-a impraticável para números inteiros grandes.
 
 As estruturas de dados #XFastTrie# e #YFastTrie# foram descobertas por Willard \cite{w83}. A estrutura #XFastTrie# está intimamente relacionada às árvores van~Emde~Boas; por exemplo, as tabelas de hash em uma #XFastTrie# substituem arrays em uma árvore van~Emde~ Boas. Ou seja, em vez de armazenar a tabela de hash #t[i]#, uma árvore van~Emde~Boas armazena uma matriz de comprimento $2^{#i#}$.
 
 Outra estrutura para armazenar inteiros são as árvores de fusão de Fredman e Willard \cite{fw93}.
-\index{árvore de fusão}%
+\index{arvore@árvore de fusão}%
 Esta estrutura pode armazenar #n# inteiros de #w# bits em um espaço
 $O(#n#)$ de modo que a operação #find(x)# execute em um tempo $O((\log #n#)/(\log
 #w#))$.  Usando uma árvore de fusão quando $\log #w#>\sqrt{\log #n#}$ e uma #YFastTrie# quando $\log#w#\le \sqrt{\log #n#}$, obtém-se uma estrutura de dados de espaço $O(#n#)$ que pode implementar a operação #find(x)# em tempo $O(\sqrt{\log #n#})$. Resultados recentes de limite inferior de P\v{a}tra\c{s}cu e Thorup \cite{pt07} mostram que esses resultados são mais ou menos ideais, pelo menos para estruturas que usam apenas espaço $O(#n#)$.

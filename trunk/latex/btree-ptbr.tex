@@ -6,7 +6,7 @@ Ao longo deste livro, temos usado o modelo de computação com uma palavra de RA
 \index{armazenamento externo}%
 \index{memória externa}%
 \index{disco rígido}%
-\index{Disco de Estado Sólido}%
+\index{disco de estado sólido}%
 O acesso a um item de armazenamento externo é extremamente lento. O disco rígido conectado ao computador no qual este livro foi escrito tem um tempo médio de acesso de 19ms e a unidade de estado sólido conectada ao computador tem um tempo médio de acesso de 0,3ms. Em contraste, a memória de acesso aleatório do computador tem um tempo médio de acesso inferior a 0,000113ms. O acesso à RAM é mais de 2.500 vezes mais rápido do que acessar a unidade de estado sólido e mais de 160.000 vezes mais rápido do que acessar o disco rígido.
 
 %  HDD: Fantom ST3000DM001-9YN166 USB 3 external drive (3TB)
@@ -93,8 +93,8 @@ Desta forma, #placeBlock(b)# pode usar um bloco da lista livre ou, se nenhum est
 Nesta seção, discutimos uma generalização de árvores binárias, chamadas de árvores $B$, que são eficientes no modelo de memória externa.
 Alternativamente, árvores $B$ podem ser vistos como a generalização natural de árvores 2-4  descritas em \secref{twofour}. (Uma árvore 2-4 é um caso especial de árvore $B$ que obtemos definindo $B=2$.)
 
-\index{árvore $B$@árvore $B$}%
-\index{B-tree@$B$-tree}%
+\index{arvore@árvore $B$@árvore $B$}%
+\index{arvore B@árvore $B$}%
 Para qualquer inteiro $B\ge 2$, uma \emph {árvore $B$} é uma árvore em que todas as folhas têm a mesma profundidade e cada nó interno não raiz, #u#, tem pelo menos $B$ filhos e no máximo $2B$ filhos. Os filhos de #u# são armazenados em uma matriz, #u.children#. O número necessário de filhos é relaxado na raiz, podendo ter entre 2 e $2B$ filhos.
 
 Se a altura de uma árvore $B$ é $h$, segue-se que o número, $\ell$, de folhas na árvore $B$ satisfaz
@@ -410,11 +410,11 @@ ou de \emph{modelo de acesso ao disco}.
 As árvores $B$ estão para a pesquisa de memória externa o que as árvores de pesquisa binárias estão para a pesquisa de memória interna. As árvores $B$ foram introduzidos por Bayer e McCreight \cite{bm70} em 1970 e, menos de dez anos depois, o título do artigo da ACM Computing Surveys de Comer referia-se a elas como ubíquas \cite{c79}.
 
 Como árvores de busca binárias, existem muitas variantes de árvores $B$, incluindo árvores $B^+$,
-\index{árvore B+@árvore $B^+$}%
+\index{arvore@árvore B+@árvore $B^+$}%
 árvores $B^*$,
-\index{árvore B*@árvore $B^*$}%
+\index{arvore@árvore B*@árvore $B^*$}%
 e árvores contadas $B$.
-\index{árvore contada $B$}%
+\index{arvore@árvore contada $B$}%
 Árvores $B$ são realmente onipresentes e são a estrutura de dados primária em muitos sistemas de arquivos, incluindo o HFS+ da Apple,
 \index{HFS+}%
 o NTFS da Microsoft, 

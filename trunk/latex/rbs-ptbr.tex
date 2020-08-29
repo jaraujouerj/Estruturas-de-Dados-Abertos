@@ -42,8 +42,8 @@ O exemplo acima nos dá uma evidência factual que, se escolhemos uma permutaç�
 
 Podemos formalizar esta noção estudando as árvores binárias aleatórias de busca.
 Uma \emph{árvore binária aleatória de busca}
-\index{árvore binária aleatória de busca}%
-\index{árvore binária de busca!aleatória}%
+\index{arvore@árvore binária aleatória de busca}%
+\index{arvore@árvore binária de busca!aleatória}%
 de tamanho #n# é obtida do seguinte modo:  
 Considere uma permutação aleatória, $#x#_0,\ldots,#x#_{#n#-1}$,
 de inteiros $0,\ldots,#n#-1$ e insira seus elementos, um a um,
@@ -244,7 +244,7 @@ também obedecem à \emph{propriedade de heap}:
 \begin{itemize}
 \item (Propriedade de Heap)  Para cada nó #u#, exceto a raiz, 
       $#u.pai.p# < #u.p#$.
-      \index{propriedade de heap}%
+      \index{propriedade!de heap}%
 \end{itemize}
 em outras palavras, cada nó possui uma prioridade menor que aquelas de seus dois filhos.
 Um exemplo é mostrado na \figref{treap}.
@@ -465,7 +465,7 @@ $\beta=\frac{3}{2\ln(\alpha/2)}$ .  Além disso, a variância da altura é const
 
 O nome #Treap# foi criado por Seidel e Aragon \cite{as96} que discutiram
 #Treap#s e algumas de suas variantes.  Contudo, a estrutura básica foi
-estudada anteriormente por Vuillemin \cite{v80} que as chamou de árvores Cartesinas.
+estudada anteriormente por Vuillemin \cite{v80} que as chamou de árvores Cartesianas.
 
 Uma possível otimização de espaço de uma estrutura de dados #Treap#  
 é a eliminação do armazenamento explícito da prioridade #p#
@@ -490,8 +490,8 @@ rápida é a \emph{hashing por tabulação} (\secref{tabulation}).
 
 Outra variante de #Treap# que não armazena prioridades em cada nó é
 a árvore binária de busca aleatorizada
-\index{árvore binária de busca aleatorizada}%
-\index{árvore binária de busca!aleatorizada}%
+\index{arvore@árvore binária de busca aleatorizada}%
+\index{arvore@árvore binária de busca!aleatorizada}%
 de Mart\'\i nez and Roura \cite{mr98}.
 Nesta variante, cada nó, #u#, armazena o tamanho, #u.size#, da subárvore
 com raiz em #u#.  Ambos os algoritmos #add(x)# e #remove(x)# são

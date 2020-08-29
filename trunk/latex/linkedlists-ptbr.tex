@@ -3,8 +3,8 @@
 \chapter{Listas Encadeadas}
 \chaplabel{linkedlists}
 
-\index{linked list}%
-Neste capítulo, continuamos a estudar implementações da interface # List #, 
+\index{lista encadeada}%
+Neste capítulo, continuamos a estudar implementações da interface #List#, 
 desta vez utilizando estruturas de dados baseadas em ponteiro em vez de 
 arrays. As estruturas neste capítulo são constituídas por nós que contêm 
 os itens da lista. Usando referências (ponteiros), os nós são encadeados 
@@ -26,8 +26,8 @@ não importa onde # u # esteja na lista.
 \seclabel{sllist}
 
 \index{SLList@#SLList#}%
-\index{linked list!singly-}%
-\index{singly-linked list}%
+\index{lista encadeada!simples}%
+\index{lista encadeada simples}%
 Uma # SLList # (lista simplesmente encadeada) é uma sequência de \textit{Nó}s. Cada nó 
 # u # armazena um valor de dados # u.x # e uma referência # u.next # para o 
 próximo nó na sequência. Para o último nó # w # na sequência, $ # w.next # = # null # $
@@ -107,15 +107,15 @@ Remover a cauda de uma #SLList# é difícil porque requer a atualização do val
 \seclabel{dllist}
 
 \index{DLList@#DLList#}%
-\index{doubly-linked list}%
-\index{linked list!doubly-}%
+\index{lista duplamente encadeada}%
+\index{lista encadeada!dupla}%
 A #DLList# (lista duplamente encadeada) é muito semelhante a uma #SLList#, exceto que cada nó #u# em uma #DLList# tem referências tanto ao nó #u.next# que o sucede, quanto ao nó #u.prev# que o precede.
 
 \javaimport{ods/DLList.Node}
 \cppimport{ods/DLList.Node}
 
 Ao implementar uma #SLList#, vimos que sempre havia vários casos especiais para se preocupar. Por exemplo, remover o último elemento ou adicionar um elemento vazio a uma #SLList# requer cuidado para garantir que #head# e #tail# sejam atualizados corretamente. Numa #DLList#, o número destes casos especiais aumenta consideravelmente. Talvez a maneira mais limpa de cuidar de todos esses casos especiais numa #DLList# é introduzir um nó #dummy#.
-\index{dummy node}%
+\index{nó dummy}%
 Este é um nó que não contém quaisquer dados, mas age como um espaço reservado para que não haja nós especiais; cada nó tem um #next# e um #prev#, com o #dummy# agindo como o nó que sucede o último nó na lista e que precede o primeiro nó na lista. Desta forma, os nós da lista são (duplamente) ligados em um ciclo, como ilustrado na \figref{dllist}.
 
 
@@ -215,7 +215,7 @@ as referências a nós de lista podem ser obtidas por meios externos.
 \seclabel{selist}
 
 \index{SEList@#SEList#}%
-\index{linked list!space-efficient}%
+\index{lista encadeada!eficiente em espaço}%
 Uma das desvantagens das listas encadeadas (além do tempo que leva para acessar
 elementos que estão no final da lista) é o seu uso de espaço.  Cada nó
 na #DLList# requer duas referências adicionais para o próximo nó
@@ -232,8 +232,8 @@ Por razões que ficarão claras mais à frente, será útil se pudermos fazer
 operações do #Deque# em cada bloco.  A estrutura de dados que escolhemos
 para isso é a #BDeque# (bounded deque),
 \index{BDeque@#BDeque#}%
-\index{bounded deque}%
-\index{deque!bounded}%
+\index{deque limitado}%
+\index{deque!limitado}%
 derivada da #ArrayDeque#,
 estrutura descrita na \secref{arraydeque}.  O #BDeque# se diferencia do
 #ArrayDeque# numa pequena coisa: quando um novo #BDeque# é criado, o tamanho
@@ -278,12 +278,12 @@ do limite inferior $\sqrt{#n#}$ dado na \secref{rootishspaceusage}.
 \subsection{Encontrando Elementos }
 
 O primeiro desafio que encontramos em uma #SEList# é encontrar o item da lista
-com um dado index #i#.  Note que a localização do elemento é constituída por 
+com um dado índice #i#.  Note que a localização do elemento é constituída por 
 duas partes: 
 \begin{enumerate}
 	\item O nó #u# que contém o bloco que contém o elemento
-	com o index #i#; e
-	\item o index #j# do elemento dentro do bloco.
+	com o índice #i#; e
+	\item o índice #j# do elemento dentro do bloco.
 \end{enumerate}
 
 \javaimport{ods/SEList.Location}
@@ -469,7 +469,7 @@ ou #remove(i)#.
 
 \begin{proof}
 	Nós usaremos o método potencial de análise amortizada.
-	\index{Método potencial}%
+	\index{método potencial}%
 	Dizemos que
 	um nó #u# é \emph{frágil} se o bloco #u# não contém #b#
 	elementos (de modo que #u# seja o último nó, ou contenha $#b#-1$
@@ -541,12 +541,12 @@ por exemplo, por Knuth \cite[Seções~2.2.3--2.2.5]{k97v1}.  Mesmo a
 estrutura de dados #SEList# parece ser um exercício bem conhecido de estruturas de dados.
 A #SEList# é as vezes chamada de \emph{unrolled linked list}
 \cite{sra94}.
-\index{unrolled linked list|seealso{#SEList#}}%
-\index{linked list!unrolled|seealso{#SEList#}}%
+\index{lista encadeada unrolled|seealso{#SEList#}}%
+\index{lista encadeada!unrolled|seealso{#SEList#}}%
 
 Outra maneira de economizar espaço em uma lista duplamente encadeada é usar as chamadas
 listas XOR.
-\index{XOR-list}%
+\index{lista XOR}%
 Em uma lista XOR, cada nó, #u#, contém apenas um
 ponteiro, chamado #u.nextprev#, que contém o \textit{ou exclusivo bi-a-bit} de #u.prev#
 e #u.next#.  A própria lista precisa armazenar dois ponteiros, um para o nó #dummy#
@@ -593,7 +593,7 @@ Os próximos exercícios envolvem a realização de manipulações em #DLList#. 
 
 \begin{exc}
 	Escreva um método #isPalindrome()# para uma #DLList#  que retorna #true# se a lista for \emph{palíndromo}, 
-	\index{palídromo}% 
+	\index{palíndromo}% 
 	ie, o elemento na posição #i# é igual ao elemento na posição $#n#-i-1$ para todos $i\in\{0,\ldots,#n#-1\}$. 
 	Seu código deve ser executado em tempo $O(#n#)$.
 \end{exc}
@@ -624,7 +624,7 @@ Os próximos exercícios envolvem a realização de manipulações em #DLList#. 
 \end{exc}
 
 \begin{exc}\exclabel{dllist-sort}
-	\index{merge-sort}%
+	\index{ordenação por fusão}%
 	Este exercício orienta você através de uma implementação do algoritmo
 	merge-sort para classificar uma #DLList#, como discutido na \secref{merge-sort}.
 	\javaonly{Em sua implementação, faça comparações entre elementos

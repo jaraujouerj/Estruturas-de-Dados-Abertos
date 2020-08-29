@@ -1,8 +1,8 @@
 \chapter{Árvores Rubro-Negras}
 \chaplabel{redblack}
 
-\index{árvore de busca binária!rubro-negra}%
-\index{árvore rubro-negra}%
+\index{arvore@árvore de busca binária!rubro-negra}%
+\index{arvore@árvore rubro-negra}%
 Neste capítulo apresentamos as árvores rubro-negras, uma versão das árvores binárias de busca com altura logarítmica. As árvores rubro-negras são uma das estruturas de 
 dados mais utilizadas. Elas aparecem como a principal estrutura de busca em 
 muitas implementações de bibliotecas, incluindo a Java Collections Framework e
@@ -81,7 +81,7 @@ nível, então simplesmente fazemos #u# um filho de #w#. Isso certamente mantém
 a propriedade da altura, mas poderia violar a propriedade do grau; se #w#
 tinha quatro filhos antes de adicionar #u#, então #w# agora tem cinco filhos.
 Neste caso, nós \emph{dividimos}
-\index{split}%
+\index{divisão}%
 #w# em dois nós, #w# and #w#', tendo
 dois e três filhos, respectivamente.
 Mas agora #w#' não tem pai,
@@ -140,7 +140,7 @@ para #w#. Agora #w# tem dois filhos, #w'# tem dois ou três
 filhos e assim terminamos.
 
 Por outro lado, se #w'# tiver apenas dois filhos, então nós \emph{mesclamos}
-\index{merge}%
+\index{fusão}%
 #w# e #w'# em um único nó, #w#, que tem três filhos. Em seguida,
 removemos #w'# do pai de #w'# recursivamente. Esse processo acaba
 quando alcançamos um nó, #u#, onde #u# ou seu irmão tem mais de dois
@@ -157,11 +157,11 @@ o processo de remoção de uma folha termina após um máximo de $\log #n#$ pass
 
 Uma árvore rubro-negra é uma árvore binária de busca na qual
 cada nó, #u#, tem uma \emph{cor}
-\index{colour}%
+\index{cor}%
 que é \emph{vermelha} or \emph{preta}. O vermelho é
 representado pelo valor $0$ e preto pelo valor $1$.
-\index{red node}%
-\index{black node}%
+\index{nó vermelho}%
+\index{nó preto}%
 \javaimport{ods/RedBlackTree.red.black.Node<T>}
 \cppimport{ods/RedBlackTree.RedBlackNode.red.black}
 
@@ -169,13 +169,13 @@ Antes e depois de qualquer operação em uma árvore rubro-negra, as duas seguin
 propriedades são satisfeitas. Cada propriedade é definida tanto em termos de
 cores vermelhas e pretas, como em termos dos valores numéricos 0 e 1.
 \begin{prp}[altura preta]
-	\index{black-height property}%
+	\index{propriedade!de altura preta}%
 	Há o mesmo número de nós pretos em cada caminho da raiz para a folha.
 	(A soma das cores em qualquer caminho da raiz para a folha é a mesma.)
 \end{prp}
 
 \begin{prp}[sem-borda-vermelha]
-	\index{no-red-edge property}%
+	\index{propriedade!sem aresta vermelha}%
 	Dois nós vermelhos nunca são adjacentes. (Para qualquer nó #u#, exceto a raiz,
 	$#u.colour# + #u.parent.colour# \ge 1$.)
 \end{prp}
@@ -286,10 +286,10 @@ fazer uma simulação direta de uma árvore 2-4 através de uma
 árvore 2-4 subjacente e trabalhar diretamente para manter as propriedades
 da árvore rubro-negra.
 
-\subsection{Árvores Rubro-Negras caindo para a esquerda}
+\subsection{Árvores Rubro-Negras inclinada para a esquerda}
 
-\index{árvore rubro-negra}%
-\index{lárvore rubro-negra caindo para a esquerda}%
+\index{arvore@árvore rubro-negra}%
+\index{arvore rubro-negra@árvore rubro-negra inclinada para a esquerda}%
 Não existe uma definição única de árvores rubro-negras. Em vez disso, existe
 uma família de estruturas que conseguem manter as propriedades altura-preta
 e sem-borda-vermelha durante as operações #add(x)# e #remove(x)#. 
@@ -299,14 +299,14 @@ Aqui, implementamos a estrutura de dados que chamamos de #RedBlackTree#.
 Esta estrutura implementa uma variante particular das árvores rubro-negras que
 satisfaz uma propriedade adicional:
 \begin{prp}[left-leaning]\prplabel{left-leaning}\prplabel{redblack-last}
-	\index{propriedade caindo para a esquerda}%
+	\index{propriedade!inclinada para a esquerda}%
 	Em qualquer nó #u#, se #u.left# for preto, então #u.right# é preto.
 \end{prp}
 Observe que a árvore rubro-negra mostrada em \figref{redblack-example} não
-satisfaz a propriedade caindo-para-esquerda; ela é violada pelo pai do
+satisfaz a propriedade inclinada-para-esquerda; ela é violada pelo pai do
 nó vermelho no caminho mais à direita.
 
-O motivo para manter a propriedade caindo-para-esquerda é que ela reduz
+O motivo para manter a propriedade inclinada-para-esquerda é que ela reduz
 o número de casos encontrados ao atualizar a árvore durante #add(x)#
 e #remove(x)# operações. Em termos de árvores 2-4, isso implica que cada
 árvores 2-4 tem uma representação única: um nó de grau dois torna-se
@@ -336,7 +336,7 @@ e então executa uma rotação à esquerda em #u#. Este método inverte as
 cores desses dois nós, bem como sua relação pai-filho:
 \codeimport{ods/RedBlackTree.flipLeft(u)}
 A operação #flipLeft(u)#
-é especialmente útil para restaurar a propriedade caindo-pra-esquerda em um nó
+é especialmente útil para restaurar a propriedade inclinada-pra-esquerda em um nó
 #u# que a viola (porque #u.left# é preto e #u.right# é vermelho).
 Neste caso especial, podemos ter certeza de que esta operação preserva ambas
 as propriedades altura-preta e sem-borda-vermelha. A operação #flipRight(u)#
@@ -349,14 +349,14 @@ Para implementar #add(x)# em uma #RedBlackTree#, nós executamos um inserção
 padrão em #BinarySearchTree# para adicionar uma nova folha, #u#, com $#u.x#=#x#$
 e definir $#u.colour#=#red#$. Observe que isso não altera a altura preta
 de qualquer nó, por isso não viola a propriedade de altura-preta. No entanto, pode
-violar a propriedade caindo-para-esquerda (se #u# é o filho direito de
+violar a propriedade inclinada-para-esquerda (se #u# é o filho direito de
 seu pai), e isso pode violar a propriedade sem-borda-vermelha (se o pai de #u#
 é #vermelho#). Para restaurar essas propriedades, chamamos o método #addFixup(u)#.
 \codeimport{ods/RedBlackTree.add(x)}
 
 Ilustrado em \figref{rb-addfix}, o método #addFixup(u)# recebe como 
 entrada um nó #u# cuja cor é o vermelho e que pode violar as 
-propriedades sem-borda-vermelha e/ou caindo-para-esquerda. A seguinte 
+propriedades sem-borda-vermelha e/ou inclinada-para-esquerda. A seguinte 
 discussão é provavelmente impossível de se explicar sem se referir a
 \figref{rb-addfix} ou recriá-la em um pedaço de papel. De fato, o
 leitor talvez deseje estudar essa figura antes de continuar.
@@ -372,12 +372,12 @@ leitor talvez deseje estudar essa figura antes de continuar.
 
 Se #u# é a raiz da árvore, podemos colorir #u# de preto para restaurar as propriedades. 
 Se o irmão de #u# também for vermelho, então o pai de #u# deve ser preto, 
-de modo que as propriedades caindo-pra-esquerda e sem-borda-vermelha se mantenham.
+de modo que as propriedades inclinada-para-esquerda e sem-borda-vermelha se mantenham.
 
 Caso contrário, primeiro determinamos se o pai de #u#, #w#, viola a propriedade 
-caindo-para-esquerda, e se for o caso, executamos uma operação #flipLeft(w)# e
+inclinada-para-esquerda, e se for o caso, executamos uma operação #flipLeft(w)# e
 definimos $#u#=#w#$. Isso nos deixa em um estado bem definido: #u# é o filho
-esquerdo de seu pai, #w#, então #w# agora satisfaz a propriedade caindo-pra-esquerda.
+esquerdo de seu pai, #w#, então #w# agora satisfaz a propriedade inclinada-para-esquerda.
 Tudo o que resta é garantir a propriedade sem-borda-vermelha em #u#. Nós apenas
 temos que nos preocupar em caso de #w# ser vermelho, pois em caso contrário, #u#
 já satisfaz a propriedade sem-borda-vermelha.
@@ -385,7 +385,7 @@ já satisfaz a propriedade sem-borda-vermelha.
 Uma vez que ainda não terminamos, #u# é vermelho e #w# é vermelho. A propriedade
 sem-borda-vermelha (que só é violada por #u# e não por #w#) implica que
 o avô de #u#, #g#, existe e é preto. Se o filho direito de #g# for vermelho, então 
-a propriedade caindo-para-esquerda garante que ambos os filhos de #g# são vermelhos,
+a propriedade inclinada-para-esquerda garante que ambos os filhos de #g# são vermelhos,
 e uma chamada de #pushBlack(g)# faz #g# vermelho e #w# preto. Isso restaura
 a propriedade sem-borda-vermelha em #u#, mas pode fazer com que seja violada em #g#,
 então todo o processo recomeça com $#u#=#g#$.
@@ -393,7 +393,7 @@ então todo o processo recomeça com $#u#=#g#$.
 Se o filho direito de #g# for preto, então uma chamada para #flipRight(g)# 
 faz #w# o pai (preto) de #g# e dá a #w# dois filhos vermelhos, #u# e
 #g#. Isso garante que #u# satisfaça a propriedade sem-borda-vermelha e #g#
-satisfaça a propriedade caindo-para-esquerda. Neste caso, podemos parar.
+satisfaça a propriedade inclinada-para-esquerda. Neste caso, podemos parar.
 \codeimport{ods/RedBlackTree.addFixup(u)}
 
 O método #insertFixup(u)# leva tempo constante por iteração e cada
@@ -415,7 +415,7 @@ temporariamente adicionando #w.colour# em #u.colour#. Claro, isso introduz
 dois outros problemas: (1)~se ambos #u# e #w# começarem preto, então
 $#u.colour#+#w.colour#=2$ (duplo preto), que é uma cor inválida.
 Se #w# for vermelho, então ele é substituído por um nó preto #u#, que pode
-violar a propriedade caindo-pra-esquerda em $#u.parent#$. Ambos os problemas
+violar a propriedade inclinada-para-esquerda em $#u.parent#$. Ambos os problemas
 podem ser resolvidos com uma chamada do método #removeFixup(u)#.
 \codeimport{ods/RedBlackTree.remove(x)}
 
@@ -427,7 +427,7 @@ processo, o nó #u# muda até que, no final deste processo, #u#
 aponta para a raiz da subárvore que foi alterada. A raiz desta subárvore
 pode ter mudado de cor. Em particular, pode ter ido de vermelho para preto,
 então o método #removeFixup(u)# termina ao verificar se o pai de #u# 
-viola a propriedade caindo-pra esquerda, e se for o caso, a corrige.
+viola a propriedade inclinada-para-esquerda, e se for o caso, a corrige.
 \codeimport{ods/RedBlackTree.removeFixup(u)}
 
 O método #removeFixup(u)# é ilustrado em \figref{rb-removefix}.
@@ -452,9 +452,9 @@ Caso 0: #u# é a raiz. Este é o caso mais fácil de tratar. Nós recolorimos
 
 \noindent 
 Caso 1: O irmão de #u#, #v#, é vermelho. Nesse caso, o irmão de #u# é o
-filho esquerdo de seu pai, #w# (pela propriedade caindo-pra-esquerda). Nós realizamos
+filho esquerdo de seu pai, #w# (pela propriedade inclinada-para-esquerda). Nós realizamos
 um right-flip direito em #w# e depois prosseguimos para a próxima iteração. Observe que
-esta ação faz com que o pai de #w# viole a propriedade caindo-pra-esquerda e
+esta ação faz com que o pai de #w# viole a propriedade inclinada-para-esquerda e
 a profundidade de #u# aumente. No entanto, também implica que a próxima
 iteração estará no Caso~3 com #w# colorido de vermelho. Ao examinar o
 Caso~3 abaixo, veremos que o processo irá parar durante a próxima iteração.
@@ -464,7 +464,7 @@ Caso~3 abaixo, veremos que o processo irá parar durante a próxima iteração.
 Caso 2: O irmão de #u#, #v#, é preto, e #u# é o filho esquerdo de seu
 pai, #w#. Nesse caso, chamamos #pullBlack(w)#, fazendo #u# preto,
 #v# vermelho e escurecendo a cor de #w# para preto ou duplo-preto.
-Neste ponto, #w# não satisfaz a propriedade caindo-pra-esquerda, então 
+Neste ponto, #w# não satisfaz a propriedade inclinada-para-esquerda, então 
 nós chamamos #flipLeft(w)# para corrigir isso.
 
 Neste ponto, #w# é vermelho e #v# é a raiz da subárvore com a qual nós 
@@ -474,8 +474,8 @@ seja violada. Fazemos isso inspecionando o filho direito de #w#, #q#. Se #q#
 a próxima iteração com $#u#=#v#$.
 
 Caso contrário (#q# é vermelho), tanto a propriedade sem-borda-vermelha quanto 
-a caindo-pra-esquerda são violadas em #q# e #w#, respectivamente.
-A propriedade caindo-pra-esquerda é restaurada com uma chamada de
+a inclinada-para-esquerda são violadas em #q# e #w#, respectivamente.
+A propriedade inclinada-para-esquerda é restaurada com uma chamada de
 #rotateLeft(w)#, mas a propriedade sem-borda-vermelha
 ainda é violada. Neste ponto, #q# é o filho esquerdo de
 #v#, #w# é o filho esquerdo de #q#, #q# e #w# são vermelhos e #v#
@@ -485,14 +485,14 @@ e #w# de preto e define a cor de #q# de volta para a cor original de #w#.
 
 Neste ponto, o nó duplo-preto foi eliminado e as propriedade sem-borda-vermelha
 e altura-preta estão restabelecidas. Apenas um problema possível: o filho direito de #v# pode ser vermelho, 
-caso no qual a propriedade caindo-pra-esquerda seria violada. Verificamos isso e
+caso no qual a propriedade inclinada-para-esquerda seria violada. Verificamos isso e
 executamos um #flipLeft(v)# para corrigi-la, se necessário.
 \codeimport{ods/RedBlackTree.removeFixupCase2(u)}
 
 \noindent
 Caso 3: o irmão de #u# é preto e #u# é o filho certo de seu pai, #w#. 
 Este caso é simétrico ao Caso~2 e é tratado principalmente da mesma maneira.
-As únicas diferenças vêm do fato de que a propriedade caindo-pra-esquerda
+As únicas diferenças vêm do fato de que a propriedade inclinada-para-esquerda
 é assimétrica, por isso requer uma manipulação diferente.
 
 Como antes, começamos com uma chamada de #pullBlack(w)#, o que torna #v# vermelho
@@ -502,7 +502,7 @@ dependendo da cor do filho esquerdo de #w#, #q#.
 
 Se #q# estiver vermelho, o código termina exatamente da mesma maneira que
 o Caso~2 termina, mas é ainda mais simples já que não há perigo de #v# não
-satifazer a propriedade caindo-pra-esquerda.
+satifazer a propriedade inclinada-para-esquerda.
 
 O caso mais complicado ocorre quando #q# é preto. Nesse caso,
 nós examinamos a cor do filho esquerdo de #v#. Se for vermelho, então #v# tem
@@ -510,7 +510,7 @@ dois filhos vermelhos e seu preto extra podem ser postos pra baixo com uma chama
 de #pushBlack(v)#. Neste ponto, #v# agora tem a cor original de #w#, e assim
 terminamos.
 
-Se o filho esquerdo de #v# for preto, então #v# viola a propriedade caindo-pra-esquerda,
+Se o filho esquerdo de #v# for preto, então #v# viola a propriedade inclinada-para-esquerda,
 e restauramos isso com uma chamada de #flipLeft(v)#. Depois, devolvemos o
 nó #v# para que a próxima iteração de #removeFixup(u)# continue
 com $#u#=#v#$.
@@ -547,7 +547,7 @@ Nós apenas esboçamos uma prova do \thmref{redblack-amortized}. Comparando \\#a
 
 A prova deste teorema para árvores 2-4 usa o método
 potencial
-\index{potential method}%
+\index{método potencial}%
 de análise amortizada.\footnote{Veja a prova de
 	\lemref{dualarraydeque-amortized} e \lemref{selist-amortized} para
 	outras aplicações do método potencial.} Defina o potencial de um
@@ -598,16 +598,16 @@ de qualquer nó ter  no máximo um filho vermelho. Isso implica que essas árvor
 simulam árvores 2-3 ao invés de árvores 2-4. Elas são significativamente mais simples,
 no entanto, que a estrutura #RedBlackTree# apresentada neste capítulo.
 
-Sedgewick \cite{s08} descreve duas versões de árvores rubro-negras caindo pra esquerda. 
+Sedgewick \cite{s08} descreve duas versões de árvores rubro-negras inclinada para esquerda. 
 Estas usam a recursão junto com uma simulação de divisão de cima para baixo
 e mesclando em árvores 2-4. A combinação dessas duas técnicas fazem
 um código curto e elegante.
 
 Uma estrutura de dados relacionada e mais antiga é a \emph{ávore AVL} \cite{avl62}.
-\index{AVL tree}%
-As árvores de AVL são \emph{height-balanced}:
-\index{height-balanced}%
-\index{binary search tree!height balanced}%
+\index{arvore@árvore AVL}%
+As árvores de AVL são \emph{balanceada em altura}:
+\index{balanceada em altura}%
+\index{arvore@árvore de busca binária!balanceada em altura}%
 Em cada nó $u$, as alturas
 da subárvore enraizada em #u.left# e da subárvore enraizada em #u.right#
 diferem por mais de um. Segue-se imediatamente que, se $F(h)$ for o
@@ -706,7 +706,7 @@ de \thmref{redblack-amortized} para essas estruturas.
 	altura de no máximo $2\log #n#-2$. É sempre possível colorir os nós 
 	vermelhos e pretos de modo que a árvore satisfaça as propriedades altura-preta 
 	e sem-borda-vermelha? Se positivo, também pode ser feito para satisfazer a
-	a propriedade caindo-pra-esquerda?
+	a propriedade inclinada-para-esquerda?
 \end{exc}
 
 \begin{exc} \exclabel{redblack-merge}

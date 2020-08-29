@@ -3,8 +3,8 @@
 
 Neste capítulo, discutiremos duas implementações da estrutura de dados de prioridade #Fila# extremamente útil. Ambas as estruturas são um tipo especial de árvore binária chamada \emph{heap},
 \index{heap}%
-\index{binary heap}%
-\index{heap!binary}%
+\index{heap binário}%
+\index{heap!binário}%
 o que significa ``uma pilha desorganizada.'' Isso contrasta com as árvores de busca binária que podem ser consideradas como uma pilha altamente organizada.
 
 A primeira implementação de \textit{heap} usa um array para simular uma árvore binária completa. Esta implementação muito rápida é a base de um dos mais rápidos algoritmos de ordenação conhecidos, o chamado \textit{heapsort} (ver \secref{heapsort}).
@@ -16,7 +16,7 @@ Ela suporta uma operação #meld(h)# que permite que a fila de prioridades absor
 
 \index{BinaryHeap@#BinaryHeap#}%
 Nossa primeira implementação de uma  #Fila# (de prioridade) é baseada em uma técnica que tem mais de quatrocentos anos de idade.  O \emph{método Eytzinger}
-\index{Eytzinger's method}%
+\index{método Eytzinger}%
 nos permite representar uma árvore binária completa como um array, colocando os nós da árvore em ordem de largura
 (ver \secref{bintree:traversal}).
 Desta forma, a raiz é armazenada na posição 0, o filho esquerdo da raiz é armazenado na posição 1, o filho direito da raiz na posição 2, o filho esquerdo do filho esquerdo da raiz é armazenado na posição 3 e assim por diante.
@@ -35,9 +35,10 @@ Se aplicarmos o método de \textit{Eytzinger} a uma árvore suficientemente gran
 
 Uma #BinaryHeap# usa essa técnica para representar implicitamente uma
 árvore binária em que os elementos são \emph{ordenados pelo heap}:
-\index{heap-ordered binary tree}%
-\index{binary tree!heap-ordered}%
-\index{heap order}%
+\index{arvode binária@árvore binária ordenada pelo heap}%
+\index{arvode binária@árvore binária!ordenada pelo heap}%
+\index{ordem do heap}%
+\index{heap!ordem do}%
 o valor armazenado em qualquer índice #i# não é menor que o valor armazenado no índice #parent(i)#, com a exceção do valor da raiz, $#i#=0$. Segue-se que o menor valor na #Fila# de prioridade é, portanto, armazenado na posição 0 (a raiz).
 
 Na #BinaryHeap#, os #n# elementos são armazenados em um array #a#:
@@ -78,8 +79,8 @@ Se é o menor dos três, então estamos prontos. Caso contrário, nós trocamos 
 
 
 Como com outras estruturas baseadas em array, iremos ignorar o tempo gasto em chamadas para #resize()#, uma vez que elas podem ser contabilizadas usando o argumento de amortização do \lemref{arraystack-amortized}. Os tempos de execução de #add(x)# e #remove()# dependem da altura da árvore binária (implícita). Felizmente, esta é uma árvore binária \emph{completa};
-\index{binary tree!complete}% 
-\index{complete binary tree}%
+\index{arvore binária@árvore binária!completa}% 
+\index{arvore binária completa@árvore binária completa}%
 cada nível, exceto o último, tem o número máximo possível de nós. Portanto, se a altura dessa árvore for $h$, ela terá pelo menos $2^h$ nós.
 \[
   #n# \ge 2^h \enspace .
@@ -219,26 +220,26 @@ O seguinte teorema resume o desempenho de uma #MeldableHeap#:
 
 A representação implícita de uma árvore binária completa como um array, ou lista, parece ter sido proposta pela primeira vez por Eytzinger \cite{e1590}.
 Ele usou essa representação em livros contendo árvores genealógicas de pedigree 
-\index{pedigree family tree}%
+\index{arvore genealogica de pedigree!árvore genealógica de pedigree}%
 de famílias nobres. A estrutura de dados #BinaryHeap# descrita aqui foi introduzida pela primeira vez por Williams \cite{w64}.
 
 A estrutura de dados #MeldableHeap# aleatória descrita aqui aparece
 primeiramente proposta por Gambin e Malinowski \cite{gm98}.
 Outras implementações de meldable heap existem, incluindo heaps de esquerda \cite[Seção~5.3.2]{c72,k97v3},
-\index{leftist heap}%
-\index{heap!leftist}%
+\index{heaps de esquerda}%
+\index{heap!de esquerda}%
 heaps binomiais \cite{v78},
 \index{binomial heap}%
 \index{heap!binomial}%
 heaps de Fibonacci \cite{ft87}, 
-\index{Fibonacci heap}%
+\index{heap de Fibonacci}%
 \index{heap!Fibonacci}%
 heaps emparelhadas \cite{fsst86},\
-\index{pairing heap}%
-\index{heap!pairing}%
+\index{heap emparelhada}%
+\index{heap!emparelhadas}%
  e heaps inclinadas \cite{st83}, 
-\index{skew heap}%
-\index{heap!skew}%
+\index{heap inclinada}%
+\index{heap!inclinada}%
 embora nenhum desses seja tão simples quanto a estrutura #MeldableHeap#.
 
 Algumas das estruturas acima também suportam uma operação\\ #decreaseKey(u,y)#
@@ -263,7 +264,7 @@ acelerar vários algoritmos gráficos, incluindo o algoritmo de caminho mais cur
 \end{exc}
 
 \begin{exc}\exclabel{general-eytzinger}
-  \index{tree!$d$-ary}%
+  \index{arvore@árvore!$d$-ária}%
   Uma árvore $d$-aria é uma generalização de uma árvore binária na qual cada nó interno possui $d$ filhos. Usando o método de Eytzinger também é possível representar árvores completas de $d$-aria usando arrays. Trabalhe as equações que, dado um índice #i#, determinam o índice do pai de #i# e cada um dos $d$ filhos de #i# nesta representação.
 \end{exc}
 

@@ -12,12 +12,12 @@ Matematicamente, um \emph{grafo (direcionado)}
 \index{grafo direcionado}%
 é um par $G=(V,A)$ onde
 $V$ é um  conjunto de \emph{vértices}
-\index{vértices}%
+\index{vertice@vértices}%
 e $A$ é um conjunto de pares ordenados
 de vértices chamados \emph{arestas}.
 \index{aresta}%
 Uma aresta #(i,j)# é \emph{direcionado}
-\index{vértice direcionado}%
+\index{vertice@vértice direcionado}%
 de #i# para #j#;  #i# é chamado de \emph{fonte}
 \index{fonte} da aresta e #j#
 é chamado de \emph{alvo}.
@@ -33,7 +33,7 @@ ciclo) é \emph{simples}
 se todos os seus vértices forem únicos.  Se houver um caminho de 
 algum vértice $v_i$ para algum vértice $v_j$ então nós dizemos que
 $v_j$ está ao \emph{alcance}
-\index{vértices ao alcance} de $v_i$.  Um exemplo de grafo é mostrado 
+\index{vertice@vértices ao alcance} de $v_i$.  Um exemplo de grafo é mostrado 
 em \figref{graph}.
 
 \begin{figure}
@@ -283,7 +283,7 @@ Tal como acontece com o algoritmo de pesquisa em largura, há uma árvore subjac
 Uma propriedade importante do algoritmo de pesquisa em profundidade é a seguinte: Suponha que quando o nó #i# é colorido #cinza#, existe um caminho de #i# para algum outro nó #j# que usa apenas vértices brancos. Então #j# será colorido primeiro #cinza# depois #preto# antes de #i# ser colorido #preto#. (Isso pode ser provado por contradição, considerando qualquer caminho $P$ de #i# a #j#.)
 
 Uma das aplicações desta propriedade é a detecção de ciclos.
-\index{cycle detection}%
+\index{detecção de ciclo}%
 Consulte a \figref{dfs-cycle}. Considere algum ciclo, $C$, que pode ser alcançado a partir de #r#. Seja #i# o primeiro nó de $C$ colorido #cinza# e seja #j# o nó que precede #i# no ciclo $C$. Então, pela propriedade acima, #j# será colorido #cinza# e a aresta #(j,i)# será considerada pelo algoritmo enquanto #i# ainda é #cinza#. Assim, o algoritmo pode concluir que existe um caminho, $P$, de #i# a #j# na árvore de pesquisa em profundidade e a aresta #(j,i)# existe. Portanto, $P$ também é um ciclo.
 
 \begin{figure}

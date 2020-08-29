@@ -3,11 +3,11 @@
 \chaplabel{hashing}
 
 As tabelas Hash são um método eficiente de armazenar um número pequeno, #n#, de números inteiros de uma grande faixa $U=\{0,\ldots,2^{#w#}-1\} $. O termo \emph{tabela hash}
-\index{hash table} %
+\index{tabela de hash} %
 inclui uma ampla gama de estruturas de dados. A primeira parte deste capítulo concentra-se em duas das implementações mais comuns de tabelas de hash: hashing com encadeamento e sondagem linear.
 
 Muitas vezes, as tabelas hash armazenam tipos de dados que não são inteiros. Nesse caso, um inteiro \emph{código hash}
-\index{hash code}%
+\index{codigo@código de hash}%
 está associado a cada item de dados e é usado na tabela hash. A segunda parte deste capítulo discute como esses códigos de hash são gerados.
 
 Alguns dos métodos utilizados neste capítulo exigem escolhas aleatórias de números inteiros em algum intervalo específico. Nos exemplos de código, alguns desses números inteiros ``aleatórios'' são constantes codificadas. Essas constantes foram obtidas usando bits aleatórios gerados pelo ruído atmosférico.
@@ -17,8 +17,8 @@ Alguns dos métodos utilizados neste capítulo exigem escolhas aleatórias de n�
 \seclabel{hashtable}
 
 \index{ChainedHashTable@#ChainedHashTable#}%
-\index{chaining}%
-\index{hashing with chaining}%
+\index{encadeamento}%
+\index{hashing por encadeamento}%
 Uma estrutura de dados #ChainedHashTable# usa \emph{dispersão por encadeamento} para armazenar dados como um array, #t#, de listas. Um número inteiro, #n#, acompanha o número total de itens em todas as listas (veja \figref{chainedhashtable}):
 \codeimport{ods/ChainedHashTable.t.n}
 \begin{figure}
@@ -28,7 +28,7 @@ Uma estrutura de dados #ChainedHashTable# usa \emph{dispersão por encadeamento}
    \caption[Uma ChainedHashTable]{Um exemplo de #ChainedHashTable# com $#n#=14$ e $#t.length#=16$. Nesse exemplo $#hash(x)#=6$}
    \figlabel{chainedhashtable}
 \end{figure}
-\index{hash value}%
+\index{hash!valor de}%
 \index{hash(x)@#hash(x)#}%
 O \emph {valor hash} de um item de dados #x#, indicado por #hash(x)#, é um valor na faixa $\{0,\ldots,#t.length#-1\}$. Todos os itens com valor de hash #i# são armazenados na lista em #t[i]#. Para garantir que as listas não sejam grandes, mantemos o invariante
 \[
@@ -56,8 +56,8 @@ O desempenho de uma tabela hash depende criticamente da escolha da função hash
 \subsection{Hash Multiplicativo}
 \seclabel{multihash}
 
-\index{hashing!multiplicative}%
-\index{multiplicative hashing}%
+\index{hash!multiplicativo}%
+\index{hash multiplicativo}%
 O hashing multiplicativo é um método eficiente de gerar valores de hash com base na aritmética modular (discutido em \secref{arrayqueue}) e na divisão de números inteiros. Ele usa o operador $\ddiv$, que calcula a parte inteira de um quociente, ao descartar o restante.
 Formalmente, para qualquer número inteiro $a\ge 0$ e $b\ge 1$, $a\ddiv b = \lfloor
 a/b\rfloor$.
@@ -221,9 +221,11 @@ O seguinte teorema resume o desempenho de uma estrutura de dados #ChainedHashTab
 
 \index{LinearHashTable@#LinearHashTable#}%
 A estrutura de dados #ChainedHashTable# usa uma matriz de listas, onde a #i#-ésima lista armazena todos os elementos #x#, tal que $#hash(x)#=#i#$. Uma alternativa, chamada \emph{endereçamento aberto}
-\index{open addressing}%
+\index{endereçamento aberto}%
+\index{hash!por endereçamento aberto}%
 é armazenar os elementos diretamente em um array, #t#, com cada local do array em #t# armazenando no máximo um valor. Essa abordagem é tomada pela #LinearHashTable# descrita nesta seção. Em alguns lugares, esta estrutura de dados é descrita como \emph{endereçamento aberto com sondagem linear}.
-\index{linear probing}%
+\index{sondagem linear}%
+\index{hash!por sondagem linear}%
 
 A principal ideia por trás de uma #LinearHashTable# é que gostaríamos, de preferência, de armazenar o elemento #x# com o valor hash #i=hash(x)# na localização da tabela #t[i]#. Se não pudermos fazer isso (porque algum elemento já está armazenado), então tentamos armazená-lo na localização $#t#[(#i#+1)\bmod#t.length#]$; Se isso não for possível, tentemos $#t#[(#i#+2)\bmod#t.length#]$, e assim por diante, até encontrar um lugar para #x#.
 
@@ -264,8 +266,8 @@ A intuição por trás da análise de sondagem linear é que, uma vez que pelo m
 Para o restante desta seção, assumiremos que todos os valores de hash são distribuídos de forma independente e uniforme em $\{0,\ldots,#t.length#-1\}$.
 Esta não é uma suposição realista, mas permitirá que analisemos a sondagem linear. Mais tarde, nesta seção, descreveremos um método, chamado de hash de tabulação, que produz uma função de hash que é "suficientemente boa" para sondagem linear. Também assumiremos que todos os índices nas posições de #t# são tomados no módulo #t.length#, de modo que #t[i]# é realmente uma abreviatura para $#t#[#i#\bmod#t.length#]$.
 
-\index{run}%
-Dizemos que um \emph {percurso $ k $ que começa em # i #} ocorre quando todas as entradas da tabela $#t[i]#, #t[i+1]#,\ldots,#t#[#i#+k-1]$ não são #null# e $#t#[#i#-1]=#t#[#i#+k]=#null#$. O número de elementos não-#null# de #t# é exatamente #q# e o método #add (x) # garante que, em todos os momentos, $#q#\le#t.length#/2$. Existem #q# elementos $#x#_1,\ldots,#x#_{#q#}$ que foram inseridos em #t# desde a última operação #resize()#.
+\index{hash!percurso de tamanho k}%
+Dizemos que um \emph {percurso de tamanho $ k $ que começa em # i #} ocorre quando todas as entradas da tabela $#t[i]#, #t[i+1]#,\ldots,#t#[#i#+k-1]$ não são #null# e $#t#[#i#-1]=#t#[#i#+k]=#null#$. O número de elementos não-#null# de #t# é exatamente #q# e o método #add (x) # garante que, em todos os momentos, $#q#\le#t.length#/2$. Existem #q# elementos $#x#_1,\ldots,#x#_{#q#}$ que foram inseridos em #t# desde a última operação #resize()#.
 Por nossa suposição, cada um deles tem um valor de hash, $#hash#(#x#_j)$,
 Isso é uniforme e independente do resto. Com esta configuração, podemos provar o lema principal necessário para analisar a sondagem linear.
 
@@ -334,7 +336,8 @@ O seguinte teorema resume o desempenho da estrutura de dados #LinearHashTable#:
 \subsection{Hashing por Tabulação}%Não sei se Tabulação por Dispersão seria melhor
 \seclabel{tabulation}
 
-\index{tabulation hashing}%
+\index{hashing por tabulação}%
+\index{hashing!por tabulação}%
 Ao analisar a estrutura # LinearHashTable #, fizemos uma suposição muito forte: que para qualquer conjunto de elementos, $\{#x#_1,\ldots,#x#_#n#\}$, os valores de hash $#hash#($x$_1),\ldots,#hash#(#x#_#n#)$ são distribuídos de forma independente e uniforme sobre o conjunto $\{0,\ldots,#t.length#-1\}$. Uma maneira de conseguir isso é armazenar em um array gigante, #tab#, de comprimento $2^{#w#}$, onde cada entrada é um inteiro de #w#-bit aleatório, independente de todas as outras entradas. Desta forma, podemos implementar #hash(x)# extraindo um inteiro de #d#-bit de #tab[x.hashCode()]#:
 \codeimport{ods/LinearHashTable.idealHash(x)}
 \pcodeonly{Aqui, #>>#, é o operador \emph{deslocamento de bits para a direita}, então
@@ -349,7 +352,8 @@ O código a seguir mostra como isso funciona quando $#w#=32$ e $#r#=4$:
 Nesse caso, # tab # é um array bidimensional com quatro colunas e $2^{32/4}=256$ linhas.
 \pcodeonly{
 Quantidades como #0xff#, usadas acima, são \emph{números hexadecimais}
-\index{hexadecimal numbers}%
+\index{números hexadecimais}%
+\index{hexadecimal}%
 cujos dígitos têm 16 valores possíveis 0--9, que têm seu significado usual e a-f, que denotam 10--15. O número $#0xff#=15\cdot 16 + 15 = 255$. O símbolo #&# é o operador \emph{bitwise AND}, então, o código #h >> 8 & 0xff# extrai bits com índices de 8 a 15 de #h#.}
 
 Pode-se verificar facilmente que, para qualquer #x#, #hash(x)# é uniformemente distribuído em $\{0,\ldots,2^{#d#}-1\}$. Com um pouco de trabalho, pode-se verificar se qualquer par de valores possui valores de hash independentes. Isso implica que o hash de tabulação poderia ser usado em lugar de hashing multiplicativo para a implementação #ChainedHashTable#.
@@ -358,7 +362,8 @@ No entanto, não é verdade que qualquer conjunto de #n# valores distintos forne
 
 \section{Hash Codes}
 
-\index{hash code}%
+\index{código de hash}%
+\index{hash!código de}%
 As tabelas de hash discutidas na seção anterior são usadas para associar dados com chaves inteiras consistindo de #w# bits. Em muitos casos, temos chaves que não são inteiros. Podem ser strings, objetos, arrays ou outras estruturas compostas. Para usar tabelas de hash para esses tipos de dados, devemos mapear esses tipos de dados para os códigos de hash com #w#-bits. Os mapeamentos de código Hash devem ter as seguintes propriedades:
 
 \begin{enumerate}
@@ -372,7 +377,8 @@ A segunda propriedade minimiza a perda de converter nossos objetos em números i
 
 \subsection{Códigos Hash para Tipos Primitivos de Dados}
 
-\index{hash code!for primitive data}%
+\index{código de hash!para dados primitivos}%
+\index{hash!código para dados primitivos}%
 Pequenos tipos de dados primitivos, como #char#, #byte#, #int# e #float#, geralmente, são fáceis de encontrar códigos de hash. Esses tipos de dados sempre têm uma representação binária e essa representação binária geralmente consiste em #w# ou menos bits. \javaonly{(Por exemplo, em Java, #byte# é um tipo de 8 bits e #float# é um tipo de 32 bits.)}\cpponly{(Por exemplo, em C ++ #char# geralmente é um tipo de 8 bits e #float# é um tipo de 32 bits).} Nesses casos, tratamos esses bits como a representação de um número inteiro na faixa $\{0,\ldots,2^#w#-1\}$ . Se dois valores são diferentes, eles obtêm códigos hash diferentes. Se eles são o mesmo, eles obtêm o mesmo código hash.
 
 Alguns tipos de dados primitivos são compostos por mais de #w# bits, geralmente $c#w#$ bits para algum inteiro constante $c$. (Os tipos #long# e #double# do Java são exemplos disso com $c=2$.) Esses tipos de dados podem ser tratados como objetos compostos feitos de $c$ partes, conforme descrito na próxima seção.
@@ -380,7 +386,8 @@ Alguns tipos de dados primitivos são compostos por mais de #w# bits, geralmente
 \subsection{Códigos Hash para Objetos Compostos}
 \seclabel{stringhash}
 
-\index{hash code!for compound objects}%
+\index{código de hash!para onjetos compostos}%
+\index{hash!código para onjetos compostos}%
 Para um objeto composto, queremos criar um código hash combinando os códigos hash individuais das partes constituintes do objeto. Isso não é tão fácil quanto parece. Embora se possa encontrar muitos hacks para isso (por exemplo, combinando os códigos de hash com operações bitwise ou-exclusivo), muitos desses hacks terminam por serem frustrantes (ver exercícios ~\ref{exc:hash-hack-first}--\ref{exc:hash-hack-last}). No entanto, se alguém estiver disposto a fazer aritmética com $2# w#$ bits de precisão, existem métodos simples e robustos disponíveis. Suponha que possamos ter um objeto composto por várias partes $P_0,\ldots,P_{r-1}$ cujos códigos hash são $#x#_0,\ldots,#x#_{r-1}$. Então, podemos escolher #w#-bits inteiros aleatórios e mutuamente independentes $#z#_0,\ldots,#z#_{r-1}$ e um $2#w#$-bit inteiro impar #z# e, então, calcular um código hash para nosso objeto com
 \[
    h(#x#_0,\ldots,#x#_{r-1}) =  
@@ -444,14 +451,16 @@ $#z#h'(#x#_0,\ldots,#x#_{r-1})\ddiv2^{#w#} = #z# h'(#y#_0,\ldots,#y#_{r-1})\ddiv
 \end{proof}
 
 
-\index{hash code!for strings}%
-\index{hash code!for arrays}%
+\index{código de hash!para strings}%
+\index{hash!código de para strings}%
+\index{código de hash!para arrays}%
+\index{hash!código de para arrays}%
 \subsection{Códigos Hash para Arrays e Strings}
 \seclabel{polyhash}
 
 O método da seção anterior funciona bem para objetos que possuem um número fixo, constante, de componentes. No entanto, ele se destrói quando queremos usá-lo com objetos que possuem uma quantidade variável de componentes, uma vez que requer um número aleatório $#z#_i$ de #w#-bit para cada componente. Poderíamos usar uma sequência pseudo-randômica para gerar tantos $#z#_i$'s quanto precisássemos, mas então os $#z#_i$ não seriam mutuamente independentes e, assim, torna-se-ia difícil provar que os números de pseudo-randômicos não interagem bem com a função hash que estamos usando. Em particular, os valores de $t$ e $#z#_i$ na prova de \thmref{multihash} não são mais independentes.
 
-\index{prime field}%
+\index{campo primo}%
 Uma abordagem mais rigorosa é basear nossos códigos de hash em polinômios sobre os campos principais; Estes são apenas polinômios regulares que são avaliados em um número primo, #p#. Este método baseia-se no seguinte teorema, que diz que os polinômios sobre os campos principais se comportam quase como os polinômios usuais:
 
 \begin{thm}\thmlabel{prime-polynomial}
@@ -532,27 +541,27 @@ As tabelas Hash e os códigos hash representam um campo de pesquisa enorme e ati
 contém cerca de 2000 entradas.
 
 Existe uma variedade de implementações de tabela hash diferentes. O descrito em \secref{hashtable} é conhecido como \emph{hashing com encadeamento}
-\index{hashing with chaining}%
+\index{hashing com encadeamento}%
 (cada entrada do array contém uma cadeia (#List#) de elementos). Hashing com encadeamento remonta a um memorando interno da IBM criado por H. P. Luhn e datado de janeiro de 1953. Este memorando também parece ser uma das primeiras referências às linked lists.
 
-\index{open addressing}%
+\index{endereçamento aberto}%
 Uma alternativa ao hashing com encadeamento é a usada pelos esquemas \emph{open address}, onde todos os dados são armazenados diretamente em um array. Esses esquemas incluem a estrutura # LinearHashTable # de \secref{linearhashtable}. Essa idéia também foi proposta, independentemente, por um grupo da IBM na década de 1950. Os esquemas de endereçamento aberto devem lidar com o problema de \emph{resolução de colisão}:
 \ index {collision resolution}%
 o caso em que dois valores hash para o mesmo local da matriz. Existem estratégias diferentes para resolução de colisão; Estes fornecem garantias de desempenho diferentes e muitas vezes exigem funções de hash mais sofisticadas do que as descritas aqui.
 
 Outra categoria de implementações de tabela de hash são os chamados métodos de
 \emph{hashing perfeito}.
-\index{perfect hashing}%
+\index{hashing perfeito}%
 Estes são métodos em que as operações #find(x)# levam $O(1)$ tempo no pior caso. Para conjuntos de dados estáticos, isso pode ser conseguido encontrando \emph {funções de hash perfeitas}
-\index{perfect hash function}%
-\index{hash function!perfect}%
+\index{função de hashing perfeito}%
+\index{hash!função perfeita}%
 para os dados; Essas são funções que mapeiam cada peça de dados para um local de matriz exclusivo. Para os dados que mudam ao longo do tempo, os métodos de hash perfeitos incluem \emph{tabelas de hash de dois níveis FKS}
-\index{two-level hash table}%
-\index{hash table!two-level}%
+\index{tabela de hash de dois níveis}%
+\index{hash!tabela de dois níveis}%
 \cite{fks84,dkkmrt94}
 e \emph{cuckoo hashing} \cite{pr04}.
 \index{cuckoo hashing}%
-\index{hash table!cuckoo}%
+\index{hash!tabela cuckoo}%
 
 As funções de hash apresentadas neste capítulo estão provavelmente entre os métodos mais práticos atualmente conhecidos que podem comprovadamente funcionar bem para qualquer conjunto de dados. Outros métodos provavelmente bons datam do trabalho pioneiro de Carter e Wegman, que introduziram a noção de \emph{hash universal}
 \index{hash universal}%
@@ -566,9 +575,9 @@ A ideia do \emph{hash multiplicativo}
 \index{hashing!multiplicativo}%
 é muito antiga e parece ser parte do folclore hashing \cite[Section~6.4]{k97v3}. No entanto, a idéia de escolher o multiplicador #z# para ser um número aleatório \emph{impar} e a análise em \secref{multihash} é devida a Dietzfelbinger \etal\
 \cite{dhkp97}.  Esta versão do hashing multiplicativo é uma das mais simples, mas a probabilidade de colisão de $2/2^{#d#}$ é um fator de dois maiores do que o que se poderia esperar com uma função aleatória de $2^{#w#}\to
-2^{#d#}$.  O método \emph{multiply-add hashing}
-\index{hashing!multiply-add}%
-\index{multiply-add hashing}%
+2^{#d#}$.  O método \emph{multiplica-soma hashing}
+\index{hashing!multiplica-soma}%
+\index{hashing multiplica-soma}%
  usa a função
 \[
    h(#x#) = ((#z##x# + b) \bmod 2^{#2w#}) \ddiv 2^{#2w#-#d#}
@@ -651,6 +660,6 @@ Outra opção é aplicar um dos métodos rápidos para sequências de caracteres
   Encontre algumas implementações de tabelas hash comumente usadas, tais como as implementações \javaonly{Java
   Collection Framework #HashMap#}\cpponly{The C++ STL #unordered\_map#} ou #HashTable# ou #LinearHashTable# neste livro e crie uma programa que armazena inteiros nesta estrutura de dados de modo que haja números inteiros, #x#, de modo que #find(x)# demore tempo linear. Ou seja, encontre um conjunto de #n# inteiros para os quais existem $c#n#$ elementos que dispersem para o mesmo local da tabela.
 
-  Dependendo de quão boa seja a implementação, você poderá fazer isso apenas inspecionando o código para a implementação, ou talvez seja necessário que escreva algum código que faça inserções e pesquisas de teste, medindo quanto tempo demora para adicionar e encontrar valores específicos . (Isso pode ser, e tem sido usado, para lançar ataques de negação de serviço em servidores web \cite{cw03}.)
-  \index{algorithmic complexity attack}%
+  Dependendo de quão boa seja a implementação, você poderá fazer isso apenas inspecionando o código para a implementação, ou talvez seja necessário que escreva algum código que faça inserções e pesquisas de teste, medindo quanto tempo demora para adicionar e encontrar valores específicos. (Isso pode ser, e tem sido usado, para lançar ataques de negação de serviço em servidores web \cite{cw03}.)
+  \index{ataque de complexidade algorítmica}%
 \end{exc}

@@ -485,8 +485,8 @@ desenvolvidas.  Implementações da Skiplist têm sido escritas em diversas ling
 \end{exc}
 
 \begin{exc}
-	\index{finger}%
-	\index{finger search!in a skiplist}%
+	\index{indicador}%
+	\index{busca por indicador!em uma skiplist}%
 	Um \emph{indicador} em uma skiplist é um array que armazena a sequência de nós em um caminho de busca no qual o caminho de busca evolui. (A variável #pilha# no código de #add(x)# na página ~\pageref{pg:skiplist-add} é um indicador, os nós sombreados na \figref{skiplist-add} mostram o conteúdo do indicador). Pode-se pensar em um dedo apontando o caminho para um nó na lista mais baixa, $L_0$.
 	
 	Uma \emph{busca por indicador} implementa a operação #find(x)# usando um indicador que percorre a lista até alcançar um nó #u#, tal que $#u.x# < #x#$ e $#u.next#=#null#$ ou $#u.next.x# > #x#$, e em seguida realiza uma pesquisa normal para #x# a partir de #u#.
@@ -518,8 +518,8 @@ desenvolvidas.  Implementações da Skiplist têm sido escritas em diversas ling
 \end{exc}
 
 \begin{exc}
-  \index{skiplist!versus binary search tree}%
-  \index{binary search tree!versus skiplist}%
+  \index{skiplist!versus árvore de busca binária}%
+  \index{arvore@árvore de busca binária!versus skiplist}%
   (Este exercício deve ser feito depois de ler sobre árvores de busca binária, em \secref{binarysearchtree}.) Compare as skiplists com árvores de pesquisa binária das seguintes maneiras:
   \begin {enumerate}
   \item Explicar como a remoção de algumas arestas de uma skiplists leva a uma estrutura que se parece a uma árvore binária e é semelhante a uma árvore de pesquisa binária.
