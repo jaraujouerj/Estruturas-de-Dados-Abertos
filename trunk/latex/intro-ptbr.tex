@@ -605,20 +605,20 @@ A notação Big-O não é algo novo ou exclusivo da ciência da computação. Fo
 usada pelo teórico do número Paul Bachmann já em 1894, e é imensamente útil 
 para descrever os tempos de execução de algoritmos de computador. 
 Considere o seguinte código:
-\pcodeimport{ods/Simple.snippet()}
+\pcodeimport{ods/Simple.fragmento()}
 \javaimport{junk/Simple.snippet()}
 \cppimport{ods/Simple.snippet()}
 Uma execução deste método envolve
 \begin{itemize}
 	\item $1$ atribuição (\notpcode{#int#}\, #i\, =\, 0#),
 	\item $#n#+1$ comparações (#i < n#),
-	\item #n# incrementos (#i++#),
+	\item #n# incrementos (#i++#), 
 	\item #n# cálculos de deslocamentos no vetor (#a[i]#), e
 	\item #n# atribuições indiretas (#a[i] = i#).
 \end{itemize}
 Então, nós poderíamos escrever este tempo de execução como
 \[
-T(#n#)=a + b(#n#+1) + c#n# + d#n# + e#n# \enspace , 
+T(#n#)=a + b(#n#+1) + c#n# + d#n# + e#n#\enspace, 
 \]
 Onde $a$, $b$, $c$, $d$, e $e$ são constantes que dependem da
 máquina que está executando o código e representam o tempo para executar atribuições,
