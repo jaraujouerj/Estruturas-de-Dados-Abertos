@@ -346,7 +346,7 @@ Ao analisar a estrutura # LinearHashTable #, fizemos uma suposição muito forte
 	 \end{center}
 extrai os #d# bits mais significativos de #x#'s de #w#-bit códigos hash.}
 
-Infelizmente, armazenar uma matriz de tamanho $2^{#w#}$ é proibitivo em termos de uso de memória. A abordagem usada por \emph {tabulação hashing} é, em vez disso, tratar números # w #-bit como sendo compostos de $#w#/#r#$ inteiros, cada um com apenas $#r#$ bits. Desta forma, o hashing de tabulação só precisa de $#w#/#r#$ arrays cada um do comprimento $2^{#r#}$. Todas as entradas nesses arrays são #w#-bit inteiros aleatoriamente independentes. Para obter o valor de #hash(x)#, divide-se os números inteiros #x.hashCode()# em $#w#/#r#$ #r#-bit e usamos estes como índices nesses arrays. Em seguida, combinamos todos esses valores com o operador exclusivo de bit a bit para obter #hash(x)#.
+Infelizmente, armazenar uma matriz de tamanho $2^{#w#}$ é proibitivo em termos de uso de memória. A abordagem usada pela \emph {hashing por tabulação } é, em vez disso, tratar números # w #-bit como sendo compostos de $#w#/#r#$ inteiros, cada um com apenas $#r#$ bits. Desta forma, o hashing de tabulação só precisa de $#w#/#r#$ arrays cada um do comprimento $2^{#r#}$. Todas as entradas nesses arrays são #w#-bit inteiros aleatoriamente independentes. Para obter o valor de #hash(x)#, divide-se os números inteiros #x.hashCode()# em $#w#/#r#$ #r#-bit e usamos estes como índices nesses arrays. Em seguida, combinamos todos esses valores com o operador exclusivo de bit a bit para obter #hash(x)#.
 O código a seguir mostra como isso funciona quando $#w#=32$ e $#r#=4$:
 \codeimport{ods/LinearHashTable.hash(x)}
 Nesse caso, # tab # é um array bidimensional com quatro colunas e $2^{32/4}=256$ linhas.

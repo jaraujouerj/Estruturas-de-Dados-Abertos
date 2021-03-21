@@ -1,7 +1,4 @@
 
-#sources = intro.tex arrays.tex linkedlists.tex skiplists.tex \
-#	hashing.tex binarytrees.tex rbs.tex scapegoat.tex redblack.tex \
-#	heaps.tex sorting.tex graphs.tex integers.tex btree.tex
 sources = intro-ptbr.tex arrays-ptbr.tex linkedlists-ptbr.tex skiplists-ptbr.tex \
 	hashing-ptbr.tex binarytrees-ptbr.tex rbs-ptbr.tex scapegoat-ptbr.tex redblack-ptbr.tex \
 	heaps-ptbr.tex sorting-ptbr.tex graphs-ptbr.tex integers-ptbr.tex btree-ptbr.tex
@@ -14,7 +11,6 @@ cppsource = $(wildcard ../cpp/*.h)
 python = $(wildcard ../python/ods/*.py)
 pyts = $(sources:.tex=-python.tex)
 pyth = $(sources:.tex=-python-html.tex)
-#pdfs = ods-java.pdf ods-cpp.pdf ods-python.pdf
 pdfs = ods-ptbr-java.pdf ods-ptbr-cpp.pdf ods-ptbr-python.pdf
 styles=ods.sty ods-colors.sty
 
@@ -36,7 +32,6 @@ epsfigs:
 images:
 	cd images ; make
 
-#ods-java.pdf : ods-java.tex $(javs) $(styles) images figs
 ods-ptbr-java.pdf : ods-ptbr-java.tex $(javs) $(styles) images figs
 	latexmk -pdf ods-ptbr-java
 #	pdflatex $(LFLAGS) ods-java

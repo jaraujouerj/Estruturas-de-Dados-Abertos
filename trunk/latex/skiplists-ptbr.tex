@@ -56,18 +56,17 @@ No começo de cada lista está um nó especial, chamado de \emph{sentinela},
 que atua como um pseudo nó (\textit{dummy}) para a lista. A propriedade chave das skiplists
 é que existe um caminho curto para busca, chamado de \emph{caminho de busca}, 
 \index{caminho de busca!de uma skiplist}%
-do
-sentinela em $L_h$ para cada nó em $L_0$.  Lembrando como construir
-um caminho de busca para o nó, #u#, é fácil (veja \figref{skiplist-searchpath})
-:  Comece no canto superior esquerdo da skiplist (o sentinela em $L_h$)
+do sentinela em $L_h$ para cada nó em $L_0$.  Veja como é fácil construir
+um caminho de busca para o nó #u# (veja \figref{skiplist-searchpath}): 
+comece no canto superior esquerdo da skiplist (o sentinela em $L_h$)
 e sempre vá para a direita, a menos que ultrapasse #u#, nesse caso você
-deve dar uma passo para a lista de baixo.
+deve dar um passo para a lista de baixo.
 
 Mais precisamente, para construir um caminho de busca para o nó #u# em $L_0$,
 começaremos pelo sentinela, #w#, em $L_h$.  Em seguida, verificamos #w.next#.
 Se #w.next# contém um elemento que aparece antes de #u# em $L_0$, então
 nós ajustamos $#w#=#w.next#$.  Caso contrário, movemos para baixo e continuamos a busca
-da ocorrência de#w# na lista $L_{h-1}$.  Continuamos assim
+da ocorrência de #w# na lista $L_{h-1}$.  Continuamos assim
 até chegar ao antecessor de #u# em $L_0$. 
 \begin{figure}
   \begin{center}
@@ -163,12 +162,12 @@ $O(\log #n#)$.
 Para que isso seja possível, precisamos de uma maneira para seguir o caminho de busca para
 o #i#ésimo elemento em $L_0$. A maneira mais fácil de fazer isso é definir
 o conceito de \emph{comprimento} de uma aresta em uma lista, $L_{#r#}$.
-Definimos o tamanho de cada aresta em $L_{0}$ como 1.  o tamanho de uma aresta, #e#,
+Definimos o tamanho de cada aresta em $L_{0}$ como 1.  O tamanho de uma aresta, #e#,
 em $L_{#r#}$, $#r#>0$, é definido como a soma dos tamanhos das arestas abaixo de #e#
 em $L_{#r#-1}$.  De forma equivalente, o tamanho de #e# é
 o número de arestas de $L_0$ abaixo de #e#.  Veja \figref{skiplist-lengths} para
 um exemplo de uma skiplist mostrando o tamanho de suas arestas.  Uma vez que
-as arestas das skiplists são armazenados em arrays, os tamanhos podem ser armazenados da mesma maneira:
+as arestas das skiplists são armazenados em arrays, os tamanhos podem ser armazenados da mesma maneira.
 
 \begin{figure}
 	\begin{center}
@@ -198,7 +197,7 @@ um tempo $O(\log #n#)$.
 
 Adicionar um elemento a uma #SkiplistList# em uma posição, #i#, é relativamente
 simples.  Ao contrário do que acontece em uma #SkiplistSSet#, temos certeza que um novo
-nó será realmente adicionado, para que possamos realizar a adição ao mesmo tempo
+nó será realmente adicionado, assim podemos realizar a adição ao mesmo tempo
 em que buscamos a localização do novo nó. Primeiramente, pegamos a altura, #k#,
 do nó recentemente inserido, #w#, e então avançamos o caminho de busca para #i#.
 Toda vez que o caminho de busca desce de $L_{#r#}$ com $#r#\le #k#$,
@@ -241,7 +240,7 @@ Isto soa mais complicado do que é, o código, na verdade,
 
 
 Agora a implementação da 
-operação #remove(i)# em uma #SkiplistList# deveria ser óbvia.  Seguimos o caminho de busca para o nó na posição #i#. Cada vez que o caminho de busca desce de um nó, #u#, no nível #r# diminuímos o comprimento da aresta deixando #u# neste nível.  Também checamos se #u.next[r]# é o elemento de classificação #i# e, caso seja, o tiramos da lista neste nível. Um exemplo é mostrado na \figref{skiplist-removei}.
+operação #remove(i)# em uma #SkiplistList# deveria ser óbvia.  Seguimos o caminho de busca para o nó na posição #i#. Cada vez que o caminho de busca desce de um nó, #u#, no nível #r# diminuímos o comprimento da aresta deixando #u# neste nível.  Também checamos se #u.next[r]# é o elemento de posição #i# e, caso seja, o tiramos da lista neste nível. Um exemplo é mostrado na \figref{skiplist-removei}.
 \begin{figure}
 	\begin{center}
 		\includegraphics[width=\ScaleIfNeeded]{figs/skiplist-removei}
@@ -288,7 +287,7 @@ básicas sobre lançamentos de moedas.
 	 1 & \mbox{se a moeda for lançada $i$ ou mais vezes} 
 	 \end{array}\right.
 	 \]
-	 Note que $I_i=1$ se e apenas se, o primeiro $i-1$ lançamento da moeda der coroa,
+	 Note que $I_i=1$ se e apenas se, os primeiros $i-1$ lançamentos da moeda derem coroa,
 	 então $\E[I_i]=\Pr\{I_i=1\}=1/2^{i-1}$.  Observe que $T$, o número total de lançamentos da moeda, pode ser escrito como $T=\sum_{i=1}^{\infty} I_i$.
 	 Portanto,
   \begin{align*}

@@ -1,0 +1,512 @@
+\documentclass{beamer}
+\newcommand{\tituloaula}{\'{A}rvore Bin\'aria Aleat\'oria de Busca}
+\usepackage{disciplina}
+
+\newcommand{\figlabel}[1]{\label{fig:#1}}
+\newcommand{\eq}{=}
+\input{./estruturasDeDados.tex}
+% Titulo
+\title[\sc{Estruturas de Informação I}]{Estruturas de Informação I - Aula 18}
+\subtitle{\tituloaula}
+ 
+\begin{document}
+
+\begin{frame}
+  \titlepage 
+\end{frame}
+
+\begin{frame}
+	\frametitle{Resumo}
+	\tableofcontents
+\end{frame}
+
+\section{EI14 -  \tituloaula}
+\begin{frame}
+	\LARGE{\alert{\tituloaula}}
+	\normalsize
+	
+Uma árvore binária de busca usa a aleatoriedade para conseguir $O(\log n)$ de tempo esperado para todas as operações.	
+	
+\end{frame}
+
+\begin{frame}
+\frametitle{Considere as duas árvores binárias de busca mostradas abaixo, de quantas maneiras diferentes podemos montá-las?}
+\begin{figure}
+  \begin{center}
+    \begin{tabular}{cc}
+      \includegraphics[scale=0.90909,scale=0.95]{../Book-datastructures/ods/latex/figs/bst-path} &
+      \includegraphics[scale=0.90909,scale=0.95]{../Book-datastructures/ods/latex/figs/bst-balanced}
+    \end{tabular}
+  \end{center}
+  \caption{Duas árvores binárias de busca com inteiros $0,\ldots,14$.}
+  \figlabel{rbs-lvc}
+\end{figure}
+\end{frame}
+\begin{frame}
+\frametitle{}
+A árvore da esquerda ocorre se começamos com uma \textit{Árvore Binária de Busca} vazia e acrescentamos a sequência:
+\[
+    \langle 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14 \rangle \enspace .
+\]
+\begin{figure}
+  \begin{center}
+      \includegraphics[scale=0.90909,scale=0.95]{../Book-datastructures/ods/latex/figs/bst-path} 
+  \end{center}
+  \caption{Árvore binária de busca com inteiros $0,\ldots,14$.}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Árvore de Busca}
+A árvore da direita pode ser criada pela sequência:
+\[
+    \langle 7,3,11,1,5,9,13,0,2,4,6,8,10,12,14 \rangle  \enspace .
+\]
+\begin{figure}
+  \begin{center}
+      \includegraphics[scale=0.90909,scale=0.95]{../Book-datastructures/ods/latex/figs/bst-balanced}
+  \end{center}
+  \caption{Árvore binária de busca com inteiros $0,\ldots,14$.}
+  \figlabel{rbs-lvc}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+ou
+\[
+    \langle 7,3,1,5,0,2,4,6,11,9,13,8,10,12,14 \rangle  \enspace ,
+\]
+\begin{figure}
+  \begin{center}
+      \includegraphics[scale=0.90909,scale=0.95]{../Book-datastructures/ods/latex/figs/bst-balanced}
+  \end{center}
+  \caption{Árvore binária de busca com inteiros $0,\ldots,14$.}
+  \figlabel{rbs-lvc}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+
+ou
+\[
+    \langle 7,3,1,11,5,0,2,4,6,9,13,8,10,12,14 \rangle \enspace .
+\] 
+\begin{figure}
+  \begin{center}
+      \includegraphics[scale=0.90909,scale=0.95]{../Book-datastructures/ods/latex/figs/bst-balanced}
+  \end{center}
+  \caption{Árvore binária de busca com inteiros $0,\ldots,14$.}
+  \figlabel{rbs-lvc}
+\end{figure}
+
+\pause
+De fato, existem $21,964,800$ sequências que geram a árvore da direita e somente uma que gera a árvore da esquerda.
+
+\end{frame}
+\begin{frame}
+$ \#modos = $ 
+
+( $\#$intercalações entre $S_L$ e $S_R$)X($\#$Possíveis $S_L$)X($\#$Possíveis $S_R$)
+\end{frame}
+\begin{frame}
+\frametitle{Mais provável}
+O exemplo nos dá uma evidência factual que, se escolhemos
+uma permutação aleatória de 0, . . . , 14, e inserimos em uma árvore binária,
+é mais provável obtermos uma árvore balanceada que obtermos uma árvore totalmente desbalanceada.
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+
+Uma \emph{árvore binária aleatória de busca}
+de tamanho $n$ é obtida do seguinte modo:
+  
+Considere uma permutação aleatória, $x_0,\ldots,x_{n-1}$,
+de inteiros $0,\ldots,n-1$ e insira seus elementos, um a um,
+em uma ArvoreBinariaDeBusca.
+\end{frame}
+
+\begin{frame}
+\frametitle{Permutação aleatória}
+Por \emph{permutação aleatória}
+queremos dizer
+que cada possível $n!$ permutação (ordenação) de $0,\ldots,n-1$
+é igualmente provável, assim como que a probabilidade de obter qualquer permutação particular é $1/n!$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Busca}
+
+Uma árvore binária aleatória de busca pode ser construída em um tempo $O(n\log n)$.
+Em uma árvore binária aleatória de busca, a operação $find(x)$ tem um tempo esperado de $O(\log n)$.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{$Treap$: Uma árvore Binária de Busca Aleatorizada}
+O problema com as árvores binárias aleatórias de buscas é, é claro, que elas não são
+dinâmicas.  Elas não suportam as operações $add(x)$ ou $remove(x)$
+necessárias
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Prioridade}
+Um nó em uma $Treap$ é como um nó em uma $ArvoreBinariaDeBusca$ no sentido que
+ele tem um valor para o dado, $x$, porém ele também tem uma \emph{prioridade},
+numérica única, $p$, que é associada aleatoriamente:
+\end{frame}
+
+\begin{frame}
+Adicionalmente, para ser um árvore binária de busca, os nós de uma $Treap$
+também obedecem à \emph{propriedade de heap}:
+\begin{itemize}
+\item (Propriedade de Heap)  Para cada nó $u$, exceto a raiz, 
+      $u.pai.p < u.p$.
+\end{itemize}
+em outras palavras, cada nó possui uma prioridade menor que aquelas de seus dois filhos.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Nó com prioridade}
+\begin{figure}
+  \begin{center}
+    \includegraphics{../Book-datastructures/ods/latex/figs/treap}
+  \end{center}
+  \caption[Uma Treap]{Um exemplo de uma $Treap$ contendo os inteiros
+  $0,\ldots,9$. Cada nó, $u$, é ilustrado como uma caixa contendo $u.x,u.p$.}
+  \figlabel{treap}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{heap e busca}
+As condições de heap e de árvore binária de busca juntas garantem que, uma vez
+que a chave ($x$) e a prioridade ($p$) de cada nó seja definido, o formato
+da $Treap$ está completamente determinado. 
+\end{frame}
+
+\begin{frame}
+\frametitle{Propriedade de heap}
+A propriedade de heap nos diz
+que o nó com prioridade mínima tem que ser a raiz, $r$, da $Treap$.
+A propriedade da árvore binária de busca nos diz que todos os nós com chaves menores
+que $r.x$ são armazenados na subárvore com raiz em $r.esquerdo$ e todos os nós com
+chaves maiores que $r.x$ são armazenados na subárvore com raiz em $r.direito$.
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+Um ponto importante sobre os valores de prioridade em uma $Treap$ é que eles
+são únicos e atribuídos aleatoriamente.  Por conta disso, existem dois modos
+equivalentes de pensar sobre uma $Treap$.  Como definido acima, uma
+$Treap$ obedece às propriedades do heap e da árvore binária de busca.  Alternativamente,
+podemos pensar uma $Treap$ como uma $ArvoreBinariaDeBusca$ cujos nós
+sejam inseridos em uma ordem crescente de prioridade.
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+A $Treap$ abaixo pode ser obtida com a inserção da sequência de valores $(x,p)$
+\[
+  \langle
+   (3,1), (1,6), (0,9), (5,11), (4,14), (9,17), (7,22), (6,42), (8,49), (2,99)
+  \rangle
+\]
+\begin{figure}
+  \begin{center}
+    \includegraphics{../Book-datastructures/ods/latex/figs/treap}
+  \end{center}
+  \caption[Uma Treap]{Um exemplo de uma $Treap$ contendo os inteiros
+  $0,\ldots,9$.}
+  \figlabel{treap}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operações add e delete}
+O benefício real de uma $Treap$ é que ela pode 
+suportar as operações $add(x)$ e $delete(x)$.  Para
+fazer isto, ela precisa executar rotações de modo a manter 
+a propriedade de heap. 
+\end{frame}
+
+\begin{frame}
+\frametitle{Rotação}
+Uma \emph{rotação}
+\index{rotação}%
+em uma árvore binária de busca
+é uma modificação local que pega um pai $u$ de um nó $w$
+e torna $w$ o pai de $u$, enquanto preserva a propriedade da árvore binária de busca.
+ Rotações vêm com dois sabores: \emph{à esquerda} or \emph{à direita}
+dependendo se $w$ é um filho direito ou esquerdo de $u$, respectivamente.
+\end{frame}
+
+\begin{frame}[shrink]
+\frametitle{Rotações}
+\begin{figure}
+  \begin{center}
+     \includegraphics[width=\textwidth]{../Book-datastructures/ods/latex/figs/rotation}
+  \end{center}
+  \caption{Rotações à esquerda e à direita em uma árvore binária de busca.}
+  \figlabel{rotations}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+O código que implementa isto deve prever essas duas possibilidades e
+tomar cuidado com um caso limite (quando $u$ é a raiz), deste modo, o código real
+é um pouco mais longo que a figura poderia levar um leitor a crer:
+\end{frame}
+
+\begin{frame}[shrink]
+\frametitle{Rotate left}
+\begin{flushleft}
+\hspace*{1em}def \ensuremath{\mathrm{rotate\_left}(\ensuremath{\mathit{u}})}\\
+\hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{w}} \gets  \ensuremath{\ensuremath{\mathit{u}}.right}}\\
+\hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{w}}.\ensuremath{parent} \gets  \ensuremath{\ensuremath{\mathit{u}}.parent}}\\
+\hspace*{1em} \hspace*{1em} {\color{black} \textbf{if}} \ensuremath{\ensuremath{\mathit{w}}.\ensuremath{\mathit{parent}} \ne nil} {\color{black} \textbf{then}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} {\color{black} \textbf{if}} \ensuremath{\ensuremath{\mathit{w}}.\ensuremath{\mathit{parent}}.\ensuremath{\mathit{left}} \eq u} {\color{black} \textbf{then}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{w}}.\ensuremath{\ensuremath{\mathit{parent}}.left} \gets  \ensuremath{w}}\\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} {\color{black} \textbf{else}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{w}}.\ensuremath{\ensuremath{\mathit{parent}}.right} \gets  \ensuremath{w}}\\
+\hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{right} \gets  \ensuremath{\ensuremath{\mathit{w}}.left}}\\
+\hspace*{1em} \hspace*{1em} {\color{black} \textbf{if}} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{right}} \ne nil} {\color{black} \textbf{then}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\ensuremath{\mathit{right}}.parent} \gets  \ensuremath{u}}\\
+\hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{parent} \gets  \ensuremath{w}}\\
+\hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{w}}.\ensuremath{left} \gets  \ensuremath{u}}\\
+\hspace*{1em} \hspace*{1em} {\color{black} \textbf{if}} \ensuremath{\ensuremath{\mathit{u}} \eq r} {\color{black} \textbf{then}}  \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{r}} \gets  \ensuremath{w}}\\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{r}}.\ensuremath{parent} \gets  \ensuremath{nil}}\\
+\end{flushleft}
+
+\end{frame}
+
+\begin{frame}[shrink]
+\frametitle{Rotate Right}
+\begin{flushleft}
+\hspace*{1em} \ensuremath{\mathrm{rotate\_right}(\ensuremath{\mathit{u}})}\\
+\hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{w}} \gets  \ensuremath{\ensuremath{\mathit{u}}.left}}\\
+\hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{w}}.\ensuremath{parent} \gets  \ensuremath{\ensuremath{\mathit{u}}.parent}}\\
+\hspace*{1em} \hspace*{1em} {\color{black} \textbf{if}} \ensuremath{\ensuremath{\mathit{w}}.\ensuremath{\mathit{parent}} \ne nil} {\color{black} \textbf{then}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} {\color{black} \textbf{if}} \ensuremath{\ensuremath{\mathit{w}}.\ensuremath{\mathit{parent}}.\ensuremath{\mathit{left}} \eq u} {\color{black} \textbf{then}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{w}}.\ensuremath{\ensuremath{\mathit{parent}}.left} \gets  \ensuremath{w}}\\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} {\color{black} \textbf{else}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{w}}.\ensuremath{\ensuremath{\mathit{parent}}.right} \gets  \ensuremath{w}}\\
+\hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{left} \gets  \ensuremath{\ensuremath{\mathit{w}}.right}}\\
+\hspace*{1em} \hspace*{1em} {\color{black} \textbf{if}} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{left}} \ne nil} {\color{black} \textbf{then}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\ensuremath{\mathit{left}}.parent} \gets  \ensuremath{u}}\\
+\hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{parent} \gets  \ensuremath{w}}\\
+\hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{w}}.\ensuremath{right} \gets  \ensuremath{u}}\\
+\hspace*{1em} \hspace*{1em} {\color{black} \textbf{if}} \ensuremath{\ensuremath{\mathit{u}} \eq r} {\color{black} \textbf{then}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{r}} \gets  \ensuremath{w}}\\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{r}}.\ensuremath{parent} \gets  \ensuremath{nil}}\\
+\end{flushleft}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Profundidade de u}
+Em termos da estrutura de dados Treap, a propriedade mais importante de uma
+rotação é que a profundidade de \ensuremath{\ensuremath{\ensuremath{\mathit{w}}}} diminui de um enquanto a profundidade de \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}}
+aumenta de um. 
+\end{frame}
+
+\begin{frame}
+\frametitle{Usando rotações, podemos implementar a operação \ensuremath{\ensuremath{\mathrm{add}(\ensuremath{\mathit{x}})}} como se segue:}
+
+Criamos um novo nó, \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}}, atribuímos \ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{x}\gets \ensuremath{x}}}, e escolhemos um valor aleatório
+para \ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{p}}}}.  Em seguida, inserimos \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}} usando o algoritmo usual \ensuremath{\ensuremath{\mathrm{add}(\ensuremath{\mathit{x}})}} 
+para uma ArvoreBinariaDeBusca, assim, \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}} agora é uma nova folha de Treap.
+Neste ponto, nossa Treap satisfaz a propriedade da árvore binária de busca,
+mas não necessariamente a propriedade de heap.  Particularmente, pode ser 
+o caso em que \ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{pai}}.\ensuremath{\mathit{p}} > \ensuremath{\mathit{u}}.\ensuremath{\mathit{p}}}}.  Se este é o caso, então executamos uma
+rotação no nó \ensuremath{\ensuremath{\ensuremath{\mathit{w}}}}=\ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{pai}}}} de modo que \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}} se torne o pai de \ensuremath{\ensuremath{\ensuremath{\mathit{w}}}}.
+Se \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}} continua a violar a propriedade de heap, teremos que repetir isso, 
+diminuindo a profundidade de \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}} por um a cada vez, até
+que \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}} se torne a raiz ou $\ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{pai}}.\ensuremath{\mathit{p}}}} < \ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{p}}}}$.
+
+\end{frame}
+
+\begin{frame}[shrink]
+\frametitle{Add}
+\begin{flushleft}
+\hspace*{1em} \ensuremath{\mathrm{add}(\ensuremath{\mathit{x}})}\\
+\hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{u}} \gets  \ensuremath{\mathrm{new\_node}(\ensuremath{\mathit{x}})}}\\
+\hspace*{1em} \hspace*{1em} {\color{black} \textbf{if}} \ensuremath{\mathrm{add\_node}(\ensuremath{\mathit{u}})} {\color{black} \textbf{then}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\mathrm{bubble\_up}(\ensuremath{\mathit{u}})}\\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} {\color{black} \textbf{return}} \ensuremath{\ensuremath{\mathit{true}}}\\
+\hspace*{1em} \hspace*{1em} {\color{black} \textbf{return}} \ensuremath{\ensuremath{\mathit{false}}}\\
+\ \\
+\hspace*{1em} \ensuremath{\mathrm{bubble\_up}(\ensuremath{\mathit{u}})}\\
+\hspace*{1em} \hspace*{1em} {\color{black} \textbf{while}} \ensuremath{\ensuremath{\mathit{u}} \ne r} {\color{black} \textbf{and}} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{parent}}.\ensuremath{\mathit{p}} > \ensuremath{\mathit{u}}.p} {\color{black} \textbf{do}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} {\color{black} \textbf{if}} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{parent}}.\ensuremath{\mathit{right}} \eq u} {\color{black} \textbf{then}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\mathrm{rotate\_left}(\ensuremath{\mathit{u}}.\ensuremath{\mathit{parent}})}\\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} {\color{black} \textbf{else}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\mathrm{rotate\_right}(\ensuremath{\mathit{u}}.\ensuremath{\mathit{parent}})}\\
+\hspace*{1em} \hspace*{1em} {\color{black} \textbf{if}} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{parent}} \eq nil} {\color{black} \textbf{then}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{r}} \gets  \ensuremath{u}}\\
+\end{flushleft}
+ 
+\end{frame}
+
+\begin{frame}[shrink]
+\frametitle{Exemplo}
+\begin{figure}
+  \begin{center}
+  \includegraphics{../Book-datastructures/ods/latex/figs-python/treap-insert-a} \\
+  \end{center}
+  \caption[Inserindo em uma Treap]{Inserindo o valor 1.5 na Treap.}
+  \figlabel{treap-add}
+\end{figure}
+\end{frame}
+
+\begin{frame}[shrink]
+\frametitle{Exemplo}
+\begin{figure}
+  \begin{center}
+  \includegraphics{../Book-datastructures/ods/latex/figs-python/treap-insert-b} \\
+  \end{center}
+  \caption[Inserindo em uma Treap]{Inserindo o valor 1.5 na Treap.}
+  \figlabel{treap-add}
+\end{figure}
+\end{frame}
+
+\begin{frame}[shrink]
+\frametitle{Exemplo}
+\begin{figure}
+  \begin{center}
+  \includegraphics{../Book-datastructures/ods/latex/figs-python/treap-insert-c} \\
+  \end{center}
+  \caption[Inserindo em uma Treap]{Inserindo o valor 1.5 na Treap.}
+  \figlabel{treap-add}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tempo de execução de add(x)}
+O tempo de execução de uma operação \ensuremath{\ensuremath{\mathrm{add}(\ensuremath{\mathit{x}})}} é dado pelo tempo 
+que leva para seguir o caminho de busca para \ensuremath{\ensuremath{\ensuremath{\mathit{x}}}} mais o número de rotações
+executadas para mover o nó recém adicionado, \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}}, na sua localização correta
+na Treap. 
+\end{frame}
+
+\begin{frame}
+\frametitle{Comprimento esperado do caminho de busca}
+o comprimento esperado do
+caminho de busca é no máximo $2\ln \ensuremath{\ensuremath{\ensuremath{\mathit{n}}}}+O(1)$.  Além disso, cada rotação
+diminui a profundidade de \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}}.   Esse processo para se \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}} se torna a raiz, assim
+o número esperado de rotações não pode ultrapassar o comprimento esperado
+do caminho de busca.  Então, o tempo esperado de execução da operação \ensuremath{\ensuremath{\mathrm{add}(\ensuremath{\mathit{x}})}}
+em uma Treap é $O(\log \ensuremath{\ensuremath{\ensuremath{\mathit{n}}}})$. 
+\end{frame}
+\begin{frame}
+\frametitle{Remove(x)}
+A operação \ensuremath{\ensuremath{\mathrm{remove}(\ensuremath{\mathit{x}})}} em uma Treap é o oposto da operação \ensuremath{\ensuremath{\mathrm{add}(\ensuremath{\mathit{x}})}}.
+Procuramos pelo nó, \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}}, contendo \ensuremath{\ensuremath{\ensuremath{\mathit{x}}}}, então executamos
+rotações para mover \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}} para baixo até que ele se torne uma folha, e então separamos
+\ensuremath{\ensuremath{\ensuremath{\mathit{u}}}} da Treap.
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+Para mover \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}} para baixo, podemos
+executar ou uma rotação para esquerda ou uma pra direita em \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}}, que vai substituir \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}}
+por \ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{direito}}}} ou \ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{esquerdo}}}}, respectivamente.
+\end{frame}
+\begin{frame}
+\frametitle{Escolha}
+A escolha é feita de acordo com a primeira situação seguinte que aparece:
+\begin{enumerate}
+\item Se \ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{esquerdo}}}} e \ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{direito}}}} são ambos \ensuremath{\ensuremath{\ensuremath{\mathit{nil}}}}, então \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}} é uma folha e nenhuma rotação é feita.
+\item Se \ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{esquerdo}}}} (ou \ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{direito}}}}) é \ensuremath{\ensuremath{\ensuremath{\mathit{nil}}}}, então executamos uma rotação à direita (ou à esquerda, respectivamente) em \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}}.
+\item Se $\ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{esquerdo}}.\ensuremath{\mathit{p}}}} < \ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{direito}}.\ensuremath{\mathit{p}}}}$ (ou $\ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{esquerdo}}.\ensuremath{\mathit{p}}}} > \ensuremath{\ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{direito}}.\ensuremath{\mathit{p}}}})$, então executamos uma rotação à direita (ou rotação à esquerda, respectivamente) em \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}}.
+\end{enumerate}
+Essas três regras asseguram que a Treap não se torne desconectada e que a 
+propriedade de heap seja restabelecida uma vez que \ensuremath{\ensuremath{\ensuremath{\mathit{u}}}} seja removido.
+\end{frame}
+
+\begin{frame}[shrink]
+\frametitle{Remove(x)}
+\begin{flushleft}
+\hspace*{1em} \ensuremath{\mathrm{remove}(\ensuremath{\mathit{x}})}\\
+\hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{u}} \gets  \ensuremath{\mathrm{find\_last}(\ensuremath{\mathit{x}})}}\\
+\hspace*{1em} \hspace*{1em} {\color{black} \textbf{if}} \ensuremath{\ensuremath{\mathit{u}} \ne nil} {\color{black} \textbf{and}} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{x}} \eq x} {\color{black} \textbf{then}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\mathrm{trickle\_down}(\ensuremath{\mathit{u}})}\\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\mathrm{splice}(\ensuremath{\mathit{u}})}\\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} {\color{black} \textbf{return}} \ensuremath{\ensuremath{\mathit{true}}}\\
+\hspace*{1em} \hspace*{1em} {\color{black} \textbf{return}} \ensuremath{\ensuremath{\mathit{false}}}\\
+\ \\
+\hspace*{1em} \ensuremath{\mathrm{trickle\_down}(\ensuremath{\mathit{u}})}\\
+\hspace*{1em} \hspace*{1em} {\color{black} \textbf{while}} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{left}} \ne nil} {\color{black} \textbf{or}} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{right}} \ne nil} {\color{black} \textbf{do}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} {\color{black} \textbf{if}} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{left}} \eq nil} {\color{black} \textbf{then}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\mathrm{rotate\_left}(\ensuremath{\mathit{u}})}\\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} {\color{black} \textbf{else}} {\color{black} \textbf{if}} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{right}} \eq \ensuremath{\mathit{nil}}}\\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\mathrm{rotate\_right}(\ensuremath{\mathit{u}})}\\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} {\color{black} \textbf{else}} {\color{black} \textbf{if}} \ensuremath{\ensuremath{\mathit{u}}.\ensuremath{\mathit{left}}.\ensuremath{\mathit{p}} < \ensuremath{\mathit{u}}.\ensuremath{\mathit{right}}.\ensuremath{\mathit{p}}}\\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\mathrm{rotate\_right}(\ensuremath{\mathit{u}})}\\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} {\color{black} \textbf{else}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\mathrm{rotate\_left}(\ensuremath{\mathit{u}})}\\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} {\color{black} \textbf{if}} \ensuremath{\ensuremath{\mathit{r}} \eq u} {\color{black} \textbf{then}} \\
+\hspace*{1em} \hspace*{1em} \hspace*{1em} \hspace*{1em} \ensuremath{\ensuremath{\mathit{r}} \gets  \ensuremath{\ensuremath{\mathit{u}}.parent}}\\
+\end{flushleft}
+
+\end{frame}
+
+\begin{frame}[shrink]
+\frametitle{Exemplo}
+\begin{figure}
+  \begin{center}
+  \includegraphics{../Book-datastructures/ods/latex/figs-python/treap-delete-a} 
+  \end{center}
+  \caption[Removendo de uma treap]{Removendo o valor 9 da Treap}
+  \figlabel{treap-remove}
+\end{figure}
+\end{frame}
+
+\begin{frame}[shrink]
+\frametitle{Exemplo}
+\begin{figure}
+  \begin{center}
+  \includegraphics{../Book-datastructures/ods/latex/figs-python/treap-delete-b} 
+  \end{center}
+  \caption[Removendo de uma treap]{Removendo o valor 9 da Treap.}
+  \figlabel{treap-remove}
+\end{figure}
+\end{frame}
+
+\begin{frame}[shrink]
+\frametitle{Exemplo}
+\begin{figure}
+  \begin{center}
+  \includegraphics{../Book-datastructures/ods/latex/figs-python/treap-delete-c}
+  \end{center}
+  \caption[Removendo de uma treap]{Removendo o valor 9 da Treap.}
+  \figlabel{treap-remove}
+\end{figure}
+\end{frame}
+
+\begin{frame}[shrink]
+\frametitle{Exemplo}
+\begin{figure}
+  \begin{center}
+  \includegraphics{../Book-datastructures/ods/latex/figs-python/treap-delete-d} 
+  \end{center}
+  \caption[Removendo de uma treap]{Removendo o valor 9 da Treap.}
+  \figlabel{treap-remove}
+\end{figure}
+\end{frame}
+\begin{frame}
+\frametitle{Exercício}
+Implementar uma árvore aleatória binária de busca.
+\end{frame}
+
+
+\begin{frame}
+FIM
+\end{frame}
+\end{document}
