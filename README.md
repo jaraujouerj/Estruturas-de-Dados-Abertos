@@ -5,9 +5,9 @@ Versões em português:
 
 Java: http://www.araujo.eng.uerj.br/opendata/ods-ptbr-java.pdf
 
-C++: http://www.araujo.eng.uerj.br/opendata/ods-ptbr-python.pdf
+C++: http://www.araujo.eng.uerj.br/opendata/ods-ptbr-cpp.pdf
 
-Pseudo-código: http://www.araujo.eng.uerj.br/opendata/ods-ptbr-cpp.pdf
+Pseudo-código: http://www.araujo.eng.uerj.br/opendata/ods-ptbr-python.pdf
 
 Este é um trabalho colaborativo.
 Gostaria de agradecer aos meus alunos do curso de Estruturas de Informação, da Faculdade de Engenharia, curso de Engenharia de Sistemas e Computação, Universidade do Estado do Rio de Janeiro que gentilmente me auxiliaram na tradução deste livro. 
