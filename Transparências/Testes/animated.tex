@@ -1,0 +1,21 @@
+\documentclass{article}
+\usepackage{animate}
+\usepackage{tikz}
+\usetikzlibrary{lindenmayersystems}
+\pgfdeclarelindenmayersystem{A}{%
+	\symbol{F}{\pgflsystemstep=0.6\pgflsystemstep\pgflsystemdrawforward}
+	\rule{A->F[+A][-A]}
+}
+
+\begin{document}
+	\begin{animateinline}[controls,autoplay,loop]{2}
+		\multiframe{8}{n=1+1}{
+			\begin{tikzpicture}[scale=10,rotate=90]
+			\draw (-.1,-.2) rectangle (.4,0.2);
+			\draw [blue,opacity=0.5,line width=0.1cm,line cap=round]
+			l-system [l-system={A,axiom=A,order=\n,angle=45,step=0.25cm}];
+			\end{tikzpicture}    
+		}
+	\end{animateinline}
+\end{document}
+s
