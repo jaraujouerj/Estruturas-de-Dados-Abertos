@@ -248,7 +248,7 @@ elementos podem ser adicionados na frente da sequência ou na parte de trás da
 sequência. Os nomes das operações de #Deque# são auto-explicativos:
 #addFirst(x)#,#removeFirst()#, #addLast(x)# e #removeLast()#. Vale a pena notar
 que uma #Pilha# pode ser implementada usando 
-apenas #addFirst(x)# e #removeFirst()#, enquanto uma fila FIFO pode ser
+apenas #addLast(x)# e #removeLast()#, enquanto uma fila FIFO pode ser
 implementada usando #addLast(x)# e #removeFirst()#.
 
 \subsection{A interface de #Lista#: sequências lineares}
@@ -271,7 +271,7 @@ de valores. A interface #Lista# inclui as seguintes operações:
 	$j\in\{#n#-1,\ldots,#i#\}$, incrementa #n#, e faz $#x#_i=#x#$
 	\item #remove(i)# remove o valor $#x#_{#i#}$, deslocando
 	$#x#_{#i+1#},\ldots,#x#_{#n#-1}$; \\ 
-	Set $#x#_{j}=#x#_{j+1}$, para todo
+	Faz $#x#_{j}=#x#_{j+1}$, para todo
 	$j\in\{#i#,\ldots,#n#-2\}$ e decrementa #n#
 \end{enumerate}
 Observe que essas operações são mais que suficientes para implementar a
