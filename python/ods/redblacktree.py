@@ -63,6 +63,7 @@ class RedBlackTree(BinarySearchTree):
         while u.colour == red:
             if u == self.r:
                 u.colour = black
+                return
             w = u.parent
             if w.left.colour == black:
                 self.flip_left(w)
