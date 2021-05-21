@@ -12,7 +12,7 @@ razões para a popularidade das árvores rubro-negras:
 \begin{enumerate}
 	\item Uma árvore rubro-negra com #n# elementos tem altura de no máximo $2\log #n#$.
 	\item As operações #add(x)# e #remove(x)# em uma árvore rubro-negra são executadas em
-	temp $O(\log #n#)$ no \emph{pior caso}.
+	tempo $O(\log #n#)$ no \emph{pior caso}.
 	\item O número de rotações amortizadas realizadas durante uma operação #add(x)#
 	ou #remove(x)# é constante.
 \end{enumerate}
@@ -82,7 +82,7 @@ a propriedade da altura, mas poderia violar a propriedade do grau; se #w#
 tinha quatro filhos antes de adicionar #u#, então #w# agora tem cinco filhos.
 Neste caso, nós \emph{dividimos}
 \index{divisão}%
-#w# em dois nós, #w# and #w#', tendo
+#w# em dois nós, #w# e #w#', tendo
 dois e três filhos, respectivamente.
 Mas agora #w#' não tem pai,
 então, recursivamente, fazemos #w#' um filho do pai de #w#. Novamente, isso pode
@@ -158,7 +158,7 @@ o processo de remoção de uma folha termina após um máximo de $\log #n#$ pass
 Uma árvore rubro-negra é uma árvore binária de busca na qual
 cada nó, #u#, tem uma \emph{cor}
 \index{cor}%
-que é \emph{vermelha} or \emph{preta}. O vermelho é
+que é \emph{vermelha} ou \emph{preta}. O vermelho é
 representado pelo valor $0$ e preto pelo valor $1$.
 \index{nó vermelho}%
 \index{nó preto}%
@@ -265,9 +265,9 @@ dois filhos pretos. Um exemplo disso é mostrado em \figref{rb-split}.
 			\includegraphics[scale=0.90909]{figs/rb-split-3} \\
 		\end{tabular}
 	\end{center}
-	\caption[Simulando uma árvore 2-4] {Simulando uma operação de divisão em árvore 2-4
+	\caption[Simulando uma árvore 2-4] {Simulando uma operação de divisão na árvore 2-4
 		durante uma adição em uma árvore rubro-negra. (Isto simula a adição em
-		árvore 2-4 mostrada em \figref{twofour-add}.)}
+		árvore 2-4 mostrada na \figref{twofour-add}.)}
 	\figlabel{rb-split}
 \end{figure}
 
@@ -286,7 +286,7 @@ fazer uma simulação direta de uma árvore 2-4 através de uma
 árvore 2-4 subjacente e trabalhar diretamente para manter as propriedades
 da árvore rubro-negra.
 
-\subsection{Árvores Rubro-Negras inclinada para a esquerda}
+\subsection{Árvore Rubro-Negra inclinada para a esquerda}
 
 \index{arvore@árvore rubro-negra}%
 \index{arvore rubro-negra@árvore rubro-negra inclinada para a esquerda}%
@@ -298,7 +298,7 @@ Aqui, implementamos a estrutura de dados que chamamos de #RedBlackTree#.
 \index{RedBlackTree@#RedBlackTree#}%
 Esta estrutura implementa uma variante particular das árvores rubro-negras que
 satisfaz uma propriedade adicional:
-\begin{prp}[left-leaning]\prplabel{left-leaning}\prplabel{redblack-last}
+\begin{prp}[inclinada para a esquerda]\prplabel{inclinada para a esquerda}\prplabel{redblack-last}
 	\index{propriedade!inclinada para a esquerda}%
 	Em qualquer nó #u#, se #u.left# for preto, então #u.right# é preto.
 \end{prp}
@@ -309,7 +309,7 @@ nó vermelho no caminho mais à direita.
 O motivo para manter a propriedade inclinada-para-esquerda é que ela reduz
 o número de casos encontrados ao atualizar a árvore durante #add(x)#
 e #remove(x)# operações. Em termos de árvores 2-4, isso implica que cada
-árvores 2-4 tem uma representação única: um nó de grau dois torna-se
+árvore 2-4 tem uma representação única: um nó de grau dois torna-se
 um nó preto com dois filhos pretos. Um nó de grau três torna-se
 um nó preto cujo filho esquerdo é vermelho e cujo filho direito é preto.
 Um nó de grau quatro torna-se um nó preto com dois filhos vermelhos.
@@ -407,7 +407,7 @@ A operação #remove(x)# na #RedBlackTree# é a mais complicada para
 implementar, e isso é verdade para todas as variantes conhecidas de árvore rubro-negra.
 Assim como a operação #remove(x)# em uma \texttt{ÁrvoreBináriaDeBusca},
 esta operação resume-se a encontrar um nó #w# com apenas um filho,
-#u#, e retirar #w# da árvore por fazer #w.parent# adotar #u#.
+#u#, e retirar #w# da árvore fazendo #w.parent# adotar #u#.
 
 O problema com isso é que, se #w# for preto, então a propriedade altura-preta
 agora será violada em #w.parent#. Podemos evitar esse problema
@@ -616,7 +616,7 @@ recorrência de Fibonacci
 \[
 F(h) = F(h-1) + F(h-2)
 \]
-com casos base $F(0)=1$ and $F(1)=1$. Isso significa que $F(h)$ é aproximadamente
+com casos base $F(0)=1$ e $F(1)=1$. Isso significa que $F(h)$ é aproximadamente
 $\varphi^h/\sqrt{5}$, onde $\varphi=(1+\sqrt{5})/2\approx1.61803399$ é o
 \emph{coeficiente de ouro}. (Mais precisamente, $|\varphi^h/\sqrt{5} - F(h)|\le 1/2$.)
 Argumentando como na prova de \lemref{twofour-height}, isso implica
@@ -634,16 +634,16 @@ diferem em dois. Veja \figref{avl-rebalance}.
 		\includegraphics[scale=0.90909]{figs/avl-rebalance}
 	\end{center}
 	\caption{Reequilibrando em uma árvore AVL. No máximo, duas rotações são necessárias
-		para converter um nó cujas subárvores tenham uma altura de $h$ and $h+2$ em um nó
+		para converter um nó cujas subárvores tenham uma altura de $h$ e $h+2$ em um nó
 		cujas subárvores têm uma altura de no máximo $h+1$.}
 	\figlabel{avl-rebalance}
 \end{figure}
 
 As variantes de Andersson e de Sedgewick da árvore rubro-negra e as árvores AVL 
-são mais simples de implementar do que a estrutura #c# 
+são mais simples de implementar do que a estrutura #RedBlackTree# 
 definida aqui. Infelizmente, nenhuma delas pode garantir que o tempo amortizado 
-gasto rebalanceamento é $O(1)$ por atualização. Em particular, não há analogias
-de \thmref{redblack-amortized} para essas estruturas.
+gasto rebalanceamento é $O(1)$ por atualização. Em particular, não há análogo
+ao \thmref{redblack-amortized} para essas estruturas.
 
 \begin{figure}
 	\centering{\includegraphics[scale=0.90909]{figs/redblack-example}}
@@ -652,23 +652,23 @@ de \thmref{redblack-amortized} para essas estruturas.
 \end{figure}
 
 \begin{exc}
-	Ilustre a árvore 2-4 que corresponde à #RedBlackTree# em
+	Ilustre a árvore 2-4 que corresponde à #RedBlackTree# da
 	\figref{redblack-example2}.
 \end{exc}
 
 \begin{exc}
 	Ilustre a adição de 13, depois de 3.5, e depois de 3.3 na #RedBlackTree#
-	em \figref{redblack-example2}.
+	da \figref{redblack-example2}.
 \end{exc}
 
 \begin{exc}
-	Ilustre a remoção de 11, depois de 9, e depois de 5 na #RedBlackTree# em
+	Ilustre a remoção de 11, depois de 9, e depois de 5 na #RedBlackTree# da
 	\figref{redblack-example2}.
 \end{exc}
 
 \begin{exc}
-	Mostre que, para valores arbitrariamente grandes de #n#, há vermelho-preto
-	árvores com #n# nós com altura de $2\log #n#-O(1)$.
+	Mostre que, para valores arbitrariamente grandes de #n#, há árvores rubro-negras
+	 com #n# nós com altura de $2\log #n#-O(1)$.
 \end{exc}
 
 \begin{exc}
@@ -679,7 +679,7 @@ de \thmref{redblack-amortized} para essas estruturas.
 
 \begin{exc}
 	Mostre que, para valores arbitrariamente grandes de #n#, existem sequências
-	de operações #add(x)# e #remove(x)# que ocasionam árvores vermelho-pretas
+	de operações #add(x)# e #remove(x)# que ocasionam árvores rubro-negras
 	com #n# nós de altura $2\log #n#-O(1)$.
 \end{exc}
 
@@ -705,12 +705,12 @@ de \thmref{redblack-amortized} para essas estruturas.
 	Suponha que você tenha uma árvore binária de busca com #n# nós e 
 	altura de no máximo $2\log #n#-2$. É sempre possível colorir os nós 
 	vermelhos e pretos de modo que a árvore satisfaça as propriedades altura-preta 
-	e sem-borda-vermelha? Se positivo, também pode ser feito para satisfazer a
+	e sem-borda-vermelha? Se positivo, também pode ser feito para satisfazer
 	a propriedade inclinada-para-esquerda?
 \end{exc}
 
 \begin{exc} \exclabel{redblack-merge}
-	Suponha que você tenha duas árvores vermelho-pretas $T_1$ and $T_2$ de
+	Suponha que você tenha duas árvores rubro-negras $T_1$ e $T_2$ de
 	mesma altura preta, $h$, e tal que a maior chave em $T_1$ é menor
 	do que a menor chave em $T_2$. Mostre como combinar $T_1$ e $T_2$
 	em uma única árvore rubro-negra em tempo $O(h)$.
@@ -718,7 +718,7 @@ de \thmref{redblack-amortized} para essas estruturas.
 
 \begin{exc}
 	Estenda sua solução para \excref{redblack-merge} para o caso em que as
-	duas árvores $T_1$ and $T_2$ têm alturas pretas diferentes, $h_1\neq h_2$.
+	duas árvores $T_1$ e $T_2$ têm alturas pretas diferentes, $h_1\neq h_2$.
 	O tempo de execução deve ser $O(\max\{h_1,h_2\})$.
 \end{exc}
 
@@ -726,7 +726,7 @@ de \thmref{redblack-amortized} para essas estruturas.
 
 \begin{exc}
 	Prove que, durante uma operação #add(x)#, uma árvore AVL deve executar
-	no máximo, uma operação de rebalanceamento (que envolve no máximo duas rotações;
+	no máximo uma operação de rebalanceamento (que envolve no máximo duas rotações;
 	veja \figref{avl-rebalance}). Dê um exemplo de uma árvore AVL e uma
 	operação #remove(x)# naquela árvore que requer operações de rebalanceamento
 	da ordem de $\log#n#$

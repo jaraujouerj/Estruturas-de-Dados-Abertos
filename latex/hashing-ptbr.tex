@@ -6,8 +6,8 @@ As tabelas Hash são um método eficiente de armazenar um número pequeno, #n#, 
 \index{tabela de hash} %
 inclui uma ampla gama de estruturas de dados. A primeira parte deste capítulo concentra-se em duas das implementações mais comuns de tabelas de hash: hashing com encadeamento e sondagem linear.
 
-Muitas vezes, as tabelas hash armazenam tipos de dados que não são inteiros. Nesse caso, um inteiro \emph{código hash}
-\index{codigo@código de hash}%
+Muitas vezes, as tabelas hash armazenam tipos de dados que não são inteiros. Nesse caso, um  \emph{código hash} inteiro
+\index{código@código de hash}%
 está associado a cada item de dados e é usado na tabela hash. A segunda parte deste capítulo discute como esses códigos de hash são gerados.
 
 Alguns dos métodos utilizados neste capítulo exigem escolhas aleatórias de números inteiros em algum intervalo específico. Nos exemplos de código, alguns desses números inteiros ``aleatórios'' são constantes codificadas. Essas constantes foram obtidas usando bits aleatórios gerados pelo ruído atmosférico.
@@ -536,11 +536,11 @@ em vez de $r/(2^{32}-5)$ especificado em \thmref{stringhash}.
 
 \section{Discussões e Exercícios}
 
-As tabelas Hash e os códigos hash representam um campo de pesquisa enorme e ativo que é apenas abordado neste capítulo. A Bibliografia on-line sobre Hashing \ cite {hash}
+As tabelas Hash e os códigos hash representam um campo de pesquisa enorme e ativo que é apenas abordado neste capítulo. A Bibliografia online sobre Hashing \cite{hashing}
 \index{Bibliografia sobre Hashing}%
 contém cerca de 2000 entradas.
 
-Existe uma variedade de implementações de tabela hash diferentes. O descrito em \secref{hashtable} é conhecido como \emph{hashing com encadeamento}
+Existe uma variedade de implementações de tabela hash diferentes. A descrita na \secref{hashtable} é conhecida como \emph{hashing com encadeamento}
 \index{hashing com encadeamento}%
 (cada entrada do array contém uma cadeia (#List#) de elementos). Hashing com encadeamento remonta a um memorando interno da IBM criado por H. P. Luhn e datado de janeiro de 1953. Este memorando também parece ser uma das primeiras referências às linked lists.
 
