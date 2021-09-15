@@ -1,9 +1,9 @@
 """A Set implementation that uses hashing with chaining"""
 import random
 
-from utils import new_array
-from arraystack import ArrayStack
-from base import BaseSet
+from .utils import new_array
+from .arraystack import ArrayStack
+from .base import BaseSet
 
 w = 32
 

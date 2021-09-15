@@ -1,6 +1,6 @@
 """An implementation of the adjacency list representation of a graph"""
-from arraystack import ArrayStack
-from utils import new_array
+from .arraystack import ArrayStack
+from .utils import new_array
 
 length = len
 

@@ -1,7 +1,7 @@
 """Implementations of some sorting and graph algorithms"""
 import random
-from utils import new_zero_array, new_array, _new_array, w
-from binaryheap import BinaryHeap
+from .utils import new_zero_array, new_array, _new_array, w
+from .binaryheap import BinaryHeap
 
 def average(a):
     s = 0

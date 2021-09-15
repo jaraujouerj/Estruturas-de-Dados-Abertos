@@ -6,10 +6,10 @@ and O(w) time addition/removal
 D. E. Willard. Log-logarithmic worst-case range queries are possible in 
   space Theta(n). Information Processing Letters, 17, 81-84. 1984.
 """
-from base import BaseSet
-from binarytrie import BinaryTrie
-from linearhashtable import LinearHashTable
-from utils import new_array, w
+from .base import BaseSet
+from .binarytrie import BinaryTrie
+from .linearhashtable import LinearHashTable
+from .utils import new_array, w
 
 
 class XFastTrie(BinaryTrie):

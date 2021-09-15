@@ -2,7 +2,7 @@
 
 import bisect
 
-from base import BaseSet
+from .base import BaseSet
 
 class ControlSSet(BaseSet):
     def __init__(self, iterable=[]):

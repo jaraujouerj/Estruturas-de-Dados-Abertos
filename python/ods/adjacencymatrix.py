@@ -1,5 +1,5 @@
 """An implementation of the adjacency matrix representation of a graph"""
-from utils import new_boolean_matrix
+from .utils import new_boolean_matrix
 
 class AdjacencyMatrix(object):
     def __init__(self, n):

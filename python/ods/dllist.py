@@ -1,5 +1,5 @@
 """A doubly-linked list implementation with O(1+min{i, n-i}) update time"""
-from base import BaseList
+from .base import BaseList
 
 class DLList(BaseList):
     

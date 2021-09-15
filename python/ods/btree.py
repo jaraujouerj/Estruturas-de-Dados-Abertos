@@ -1,7 +1,7 @@
 """An implementation of B-Trees"""
 
-from utils import new_array, new_int_array
-from base import BaseSet
+from .utils import new_array, new_int_array
+from .base import BaseSet
 
 class BlockStore(object):
     """This class simulates a block storage device like a file"""
@@ -206,8 +206,8 @@ class BTree(BaseSet):
             self.check_underflow_nonzero(u, i)
             
     def merge(self, u, i, v, w):
-        assert(v.id == u.children[i])
-        assert(w.id == u.children[i+1])
+        assert v.id == u.children[i]
+        assert w.id == u.children[i + 1]
         sv = v.size()
         sw = w.size()
         # copy keys from w to v
@@ -295,13 +295,13 @@ class BTree(BaseSet):
         if ui >= 0:
             u = self.bs.read_block(ui)
             i = 0
-            print '[',
+            print("[", end="")
             while i < len(u.keys) and u.keys[i] is not None:
                 self._ir(u.children[i])
-                print u.keys[i],
+                print(u.keys[i], end="")
                 i += 1
             self._ir(u.children[i])
-            print ']',
+            print("]", end="")
         
 if __name__ == "__main__":
     import random
@@ -312,19 +312,18 @@ if __name__ == "__main__":
     
     # testing a node
     n = BTree.Node(bt)
-    print n
+    print(n)
     for i in range(b):
         n.add(random.randrange(10*b), i)
-        print n
+        print(n)
     w = n.split()
-    print "n = ", n
-    print "w = ", w
+    print("n = ", n)
+    print("w = ", w)
     w.remove(0)
-    print "n = ", n
-    print "w = ", w
+    print("n = ", n)
+    print("w = ", w)
    
     n = 100
     for i in range(n):
         bt.add(random.randrange(100*n))
-        print bt
-        
+        print(bt)        

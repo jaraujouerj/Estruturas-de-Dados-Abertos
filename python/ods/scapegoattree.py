@@ -12,8 +12,8 @@ A. Andersson. General Balanced Trees. In Journal of Algorithms, 30(1),
 """
 import math
 
-from utils import new_array
-from binarysearchtree import BinarySearchTree
+from .utils import new_array
+from .binarysearchtree import BinarySearchTree
 
 def log32(q):
     return int(math.log(q, 1.5))

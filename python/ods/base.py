@@ -1,4 +1,4 @@
-"""Some base classes inherited by others"""
+"""Algumas classes de base herdadas por outros módulos."""
 
 class BaseCollection(object):
     """Base class for everything"""

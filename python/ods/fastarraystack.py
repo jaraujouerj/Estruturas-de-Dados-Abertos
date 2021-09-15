@@ -6,9 +6,9 @@ at a[(j+i)%len(a)].
 
 Uses a doubling strategy for resizing a when it becomes full or too empty.
 '''
-from utils import new_array
+from .utils import new_array
 
-from base import BaseList
+from .base import BaseList
 
 class FastArrayStack(BaseList):
     def __init__(self, iterable=[]):

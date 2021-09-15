@@ -1,7 +1,7 @@
 
-from utils import new_array
-from base import BaseList
-from arraydeque import ArrayDeque
+from .utils import new_array
+from .base import BaseList
+from .arraydeque import ArrayDeque
 
 class SEList(BaseList):
     class BDeque(ArrayDeque):
@@ -146,7 +146,7 @@ class SEList(BaseList):
 
 if __name__ == "__main__":
     ell = SEList(6)
-    print ell
+    print(ell)
     ell.append(20)
     ell.append(21)
-    print ell  
+    print(ell  )

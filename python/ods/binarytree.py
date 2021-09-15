@@ -1,6 +1,6 @@
 """A basic binary tree implementation"""
 
-from arrayqueue import ArrayQueue
+from .arrayqueue import ArrayQueue
 
 class BinaryTree(object):
     class Node(object):

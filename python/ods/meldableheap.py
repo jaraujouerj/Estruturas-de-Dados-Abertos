@@ -6,8 +6,8 @@ A. Gambin and A. Malinowski. Randomized meldable priority queues.
 """
 
 import random
-from base import BaseSet
-from binarytree import BinaryTree
+from .base import BaseSet
+from .binarytree import BinaryTree
 
 def random_bit():
     return random.getrandbits(1) == 0

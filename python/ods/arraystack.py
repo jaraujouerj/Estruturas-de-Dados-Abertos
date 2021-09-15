@@ -1,12 +1,10 @@
-'''
-An array-based list implementation with O(1+n-i) amortized update time.
+"""Um ArrayStack implementa a interface de lista usando um array.
 
-Stores the list in an array, a, so that the i'th list item is stored
-at a[(j+i)%len(a)].
+Uma implementação de lista baseada em matriz com tempo de atualização
+amortizado de O(1 + n-i).
 
-Uses a doubling strategy for resizing a when it becomes full or too empty.
-'''
-from utils import new_array
+Armazena a lista em uma matriz, a, de modo que o i-ésimo item da lista
+seja armazenado em a[(j+i)%len(a)].
 
 from base import BaseList
 

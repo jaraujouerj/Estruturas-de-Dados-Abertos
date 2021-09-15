@@ -4,8 +4,8 @@ This structure is able to store elements, x, where int(x) is an unsigned
 w bit integer.
 """
 
-from utils import new_array, w, binfmt
-from base import BaseSet
+from .utils import new_array, w, binfmt
+from .base import BaseSet
 
 
 class BinaryTrie(BaseSet):

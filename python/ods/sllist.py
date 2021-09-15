@@ -1,5 +1,5 @@
 """An implementation of a singly-linked list"""
-from base import BaseList
+from .base import BaseList
 
 class SLList(BaseList):
     

@@ -1,5 +1,5 @@
 """A class that wraps a python list in the ods List interface"""
-from base import BaseList
+from .base import BaseList
 
 class ControlList(BaseList):
     def __init__(self, iterable=[]):

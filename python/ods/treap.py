@@ -13,7 +13,7 @@ J. Vuillemin. A unifying look at data structures.
 """
 import random
 
-from binarysearchtree import BinarySearchTree
+from .binarysearchtree import BinarySearchTree
 
 class Treap(BinarySearchTree):
     class Node(BinarySearchTree.Node):

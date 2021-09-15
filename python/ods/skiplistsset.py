@@ -9,8 +9,8 @@ W. Pugh. A skip list cookbook. CS-TR-2286.1, University of Maryland,
 """
 
 import random
-from utils import new_array
-from base import BaseSet
+from .utils import new_array
+from .base import BaseSet
         
 class SkiplistSSet(BaseSet):
     class Node(object):

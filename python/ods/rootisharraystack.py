@@ -14,9 +14,9 @@ Robert Sedgewick: Resizable Arrays in Optimal Time and Space. WADS 1999: 37-48
 """
 from math import ceil, sqrt
 
-from utils import new_array
-from arraystack import ArrayStack
-from base import BaseList
+from .utils import new_array
+from .arraystack import ArrayStack
+from .base import BaseList
 
 class RootishArrayStack(BaseList):
     def __init__(self, iterable=[]):

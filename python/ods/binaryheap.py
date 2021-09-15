@@ -1,6 +1,6 @@
 """An implemnetation of a binary heap using an array"""
-from utils import new_array
-from base import BaseSet
+from .utils import new_array
+from .base import BaseSet
 
 def left(i):
     return 2*i + 1

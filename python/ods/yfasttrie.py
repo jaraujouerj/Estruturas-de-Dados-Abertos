@@ -8,10 +8,10 @@ D. E. Willard. Log-logarithmic worst-case range queries are possible in
 """
 import random
 
-from base import BaseSet
-from treap import Treap
-from xfasttrie import XFastTrie
-from utils import w
+from .base import BaseSet
+from .treap import Treap
+from .xfasttrie import XFastTrie
+from .utils import w
 
 class STreap(Treap):
     """A Treap that implements the split/absorb functionality"""

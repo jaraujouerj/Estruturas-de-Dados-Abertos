@@ -8,9 +8,9 @@ Items are redistributed even between front and back whenever one is more than
 three times the size of the other.
 '''
 
-from arraystack import ArrayStack
+from .arraystack import ArrayStack
 
-from base import BaseList
+from .base import BaseList
 
 class DualArrayDeque(BaseList):
     def __init__(self, iterable=[]):

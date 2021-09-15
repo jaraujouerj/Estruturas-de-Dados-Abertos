@@ -8,8 +8,8 @@ W. Pugh. A skip list cookbook. CS-TR-2286.1, University of Maryland,
 """
 import random
 import numpy
-from utils import new_array
-from base import BaseList
+from .utils import new_array
+from .base import BaseList
 
         
 class SkiplistList(BaseList):

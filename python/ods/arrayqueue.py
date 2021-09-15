@@ -1,7 +1,7 @@
-"""An array-based implementation of a queue that uses modular arithmetic"""
-from utils import new_array
+"""An array-based implementation of a queue that uses modular arithmetic."""
+from .utils import new_array
 
-from base import BaseList
+from .base import BaseList
 
 class ArrayQueue(BaseList):
     def __init__(self, iterable=[]):
@@ -33,3 +33,6 @@ class ArrayQueue(BaseList):
         self.n -= 1
         if len(self.a) >= 3*self.n: self._resize()
         return x
+
+    def get(self, i):
+        return self.a[(self.j + i) % len(self.a)]

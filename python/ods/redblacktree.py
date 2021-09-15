@@ -7,7 +7,7 @@ Open Data Structures.
 Leonidas J. Guibas, Robert Sedgewick: A Dichromatic Framework for Balanced
    Trees. FOCS 1978: 8-21
 """
-from binarysearchtree import BinarySearchTree
+from .binarysearchtree import BinarySearchTree
 
 red = 0
 black = 1
