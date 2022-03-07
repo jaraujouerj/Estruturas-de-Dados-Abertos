@@ -26,6 +26,9 @@ class ArrayQueue(BaseList):
         self.n += 1
         return True
 
+    def append(self, x):
+        self.add(x)
+
     def remove(self):
         if self.n == 0: raise IndexError()
         x = self.a[self.j]

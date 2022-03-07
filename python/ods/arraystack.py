@@ -5,7 +5,7 @@ amortizado de O(1 + n-i).
 
 Armazena a lista em uma matriz, a, de modo que o i-ésimo item da lista
 seja armazenado em a[(j+i)%len(a)].
-
+"""
 from base import BaseList
 
 class ArrayStack(BaseList):
