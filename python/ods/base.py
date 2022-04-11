@@ -1,5 +1,6 @@
 """Algumas classes de base herdadas por outros módulos."""
 
+
 class BaseCollection(object):
     """Base class for everything"""
     def __init__(self):
@@ -10,9 +11,11 @@ class BaseCollection(object):
         return self.n
     
     def __len__(self):
+        """Retorna o número de elementos do objeto."""
         return self.size()
     
     def __str__(self):
+        """Retorna uma string com os elementos da estrutura."""
         return "[" + ",".join([str(x) for x in self]) + "]"
     
     def __repr__(self):
@@ -30,6 +33,7 @@ class BaseSet(BaseCollection):
             self.add(x)
             
     def __in__(self, x):
+        """Testa se elemento x está na estrutura."""
         return self.find(x) is not None
 
     def __eq__(self, a):
@@ -73,7 +77,7 @@ class BaseList(BaseCollection):
     def remove_last(self):
         return self.remove(self.size()-1)
         
-    def insert(i, x):
+    def insert(self, i, x):
         self.add(i, x)
  
     def __iter__(self):
