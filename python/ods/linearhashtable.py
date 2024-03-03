@@ -87,7 +87,7 @@ class LinearHashTable(BaseSet):
         if 2*(self.q+1) > len(self.t): resize()
         i = self._hash(x)
         while self.t[i] is not None:
-            if self.t[1] != self.dl and x == self.t[i]: return False
+            if self.t[i] != self.dl and x == self.t[i]: return False
             i = (i + 1) % len(self.t[i])
         t[i] = x
         self.n += 1
