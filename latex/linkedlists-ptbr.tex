@@ -395,10 +395,7 @@ Agora, temos que estar preparados para o caso em que não podemos remover um ele
 de #u# sem fazer com que o bloco #u# fique menor que $#b#-1$.
 
 Novamente, deixe $#u#_0,#u#_1,#u#_2,\ldots$ indicar #u#, #u.next#, #u.next.next#,
-e assim por diante. Examinamos $#u#_0,#u#_1,#u#_2,\ldots$ para procurar
-um nó do qual podemos pegar emprestado um elemento para fazer o tamanho do
-bloco $#u#_0$ ser, no mínimo, $#b#-1$.  Há três casos a considerar
-(ver \figref{selist-remove}):
+e assim por diante. Examinamos $#u#_0,#u#_1,#u#_2,\ldots$ para procurar um nó do qual podemos pegar emprestado um elemento para fazer o tamanho do bloco $#u#_0$ ser, no mínimo, $#b#-1$.  Há três casos a considerar (ver \figref{selist-remove}):
 
 \begin{figure}
 	\noindent
@@ -418,7 +415,7 @@ bloco $#u#_0$ ser, no mínimo, $#b#-1$.  Há três casos a considerar
 	\item Nós, rapidamente, (em $r+1\le #b#$ passos) achamos um nó cujo bloco contém
 	mais de $#b#-1$ elementos. Neste caso, executamos $r$ deslocamentos de um
 	elemento de um bloco para o anterior, de modo que o elemento extra
-	em $#u#_r$ se torne um elemento extra em $#u#_0$. Podemos, então,remover o
+	em $#u#_r$ se torne um elemento extra em $#u#_0$. Podemos, então, remover o
 	elemento apropriado do bloco $#u#_0$.
 	
 	\item Nós, rapidamente, (em $r+1\le #b#$ passos) chegamos ao fim da lista de

@@ -2,7 +2,9 @@
 \chaplabel{hashtables}
 \chaplabel{hashing}
 
-As tabelas Hash são um método eficiente de armazenar um número pequeno, #n#, de números inteiros de uma grande faixa $U=\{0,\ldots,2^{#w#}-1\} $. O termo \emph{tabela hash}
+As tabelas Hash, também conhecidas como \textit{tabelas de dispersão} ou \textit{tabelas de espalhamento},  são um método eficiente de armazenar um número pequeno, #n#, de números inteiros de uma grande faixa $U=\{0,\ldots,2^{#w#}-1\} $. Frequentemente, estruturas de dicionários são implementadas como \textit{tabelas hash}, como é o caso, por exemplo, do tipo dicionário da linguagem \textit{Python}. 
+
+O termo \emph{tabela hash}
 \index{tabela de hash} %
 inclui uma ampla gama de estruturas de dados. A primeira parte deste capítulo concentra-se em duas das implementações mais comuns de tabelas de hash: hashing com encadeamento e sondagem linear.
 
@@ -39,7 +41,7 @@ $#n#/#t.length# \le 1$.
 
 Para adicionar um elemento, #x#, à tabela de hash, primeiro verificamos se o comprimento de #t# precisa ser aumentado e, se assim for, crescemos #t#. Com isso resolvido, vamos decodificar #x# por meio de uma função hash para obtermos um número inteiro, #i#, no intervalo $\{0,\ldots,#t.length#-1\}$ e anexamos #x# à lista #t[i]#:
 \codeimport{ods/ChainedHashTable.add(x)}
-Crescer a tabela, se necessário, envolve duplicar o comprimento de #t# e reinserir todos os elementos na nova tabela. Esta estratégia é exatamente a mesma que a utilizada na implementação da #ArrayStack# e o mesmo resultado se aplica: O custo de crescimento é apenas constante quando amortizado em uma sequência de inserções (veja ~\lemref{arraystack-amortized} na página ~\pageref{lem:arraystack-amortized}).
+Crescer a tabela, se necessário, envolve duplicar o comprimento de #t# e reinserir todos os elementos na nova tabela. Esta estratégia é exatamente a mesma que a utilizada na implementação da #ArrayStack# e o mesmo resultado se aplica: o custo de crescimento é apenas constante quando amortizado em uma sequência de inserções (veja ~\lemref{arraystack-amortized} na página ~\pageref{lem:arraystack-amortized}).
 
 Além de crescer, o único outro trabalho feito ao adicionar um novo valor #x# a uma #ChainedHashTable# envolve anexar #x# à lista #t[hash(x)]#. Para qualquer uma das implementações de lista descritas nos Capítulos ~\ref{chap:arrays} ou \ref{chap:linkedlists}, isso leva um tempo constante.
 
@@ -70,10 +72,10 @@ Aqui, #z# é um inteiro \emph{ímpar} escolhido aleatoriamente em
 $\{1,\ldots,2^{#w#}-1\}$. Esta função de hash pode ser realizada de
 forma muito eficiente observando que, por padrão, as operações em números
 inteiros já são feitas em modulo $2^{#w#}$ onde $#w#$ é o número de bits
-em um número inteiro. \footnote{Isso é verdadeiro para a maioria das
+em um número inteiro\footnote{Isso é verdadeiro para a maioria das
 linguagens de programação, incluindo C, C\#, C++ e Java. Exceções
 notáveis são Python e Ruby, no qual o resultado de uma operação de
-números inteiros de comprimento #w#-bit fixo, é atualizado para uma representação de comprimento variável.}  (Ver
+números inteiros de comprimento #w#-bit fixo, é atualizado para uma representação de comprimento variável.}. (Ver
 \figref{multihashing}.) Além disso, a divisão inteira por $2^{#w#-#d#}$
 é equivalente a descartar os $#w#-#d#$ bits mais à direita em uma representação binária (que é implementado deslocando os bits da direita por
 $#w#-#d#$ usando o operador \javaonly{#>>>#}\cpponly{#>>#}\pcodeonly{#>>#}).  \notpcode{Desta forma, o código que implementa a fórmula acima é mais simples que a própria fórmula:}
@@ -220,7 +222,7 @@ O seguinte teorema resume o desempenho de uma estrutura de dados #ChainedHashTab
 \seclabel{linearhashtable}
 
 \index{LinearHashTable@#LinearHashTable#}%
-A estrutura de dados #ChainedHashTable# usa uma matriz de listas, onde a #i#-ésima lista armazena todos os elementos #x#, tal que $#hash(x)#=#i#$. Uma alternativa, chamada \emph{endereçamento aberto}
+A estrutura de dados #ChainedHashTable# usa um array de listas, onde a #i#-ésima lista armazena todos os elementos #x#, tal que $#hash(x)#=#i#$. Uma alternativa, chamada \emph{endereçamento aberto}
 \index{endereçamento aberto}%
 \index{hash!por endereçamento aberto}%
 é armazenar os elementos diretamente em um array, #t#, com cada local do array em #t# armazenando no máximo um valor. Essa abordagem é tomada pela #LinearHashTable# descrita nesta seção. Em alguns lugares, esta estrutura de dados é descrita como \emph{endereçamento aberto com sondagem linear}.
@@ -232,12 +234,12 @@ A principal ideia por trás de uma #LinearHashTable# é que gostaríamos, de pre
 Há três tipos de registros armazenados em #t#: 
 \begin{enumerate}
   \item dados: valores reais no #USet# que estamos representando;
-   \item valores #null#: em locais de matriz onde nenhum dado foi armazenado; e
-   \item valores #del#: em locais de matriz onde os dados foram armazenados uma vez, mas que já foram excluídos.
+   \item valores #null#: em locais de array onde nenhum dado foi armazenado; e
+   \item valores #del#: em locais de array onde os dados foram armazenados uma vez, mas que já foram excluídos.
 \end{enumerate}
 Além do contador, #n#, que acompanha o número de elementos na #LinearHashTable#, um contador, #q#, acompanha o número de elementos dos Tipos~1 e 3. Isso é, #q# é igual a #n# mais o número de #del# valores em #t#. Para que isso funcione de forma eficiente, precisamos que #t# seja consideravelmente maior do que #q#, de modo que existam muitos valores #null# em #t#. As operações na #LinearHashTable# mantêm, portanto, o invariante que $#t.length#\ge 2#q#$.
 
-Para resumir, um #LinearHashTable# contém uma matriz, #t#, que armazena elementos de dados e números inteiros #n# e #q# que acompanham o número de elementos de dados e valores não #null# de #t#, respectivamente. Como muitas funções de hash funcionam apenas para tamanhos de tabela que são uma potência de 2, também mantemos um inteiro #d# e asseguramos o invariante $#t.length#=2^#d#$.
+Para resumir, um #LinearHashTable# contém um array, #t#, que armazena elementos de dados e números inteiros #n# e #q# que acompanham o número de elementos de dados e valores não #null# de #t#, respectivamente. Como muitas funções de hash funcionam apenas para tamanhos de tabela que são uma potência de 2, também mantemos um inteiro #d# e asseguramos o invariante $#t.length#=2^#d#$.
 \codeimport{ods/LinearHashTable.t.n.q.d}
 
 A operação #find(x)# em #LinearHashTable# é simples. Nós começamos na entrada do array #t[i]# onde $#i#=#hash(x)#$ e pesquisamos as entradas #t[i]#, $#t#[(#i#+1)\bmod #t.length#]$, $#t#[(#i#+2)\bmod #t.length#]$, e assim por diante, até encontrarmos um índice #i'# tal que, também, #t[i']=x#, ou #t[i']=null#.
@@ -264,7 +266,7 @@ Observe que cada operação, #add(x)#, #remove(x)# ou #find(x)#, termina assim q
 A intuição por trás da análise de sondagem linear é que, uma vez que pelo menos metade dos elementos em #t# são iguais a #null#, uma operação não demorará muito para ser concluída, pois será muito rápido encontrar uma entrada #null#. No entanto, não devemos confiar muito nessa intuição, porque isso nos levaria à conclusão (incorreta) de que o número esperado de locais em #t# examinado por uma operação é no máximo de 2.
 
 Para o restante desta seção, assumiremos que todos os valores de hash são distribuídos de forma independente e uniforme em $\{0,\ldots,#t.length#-1\}$.
-Esta não é uma suposição realista, mas permitirá que analisemos a sondagem linear. Mais tarde, nesta seção, descreveremos um método, chamado de hash de tabulação, que produz uma função de hash que é "suficientemente boa" para sondagem linear. Também assumiremos que todos os índices nas posições de #t# são tomados no módulo #t.length#, de modo que #t[i]# é realmente uma abreviatura para $#t#[#i#\bmod#t.length#]$.
+Esta não é uma suposição realista, mas permitirá que analisemos a sondagem linear. Mais tarde, nesta seção, descreveremos um método, chamado de hash de tabulação, que produz uma função de hash que é ``suficientemente boa'' para sondagem linear. Também assumiremos que todos os índices nas posições de #t# são tomados no módulo #t.length#, de modo que #t[i]# é realmente uma abreviatura para $#t#[#i#\bmod#t.length#]$.
 
 \index{hash!percurso de tamanho k}%
 Dizemos que um \emph {percurso de tamanho $ k $ que começa em # i #} ocorre quando todas as entradas da tabela $#t[i]#, #t[i+1]#,\ldots,#t#[#i#+k-1]$ não são #null# e $#t#[#i#-1]=#t#[#i#+k]=#null#$. O número de elementos não-#null# de #t# é exatamente #q# e o método #add (x) # garante que, em todos os momentos, $#q#\le#t.length#/2$. Existem #q# elementos $#x#_1,\ldots,#x#_{#q#}$ que foram inseridos em #t# desde a última operação #resize()#.
@@ -272,16 +274,16 @@ Por nossa suposição, cada um deles tem um valor de hash, $#hash#(#x#_j)$,
 Isso é uniforme e independente do resto. Com esta configuração, podemos provar o lema principal necessário para analisar a sondagem linear.
 
 \begin{lem}\lemlabel{linear-probing}
-Corrija um valor $#i#\in\{0,\ldots,#t.length#-1\}$. Então, a probabilidade de que um período de $k$ começado em #i# seja $O(c^k)$ para alguma constante $0<c<1$.
+Seja um valor $#i#\in\{0,\ldots,#t.length#-1\}$. Então, a probabilidade de que uma sequência de tamanho $k$ começado em #i# é $O(c^k)$ para alguma constante $0<c<1$.
 \end{lem}
 
 \begin{proof}
-Se um período de $k$ começar em #i#, então existem exatamente $k$ elementos $#x#_j$ such that $#hash#(#x#_j)\in\{#i#,\ldots,#i#+k-1\}$.
+Se uma sequência de tamanho $k$ começar em #i#, então existem exatamente $k$ elementos $#x#_j$ such that $#hash#(#x#_j)\in\{#i#,\ldots,#i#+k-1\}$.
 A probabilidade de isso ocorrer é exatamente
 \[
   p_k  = \binom{#q#}{k}\left(\frac{k}{#t.length#}\right)^k\left(\frac{#t.length#-k}{#t.length#}\right)^{#q#-k} \enspace ,
 \]
-uma vez que, para cada escolha de $k$ elementos, esses $k$ elementos devem se dispersar para um dos $k$ locais e o restante $#q#-k$ elementos devem se dispersar para os outros $#t.length#-k$ locais da tabela. \footnote{Note que $p_k$ é maior do que a probabilidade de que um percurso $k$ comece em #i#, uma vez que a definição de $p_k$ não inclui o requisito $#t#[#i#-1]=#t#[#i#+k]=#null#$.}
+uma vez que, para cada escolha de $k$ elementos, esses $k$ elementos devem se dispersar para um dos $k$ locais e o restante $#q#-k$ elementos devem se dispersar para os outros $#t.length#-k$ locais da tabela. \footnote{Note que $p_k$ é maior do que a probabilidade de que uma sequência de tamanho $k$ comece em #i#, uma vez que a definição de $p_k$ não inclui o requisito $#t#[#i#-1]=#t#[#i#+k]=#null#$.}
 
 Na derivação a seguir, vamos trapacear um pouco e substituir $r!$ por $(r/e)^r$. A Aproximação de Stirling (\secref{factorials}) mostra que isso é apenas um fator de $O(\sqrt{r})$ da verdade. Isso é feito apenas para tornar a derivação mais simples; \excref{linear-probing} pede ao leitor para refazer o cálculo de forma mais rigorosa usando a Aproximação de Stirling na sua totalidade.
 
@@ -346,7 +348,7 @@ Ao analisar a estrutura # LinearHashTable #, fizemos uma suposição muito forte
 	 \end{center}
 extrai os #d# bits mais significativos de #x#'s de #w#-bit códigos hash.}
 
-Infelizmente, armazenar uma matriz de tamanho $2^{#w#}$ é proibitivo em termos de uso de memória. A abordagem usada pela \emph {hashing por tabulação } é, em vez disso, tratar números # w #-bit como sendo compostos de $#w#/#r#$ inteiros, cada um com apenas $#r#$ bits. Desta forma, o hashing de tabulação só precisa de $#w#/#r#$ arrays cada um do comprimento $2^{#r#}$. Todas as entradas nesses arrays são #w#-bit inteiros aleatoriamente independentes. Para obter o valor de #hash(x)#, divide-se os números inteiros #x.hashCode()# em $#w#/#r#$ #r#-bit e usamos estes como índices nesses arrays. Em seguida, combinamos todos esses valores com o operador exclusivo de bit a bit para obter #hash(x)#.
+Infelizmente, armazenar um array de tamanho $2^{#w#}$ é proibitivo em termos de uso de memória. A abordagem usada pela \emph {hashing por tabulação } é, em vez disso, tratar números # w #-bit como sendo compostos de $#w#/#r#$ inteiros, cada um com apenas $#r#$ bits. Desta forma, o hashing de tabulação só precisa de $#w#/#r#$ arrays cada um do comprimento $2^{#r#}$. Todas as entradas nesses arrays são #w#-bit inteiros aleatoriamente independentes. Para obter o valor de #hash(x)#, divide-se os números inteiros #x.hashCode()# em $#w#/#r#$ #r#-bit e usamos estes como índices nesses arrays. Em seguida, combinamos todos esses valores com o operador exclusivo de bit a bit para obter #hash(x)#.
 O código a seguir mostra como isso funciona quando $#w#=32$ e $#r#=4$:
 \codeimport{ods/LinearHashTable.hash(x)}
 Nesse caso, # tab # é um array bidimensional com quatro colunas e $2^{32/4}=256$ linhas.
@@ -547,7 +549,7 @@ Existe uma variedade de implementações de tabela hash diferentes. A descrita n
 \index{endereçamento aberto}%
 Uma alternativa ao hashing com encadeamento é a usada pelos esquemas \emph{open address}, onde todos os dados são armazenados diretamente em um array. Esses esquemas incluem a estrutura # LinearHashTable # de \secref{linearhashtable}. Essa idéia também foi proposta, independentemente, por um grupo da IBM na década de 1950. Os esquemas de endereçamento aberto devem lidar com o problema de \emph{resolução de colisão}:
 \ index {collision resolution}%
-o caso em que dois valores hash para o mesmo local da matriz. Existem estratégias diferentes para resolução de colisão; Estes fornecem garantias de desempenho diferentes e muitas vezes exigem funções de hash mais sofisticadas do que as descritas aqui.
+o caso em que dois valores hash para o mesmo local do array. Existem estratégias diferentes para resolução de colisão; Estes fornecem garantias de desempenho diferentes e muitas vezes exigem funções de hash mais sofisticadas do que as descritas aqui.
 
 Outra categoria de implementações de tabela de hash são os chamados métodos de
 \emph{hashing perfeito}.
@@ -555,7 +557,7 @@ Outra categoria de implementações de tabela de hash são os chamados métodos 
 Estes são métodos em que as operações #find(x)# levam $O(1)$ tempo no pior caso. Para conjuntos de dados estáticos, isso pode ser conseguido encontrando \emph {funções de hash perfeitas}
 \index{função de hashing perfeito}%
 \index{hash!função perfeita}%
-para os dados; Essas são funções que mapeiam cada peça de dados para um local de matriz exclusivo. Para os dados que mudam ao longo do tempo, os métodos de hash perfeitos incluem \emph{tabelas de hash de dois níveis FKS}
+para os dados; Essas são funções que mapeiam cada peça de dados para um local de array exclusivo. Para os dados que mudam ao longo do tempo, os métodos de hash perfeitos incluem \emph{tabelas de hash de dois níveis FKS}
 \index{tabela de hash de dois níveis}%
 \index{hash!tabela de dois níveis}%
 \cite{fks84,dkkmrt94}
@@ -593,7 +595,7 @@ Há uma série de métodos para obter códigos hash de sequências de compriment
 \]
 onde $r$ é igual e $#a#_0,\ldots,#a#_{r-1}$ são escolhidos aleatoriamente de $\{0,\ldots,2^{#w#}\}$. Isso produz um código hash de $2#w#$-bit com probabilidade de colisão $1/2^{#w#}$. Isso pode ser reduzido para um código hash de #w#-bit usando o hashing multiplicativo (ou multiplicativo). Esse método é rápido porque requer apenas $r/2$ $2#w#$-bit multiplicações , enquanto o método descrito em \secref{stringhash} requer $r$ multiplicações. (As operações $\bmod$ ocorrem implicitamente usando a aritmética #w# e $2#w#$-bit para as adições e multiplicações, respectivamente.)
 
-O método de \secref{polyhash} de usar polinômios sobre campos primos para matrizes de comprimento variável de hash e strings é devido a Dietzfelbinger \etal\
+O método de \secref{polyhash} de usar polinômios sobre campos primos para arrays de comprimento variável de hash e strings é devido a Dietzfelbinger \etal\
 \cite{dgmp92}. Devido ao uso do operador $\bmod$ que depende de uma instrução de máquina dispendiosa, infelizmente não é muito rápido. Algumas variantes deste método escolhem o primo #p # para ser um da forma $2^{#w#}-1$, caso em que o operador $\bmod$ pode ser substituído por adição (#+#) e operações bitwise-E (#&#) \cite[Seção~3.6]{k97v2}.
 Outra opção é aplicar um dos métodos rápidos para sequências de caracteres de comprimento fixo para blocos de comprimento $c$ para alguma constante $c>1$ e, em seguida, aplicar o método de campo primário à sequência resultante de $\lceil r/c\rceil$ códigos hash.
 
@@ -620,7 +622,7 @@ Outra opção é aplicar um dos métodos rápidos para sequências de caracteres
 \end{exc}
 
 \begin{exc}
-  Considere a seguinte versão simplificada do código para adicionar um elemento #x# a um #LinearHashTable#, que simplesmente armazena #x# na primeira entrada #null# do array encontrada. Explique por que isso pode ser muito lento, dando um exemplo de uma sequência de $O(#n#)$ #add(x)#, #remove(x)# e #find(x)# operações que levariam na ordem de $#n#^2$ tempo de executar.
+  Considere a seguinte versão simplificada do código para adicionar um elemento #x# a um #LinearHashTable#, que simplesmente armazena #x# na primeira entrada #null# do array encontrada. Explique por que isso pode ser muito lento, dando um exemplo de uma sequência de $O(#n#)$ #add(x)#, #remove(x)# e #find(x)# operações que levariam na ordem de $#n#^2$ tempo de execução.
 \codeimport{ods/LinearHashTable.addSlow(x)}
 \end{exc}
 
